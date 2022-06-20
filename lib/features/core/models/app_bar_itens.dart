@@ -1,7 +1,7 @@
 enum AppBarItens {
   home,
-  about,
   works,
+  about,
   contact,
 }
 

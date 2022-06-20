@@ -18,6 +18,24 @@ class PortfolioTheme {
             fontSize: 14.0,
             letterSpacing: 2.0,
           ),
+          headline3: GoogleFonts.openSans(
+            color: AppColors.black,
+            fontWeight: FontWeight.w500,
+            fontSize: 18.0,
+            letterSpacing: 2.0,
+          ),
+          headline4: GoogleFonts.openSans(
+            color: AppColors.black,
+            fontWeight: FontWeight.w500,
+            fontSize: 16.0,
+            letterSpacing: 2.0,
+          ),
+          headline5: GoogleFonts.openSans(
+            color: AppColors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 24.0,
+            letterSpacing: 2.0,
+          ),
           headline1: GoogleFonts.openSans(
             fontSize: 18.0,
             color: Colors.white,

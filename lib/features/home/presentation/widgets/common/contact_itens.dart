@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:portfolio_website/features/home/widgets/common/contact_item.dart';
+import 'package:portfolio_website/features/home/presentation/widgets/common/contact_item.dart';
+import 'package:portfolio_website/features/works/services/contact_launcher_service.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
 class ContactItens extends StatefulWidget {
@@ -28,13 +29,17 @@ class _ContactItensState extends State<ContactItens> {
             ContactItem(
               icon: FontAwesomeIcons.linkedin,
               itemName: "linkedin",
-              handleTap: () {},
+              handleTap: () {
+                ContactLauncherService.openLinkedin();
+              },
             ),
             const SizedBox(width: 12.0),
             ContactItem(
               icon: FontAwesomeIcons.github,
               itemName: "github",
-              handleTap: () {},
+              handleTap: () {
+                ContactLauncherService.openGitHub();
+              },
             )
           ],
         ),

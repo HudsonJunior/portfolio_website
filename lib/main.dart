@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Hudson Portfolio',
         debugShowCheckedModeBanner: false,
         theme: PortfolioTheme.themeData,
         home: const CorePage(),

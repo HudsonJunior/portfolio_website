@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
+import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/hover_rotation_effect.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/extensions.dart';
@@ -10,7 +13,11 @@ class SeeMyWorksWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return HoverRotationEffect(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          BlocProvider.of<ControlPageCubit>(context).scrollTo(
+            AppBarItens.works,
+          );
+        },
         child: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -18,7 +25,7 @@ class SeeMyWorksWidget extends StatelessWidget {
           children: [
             Flexible(
               child: Text(
-                "See my works",
+                "see my works",
                 style: context.themeData.bodyText1!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -27,7 +34,7 @@ class SeeMyWorksWidget extends StatelessWidget {
             const SizedBox(width: 8.0),
             Center(
               child: Icon(
-                Icons.keyboard_arrow_right,
+                Icons.keyboard_arrow_down,
                 color: AppColors.black,
               ),
             ),

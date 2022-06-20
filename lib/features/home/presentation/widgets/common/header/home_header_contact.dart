@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_website/features/home/widgets/common/contact_itens.dart';
-import 'package:portfolio_website/features/home/widgets/common/see_my_works_widget.dart';
+import 'package:portfolio_website/features/home/presentation/widgets/common/contact_itens.dart';
+import 'package:portfolio_website/features/home/presentation/widgets/common/see_my_works_widget.dart';
 
 class HomeHeaderContact extends StatelessWidget {
   const HomeHeaderContact({Key? key}) : super(key: key);

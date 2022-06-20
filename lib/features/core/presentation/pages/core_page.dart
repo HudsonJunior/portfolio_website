@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio_website/features/about/presentation/about_section.dart';
+import 'package:portfolio_website/features/contact/contact_section.dart';
 import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/app_bar_menu_item.dart';
-import 'package:portfolio_website/features/home/home_section.dart';
+import 'package:portfolio_website/features/home/presentation/home_section.dart';
+import 'package:portfolio_website/features/works/works_section.dart';
 import 'package:portfolio_website/resources/colors.dart';
 
 class CorePage extends StatefulWidget {
@@ -21,7 +24,15 @@ class _CorePageState extends State<CorePage> {
   void initState() {
     super.initState();
     controlPageCubit = BlocProvider.of<ControlPageCubit>(context);
-    _scrollController = ScrollController();
+    _scrollController = ScrollController()
+      ..addListener(() {
+        if (_scrollController.hasClients) {
+          controlPageCubit.updateBasedOnScrollPosition(
+            _scrollController.position.pixels,
+            MediaQuery.of(context).size.height,
+          );
+        }
+      });
   }
 
   @override
@@ -52,19 +63,29 @@ class _CorePageState extends State<CorePage> {
         child: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.95,
+              maxWidth: 1000,
               maxHeight: MediaQuery.of(context).size.height,
             ),
-            child: ListView(
-              controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
-              children: const [
-                SizedBox(height: kToolbarHeight * 3),
-                Align(
-                  alignment: Alignment.center,
-                  child: HomeSection(),
-                ),
-              ],
+            child: BlocListener<ControlPageCubit, AppBarItens>(
+              listener: (context, state) async {
+                await _scrollController.animateTo(
+                  state.index * MediaQuery.of(context).size.height,
+                  duration: const Duration(milliseconds: 800),
+                  curve: Curves.easeInOut,
+                );
+
+                controlPageCubit.toggleAnimatingValue();
+              },
+              child: ListView(
+                controller: _scrollController,
+                physics: const BouncingScrollPhysics(),
+                children: const [
+                  HomeSection(),
+                  WorksSection(),
+                  AboutSection(),
+                  ContactSection(),
+                ],
+              ),
             ),
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio_website/features/home/widgets/common/header/home_header.dart';
-import 'package:portfolio_website/features/home/widgets/common/profile_picture.dart';
+import 'package:portfolio_website/features/home/presentation/widgets/common/header/home_header.dart';
+import 'package:portfolio_website/features/home/presentation/widgets/common/profile_picture.dart';
 
 class HomeSectionMobile extends StatefulWidget {
   const HomeSectionMobile({Key? key}) : super(key: key);
