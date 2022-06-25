@@ -45,9 +45,13 @@ class _WorksSectionState extends State<WorksSection>
               ),
             ),
             const SizedBox(height: 32.0),
-            const Expanded(
+            Expanded(
               flex: 4,
-              child: Center(child: WorksCarousel()),
+              child: Center(
+                child: WorksCarousel(
+                  isVisible: isVisible,
+                ),
+              ),
             ),
             const SizedBox(height: 32.0),
             Flexible(

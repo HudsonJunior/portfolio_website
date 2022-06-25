@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:portfolio_website/features/contact/contact_me_item.dart';
+import 'package:portfolio_website/features/contact/contact_content.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/section_header.dart';
-import 'package:portfolio_website/features/works/services/contact_launcher_service.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -47,29 +45,7 @@ class _ContactSectionState extends State<ContactSection>
               ),
             ),
             const SizedBox(height: 32.0),
-            ContactMeItem(
-              handleTap: () {},
-              title: "e-mail",
-              description:
-                  "you can send an e-mail to devhudsoncontact@gmail.com",
-              icon: Icons.mail,
-            ),
-            ContactMeItem(
-              handleTap: () {
-                ContactLauncherService.openLinkedin();
-              },
-              title: "linkedin",
-              description: "you can send a message on linkedin Hudson Júnior",
-              icon: FontAwesomeIcons.linkedin,
-            ),
-            ContactMeItem(
-              handleTap: () {
-                ContactLauncherService.openGitHub();
-              },
-              title: "github",
-              description: "or you can follow my on github HudsonJunior",
-              icon: FontAwesomeIcons.github,
-            ),
+            ContactContent(isVisible: isVisible),
           ],
         ),
       ),

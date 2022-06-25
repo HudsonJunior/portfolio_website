@@ -20,6 +20,13 @@ class _CorePageState extends State<CorePage> {
   late final ControlPageCubit controlPageCubit;
   late final ScrollController _scrollController;
 
+  final sectionItens = [
+    const HomeSection(),
+    const WorksSection(),
+    const AboutSection(),
+    const ContactSection(),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -63,7 +70,6 @@ class _CorePageState extends State<CorePage> {
         child: Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: 1000,
               maxHeight: MediaQuery.of(context).size.height,
             ),
             child: BlocListener<ControlPageCubit, AppBarItens>(
@@ -76,14 +82,23 @@ class _CorePageState extends State<CorePage> {
 
                 controlPageCubit.toggleAnimatingValue();
               },
-              child: ListView(
+              child: CustomScrollView(
                 controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
-                children: const [
-                  HomeSection(),
-                  WorksSection(),
-                  AboutSection(),
-                  ContactSection(),
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (_, index) {
+                        return Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 1000),
+                            child: sectionItens[index],
+                          ),
+                        );
+                      },
+                      childCount: sectionItens.length,
+                    ),
+                  ),
                 ],
               ),
             ),

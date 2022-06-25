@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
-import 'package:portfolio_website/features/core/presentation/widgets/hover_rotation_effect.dart';
+import 'package:portfolio_website/features/core/presentation/widgets/hover_scale_effect.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
@@ -11,7 +11,7 @@ class SeeMyWorksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HoverRotationEffect(
+    return HoverScaleEffect(
       child: InkWell(
         onTap: () {
           BlocProvider.of<ControlPageCubit>(context).scrollTo(

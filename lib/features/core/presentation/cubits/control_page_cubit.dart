@@ -24,14 +24,14 @@ class ControlPageCubit extends Cubit<AppBarItens> {
       }
 
       final bool isAtAbout =
-          position >= currentHeight && position < currentHeight * 2;
+          position >= currentHeight * 2 && position < currentHeight * 3;
 
       if (state != AppBarItens.about && isAtAbout) {
         return emit(AppBarItens.about);
       }
 
       final bool isAtWorks =
-          position >= currentHeight * 2 && position < currentHeight * 3;
+          position >= currentHeight && position < currentHeight * 2;
 
       if (state != AppBarItens.works && isAtWorks) {
         return emit(AppBarItens.works);
