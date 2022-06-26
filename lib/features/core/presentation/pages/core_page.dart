@@ -82,24 +82,33 @@ class _CorePageState extends State<CorePage> {
 
                 controlPageCubit.toggleAnimatingValue();
               },
-              child: CustomScrollView(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (_, index) {
-                        return Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 1000),
-                            child: sectionItens[index],
-                          ),
-                        );
-                      },
-                      childCount: sectionItens.length,
+              child: SizeChangedLayoutNotifier(
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (_, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                            ),
+                            child: Center(
+                              child: ConstrainedBox(
+                                constraints: const BoxConstraints(
+                                  maxWidth: 1000,
+                                ),
+                                child: sectionItens[index],
+                              ),
+                            ),
+                          );
+                        },
+                        childCount: sectionItens.length,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -15,6 +15,7 @@ class _HomeSectionState extends State<HomeSection>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
     return LayoutBuilder(
       builder: (context, constraints) {
         if (AppConstraints.isMobile(constraints.maxWidth)) {

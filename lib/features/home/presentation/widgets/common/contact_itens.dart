@@ -4,18 +4,18 @@ import 'package:portfolio_website/features/home/presentation/widgets/common/cont
 import 'package:portfolio_website/features/works/services/contact_launcher_service.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
-class ContactItens extends StatefulWidget {
-  const ContactItens({Key? key}) : super(key: key);
+class ContactItens extends StatelessWidget {
+  const ContactItens({
+    Key? key,
+    required this.kIsMobile,
+  }) : super(key: key);
+  final bool kIsMobile;
 
-  @override
-  State<ContactItens> createState() => _ContactItensState();
-}
-
-class _ContactItensState extends State<ContactItens> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          kIsMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Text(
           "you can find me on",
@@ -24,24 +24,28 @@ class _ContactItensState extends State<ContactItens> {
           ),
         ),
         const SizedBox(height: 8.0),
-        Row(
-          children: [
-            ContactItem(
-              icon: FontAwesomeIcons.linkedin,
-              itemName: "linkedin",
-              handleTap: () {
-                ContactLauncherService.openLinkedin();
-              },
-            ),
-            const SizedBox(width: 12.0),
-            ContactItem(
-              icon: FontAwesomeIcons.github,
-              itemName: "github",
-              handleTap: () {
-                ContactLauncherService.openGitHub();
-              },
-            )
-          ],
+        Flexible(
+          child: Row(
+            mainAxisAlignment:
+                kIsMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+            children: [
+              ContactItem(
+                icon: FontAwesomeIcons.linkedin,
+                itemName: "linkedin",
+                handleTap: () {
+                  ContactLauncherService.openLinkedin();
+                },
+              ),
+              const SizedBox(width: 12.0),
+              ContactItem(
+                icon: FontAwesomeIcons.github,
+                itemName: "github",
+                handleTap: () {
+                  ContactLauncherService.openGitHub();
+                },
+              )
+            ],
+          ),
         ),
       ],
     );

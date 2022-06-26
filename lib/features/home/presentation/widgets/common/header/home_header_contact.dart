@@ -3,7 +3,12 @@ import 'package:portfolio_website/features/home/presentation/widgets/common/cont
 import 'package:portfolio_website/features/home/presentation/widgets/common/see_my_works_widget.dart';
 
 class HomeHeaderContact extends StatelessWidget {
-  const HomeHeaderContact({Key? key}) : super(key: key);
+  const HomeHeaderContact({
+    Key? key,
+    required this.kIsMobile,
+  }) : super(key: key);
+
+  final bool kIsMobile;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,9 @@ class HomeHeaderContact extends StatelessWidget {
         );
       },
       child: Column(
-        children: const [
-          ContactItens(),
-          SizedBox(height: 32.0),
-          SeeMyWorksWidget(),
+        children: [
+          Flexible(child: ContactItens(kIsMobile: kIsMobile)),
+          const Flexible(child: SeeMyWorksWidget()),
         ],
       ),
     );

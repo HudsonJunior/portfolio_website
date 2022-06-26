@@ -1,35 +1,43 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
 class HomeHeaderTitle extends StatelessWidget {
-  const HomeHeaderTitle({Key? key, this.kIsMobile = false}) : super(key: key);
-
   final bool kIsMobile;
+
+  const HomeHeaderTitle({
+    Key? key,
+    required this.kIsMobile,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        TweenAnimationBuilder<double>(
-          tween: Tween(begin: 0.0, end: 1.0),
-          duration: const Duration(milliseconds: 1200),
-          curve: Curves.bounceOut,
-          builder: (context, value, child) {
-            return Transform.scale(
-              scale: value,
-              child: child,
-            );
-          },
-          child: Align(
-            alignment: kIsMobile ? Alignment.center : Alignment.centerLeft,
-            child: Text(
-              "flutter & mobile developer",
-              style: context.themeData.headline6,
-              textAlign: kIsMobile ? TextAlign.center : TextAlign.start,
+        LimitedBox(
+          child: TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 1200),
+            curve: Curves.bounceOut,
+            builder: (context, value, child) {
+              return Transform.scale(
+                scale: value,
+                child: child,
+              );
+            },
+            child: Align(
+              alignment: kIsMobile ? Alignment.center : Alignment.centerLeft,
+              child: AutoSizeText(
+                "flutter & mobile developer",
+                maxFontSize: 36,
+                maxLines: 1,
+                style: context.themeData.headline6,
+                textAlign: kIsMobile ? TextAlign.center : TextAlign.start,
+              ),
             ),
           ),
         ),
