@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/extensions.dart';
@@ -28,10 +29,11 @@ class SectionHeader extends StatelessWidget {
             thickness: 0.2,
           ),
           const SizedBox(height: 32.0),
-          Flexible(
-            child: Text(
+          Expanded(
+            child: AutoSizeText(
               headerTitle,
               style: context.themeData.headline6,
+              maxLines: 1,
             ),
           ),
         ],

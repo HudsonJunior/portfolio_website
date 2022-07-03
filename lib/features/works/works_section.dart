@@ -1,6 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/section_header.dart';
+import 'package:portfolio_website/features/works/widgets/mobile/works_carousel_mobile.dart';
 import 'package:portfolio_website/features/works/widgets/works_carousel.dart';
+import 'package:portfolio_website/resources/constraints.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -48,15 +51,23 @@ class _WorksSectionState extends State<WorksSection>
             Expanded(
               flex: 4,
               child: Center(
-                child: WorksCarousel(
-                  isVisible: isVisible,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    if (AppConstraints.isMobile(constraints.maxWidth)) {
+                      return WorksCarouselMobile(isVisible: isVisible);
+                    }
+
+                    return WorksCarousel(isVisible: isVisible);
+                  },
                 ),
               ),
             ),
             const SizedBox(height: 32.0),
             Flexible(
-              child: Text(
+              child: AutoSizeText(
                 "Besides these apps I have also developed many projects in software house companies and as a freelancer developer.",
+                maxLines: 3,
+                minFontSize: 10,
                 style: context.themeData.headline3!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),

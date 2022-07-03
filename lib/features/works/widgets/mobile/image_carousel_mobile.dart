@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/features/works/models/works_model.dart';
 
-class ImageCarousel extends StatefulWidget {
-  const ImageCarousel({
+class ImageCarouselMobile extends StatefulWidget {
+  const ImageCarouselMobile({
     Key? key,
     required this.imagesPathsLength,
     required this.work,
@@ -13,10 +13,10 @@ class ImageCarousel extends StatefulWidget {
   final WorksEnum work;
 
   @override
-  State<ImageCarousel> createState() => _ImageCarouselState();
+  State<ImageCarouselMobile> createState() => _ImageCarouselMobileState();
 }
 
-class _ImageCarouselState extends State<ImageCarousel> {
+class _ImageCarouselMobileState extends State<ImageCarouselMobile> {
   late final CarouselController carouselController;
 
   @override
@@ -29,22 +29,23 @@ class _ImageCarouselState extends State<ImageCarousel> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+      height: MediaQuery.of(context).size.height,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(width: 24.0),
+          const SizedBox(width: 8.0),
           Material(
             borderRadius: BorderRadius.circular(24),
             child: IconButton(
-              splashRadius: 18,
               onPressed: () {
                 carouselController.previousPage();
               },
+              splashRadius: 20,
               icon: const Icon(Icons.arrow_back_ios_new_rounded),
             ),
           ),
-          const SizedBox(width: 24.0),
+          const SizedBox(width: 8.0),
           Expanded(
             child: CarouselSlider.builder(
               carouselController: carouselController,
@@ -52,30 +53,33 @@ class _ImageCarouselState extends State<ImageCarousel> {
               itemBuilder: (context, index, _) {
                 return Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: Image.asset(
-                    "assets/${widget.work.name.toLowerCase()}/${index + 1}.${widget.work.appImagesFormat}",
+                  child: InteractiveViewer(
+                    child: Image.asset(
+                      "assets/${widget.work.name.toLowerCase()}/${index + 1}.${widget.work.appImagesFormat}",
+                    ),
                   ),
                 );
               },
               options: CarouselOptions(
-                viewportFraction: 0.3,
+                viewportFraction: 1,
                 enableInfiniteScroll: false,
+                height: MediaQuery.of(context).size.height * 0.8,
                 initialPage: (widget.work.appImagesLength - 1) ~/ 2,
               ),
             ),
           ),
-          const SizedBox(width: 24.0),
+          const SizedBox(width: 8.0),
           Material(
             borderRadius: BorderRadius.circular(24),
             child: IconButton(
-              splashRadius: 18,
               onPressed: () {
                 carouselController.nextPage();
               },
               icon: const Icon(Icons.arrow_forward_ios),
+              splashRadius: 20,
             ),
           ),
-          const SizedBox(width: 24.0),
+          const SizedBox(width: 8.0),
         ],
       ),
     );

@@ -5,6 +5,7 @@ import 'package:portfolio_website/resources/colors.dart';
 class PortfolioTheme {
   static get themeData => ThemeData(
         brightness: Brightness.dark,
+        fontFamily: 'Open Sans',
         textTheme: TextTheme(
           headline6: GoogleFonts.openSans(
             fontSize: 36.0,

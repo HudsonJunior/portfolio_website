@@ -1,8 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/features/works/models/works_model.dart';
 import 'package:portfolio_website/features/works/widgets/carousel_card.dart';
+import 'package:portfolio_website/resources/colors.dart';
 
 class WorksCarousel extends StatefulWidget {
   const WorksCarousel({
@@ -18,11 +19,13 @@ class WorksCarousel extends StatefulWidget {
 
 class _WorksCarouselState extends State<WorksCarousel> {
   late final CarouselController pageController;
+  late final AutoSizeGroup autoSizeGroup;
 
   @override
   void initState() {
     super.initState();
     pageController = CarouselController();
+    autoSizeGroup = AutoSizeGroup();
   }
 
   @override
@@ -30,23 +33,74 @@ class _WorksCarouselState extends State<WorksCarousel> {
     return AnimatedScale(
       scale: widget.isVisible ? 1.0 : 0.0,
       duration: const Duration(milliseconds: 1500),
-      child: SizedBox(
-        width: double.infinity,
-        child: CarouselSlider.builder(
-          key: const PageStorageKey<String>("page_view_works"),
-          carouselController: pageController,
-          options: CarouselOptions(
-            viewportFraction: 0.6,
-            enlargeCenterPage: true,
-            scrollPhysics: const BouncingScrollPhysics(),
-          ),
-          itemBuilder: (context, index, _) {
-            final work = WorksEnum.values[index];
+      child: Stack(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: ShaderMask(
+              blendMode: BlendMode.dstOut,
+              shaderCallback: (rect) {
+                return LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    AppColors.black,
+                    Colors.transparent,
+                    Colors.transparent,
+                    AppColors.black
+                  ],
+                  stops: const [0.0, 0.06, 0.95, 2.0],
+                ).createShader(
+                  rect,
+                );
+              },
+              child: CarouselSlider.builder(
+                key: const PageStorageKey<String>("page_view_works"),
+                carouselController: pageController,
+                options: CarouselOptions(
+                  viewportFraction: 0.4,
+                  enlargeCenterPage: true,
+                  scrollPhysics: const BouncingScrollPhysics(),
+                ),
+                itemBuilder: (context, index, _) {
+                  final work = WorksEnum.values[index];
 
-            return CarouselCard(work: work);
-          },
-          itemCount: WorksEnum.values.length,
-        ),
+                  return CarouselCard(
+                    work: work,
+                    autoSizeGroup: autoSizeGroup,
+                  );
+                },
+                itemCount: WorksEnum.values.length,
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            top: 0,
+            bottom: 0,
+            child: IconButton(
+              onPressed: () {
+                pageController.previousPage();
+              },
+              icon: const Icon(Icons.arrow_back_ios_new_outlined),
+              color: AppColors.black,
+            ),
+          ),
+          Positioned(
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: IconButton(
+              onPressed: () {
+                pageController.nextPage();
+              },
+              icon: const Icon(
+                Icons.arrow_forward_ios_rounded,
+              ),
+              color: AppColors.black,
+            ),
+          ),
+        ],
       ),
     );
   }

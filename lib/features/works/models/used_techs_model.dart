@@ -20,7 +20,7 @@ extension UsedTechEnumExt on UsedTechsEnum {
       case UsedTechsEnum.bloc:
         return "bloc";
       case UsedTechsEnum.animations:
-        return "animations";
+        return "animation";
       case UsedTechsEnum.maps:
         return "maps";
       case UsedTechsEnum.location:

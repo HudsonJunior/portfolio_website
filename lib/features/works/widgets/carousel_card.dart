@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/features/works/models/works_model.dart';
 import 'package:portfolio_website/features/works/widgets/carousel_title.dart';
@@ -10,9 +11,11 @@ class CarouselCard extends StatelessWidget {
   const CarouselCard({
     Key? key,
     required this.work,
+    required this.autoSizeGroup,
   }) : super(key: key);
 
   final WorksEnum work;
+  final AutoSizeGroup autoSizeGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +35,20 @@ class CarouselCard extends StatelessWidget {
               iconPath: work.icon,
             ),
             const SizedBox(height: 16.0),
-            Expanded(
-              flex: 3,
-              child: LimitedBox(
-                child: Text(
-                  work.description,
-                  style: context.themeData.headline3!.copyWith(
-                    color: Colors.black.withOpacity(0.3),
-                    fontSize: 16.0,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
+            AutoSizeText(
+              work.description,
+              style: context.themeData.headline3!.copyWith(
+                color: Colors.black.withOpacity(0.3),
+                fontSize: 14.0,
               ),
+              maxLines: 12,
+              group: autoSizeGroup,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 16.0),
             Expanded(child: WorkContent(work: work)),
-            const SizedBox(height: 8.0),
+            const Spacer(),
             Expanded(child: WorksBottomButtons(work: work)),
           ],
         ),

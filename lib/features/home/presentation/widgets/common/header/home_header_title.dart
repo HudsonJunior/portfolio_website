@@ -18,23 +18,23 @@ class HomeHeaderTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        LimitedBox(
-          child: TweenAnimationBuilder<double>(
-            tween: Tween(begin: 0.0, end: 1.0),
-            duration: const Duration(milliseconds: 1200),
-            curve: Curves.bounceOut,
-            builder: (context, value, child) {
-              return Transform.scale(
-                scale: value,
-                child: child,
-              );
-            },
-            child: Align(
-              alignment: kIsMobile ? Alignment.center : Alignment.centerLeft,
+        Align(
+          alignment: kIsMobile ? Alignment.center : Alignment.centerLeft,
+          child: FittedBox(
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0.0, end: 1.0),
+              duration: const Duration(milliseconds: 1200),
+              curve: Curves.bounceOut,
+              builder: (context, value, child) {
+                return Transform.scale(
+                  scale: value,
+                  child: child,
+                );
+              },
               child: AutoSizeText(
                 "flutter & mobile developer",
-                maxFontSize: 36,
                 maxLines: 1,
+                minFontSize: 10,
                 style: context.themeData.headline6,
                 textAlign: kIsMobile ? TextAlign.center : TextAlign.start,
               ),
