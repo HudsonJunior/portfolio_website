@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/features/about/presentation/widgets/about_me_texts.dart';
+import 'package:portfolio_website/features/about/presentation/widgets/about_me_texts_mobile.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/section_header.dart';
+import 'package:portfolio_website/resources/constraints.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -47,7 +49,13 @@ class _AboutSectionState extends State<AboutSection>
             const SizedBox(height: 32.0),
             Expanded(
               flex: 5,
-              child: AboutMeTexts(isVisible: isVisible),
+              child: LayoutBuilder(builder: (context, constraints) {
+                if (AppConstraints.isMobile(constraints.maxWidth)) {
+                  return AboutMeTextsMobile(isVisible: isVisible);
+                }
+
+                return AboutMeTexts(isVisible: isVisible);
+              }),
             ),
           ],
         ),

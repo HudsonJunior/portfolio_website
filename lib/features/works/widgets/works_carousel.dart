@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/features/core/presentation/widgets/shader_mask_list.dart';
 import 'package:portfolio_website/features/works/models/works_model.dart';
 import 'package:portfolio_website/features/works/widgets/carousel_card.dart';
 import 'package:portfolio_website/resources/colors.dart';
@@ -37,23 +38,7 @@ class _WorksCarouselState extends State<WorksCarousel> {
         children: [
           SizedBox(
             width: double.infinity,
-            child: ShaderMask(
-              blendMode: BlendMode.dstOut,
-              shaderCallback: (rect) {
-                return LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [
-                    AppColors.black,
-                    Colors.transparent,
-                    Colors.transparent,
-                    AppColors.black
-                  ],
-                  stops: const [0.0, 0.06, 0.95, 2.0],
-                ).createShader(
-                  rect,
-                );
-              },
+            child: ShaderMaskList(
               child: CarouselSlider.builder(
                 key: const PageStorageKey<String>("page_view_works"),
                 carouselController: pageController,
