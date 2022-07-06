@@ -15,33 +15,36 @@ class WorksBottomButtonsMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        WorkButton(
-          icon: Icons.photo_library,
-          label: "app gallery",
-          handleTap: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return ImageCarouselMobile(
-                  imagesPathsLength: work.appImagesLength,
-                  work: work,
-                );
-              },
-            );
-          },
-        ),
-        const SizedBox(height: 24.0),
-        if (work.playstoreId != null)
-          WorkButton(
-            icon: FontAwesomeIcons.googlePlay,
-            label: "playstore",
+        Flexible(
+          child: WorkButton(
+            icon: Icons.photo_library,
+            label: "app gallery",
             handleTap: () {
-              PlayStoreLauncherService.openPlaystore(work.playstoreId!);
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return ImageCarouselMobile(
+                    imagesPathsLength: work.appImagesLength,
+                    work: work,
+                  );
+                },
+              );
             },
+          ),
+        ),
+        if (work.playstoreId != null)
+          Flexible(
+            child: WorkButton(
+              icon: FontAwesomeIcons.googlePlay,
+              label: "playstore",
+              handleTap: () {
+                PlayStoreLauncherService.openPlaystore(work.playstoreId!);
+              },
+            ),
           ),
       ],
     );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/about/presentation/widgets/about_me_texts.dart';
 import 'package:portfolio_website/features/about/presentation/widgets/about_me_texts_mobile.dart';
+import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
+import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/section_header.dart';
 import 'package:portfolio_website/resources/constraints.dart';
-import 'package:portfolio_website/resources/extensions.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class AboutSection extends StatefulWidget {
   const AboutSection({Key? key}) : super(key: key);
@@ -28,13 +29,11 @@ class _AboutSectionState extends State<AboutSection>
     super.build(context);
     return SizedBox(
       height: MediaQuery.of(context).size.height,
-      child: VisibilityDetector(
-        key: const Key("about_section"),
-        onVisibilityChanged: (info) {
-          if (info.isVisible() && !isVisible) {
-            toggleVisibility();
-          }
+      child: BlocListener<ControlPageCubit, AppBarItens>(
+        listener: (_, state) {
+          if (state == AppBarItens.about && !isVisible) toggleVisibility();
         },
+        key: const Key("about_section"),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

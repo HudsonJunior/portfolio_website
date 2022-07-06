@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/contact/contact_content.dart';
+import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
+import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/section_header.dart';
-import 'package:portfolio_website/resources/extensions.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({Key? key}) : super(key: key);
@@ -26,13 +27,13 @@ class _ContactSectionState extends State<ContactSection>
     super.build(context);
     return SizedBox(
       height: MediaQuery.of(context).size.height,
-      child: VisibilityDetector(
-        key: const Key("contact_section"),
-        onVisibilityChanged: (info) {
-          if (info.isVisible() && !isVisible) {
+      child: BlocListener<ControlPageCubit, AppBarItens>(
+        listener: (_, state) {
+          if (state == AppBarItens.contact && !isVisible) {
             toggleVisibility();
           }
         },
+        key: const Key("contact_section"),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +46,7 @@ class _ContactSectionState extends State<ContactSection>
               ),
             ),
             const SizedBox(height: 32.0),
-            ContactContent(isVisible: isVisible),
+            if (isVisible) const Expanded(child: ContactContent()),
           ],
         ),
       ),

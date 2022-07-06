@@ -15,10 +15,10 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      duration: const Duration(milliseconds: 1500),
-      opacity: isVisible ? 1.0 : 0.0,
-      curve: Curves.easeIn,
+    return AnimatedSlide(
+      duration: const Duration(milliseconds: 1000),
+      offset: isVisible ? const Offset(0.0, 0) : const Offset(-1, 0.0),
+      curve: Curves.easeOutBack,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,12 +29,10 @@ class SectionHeader extends StatelessWidget {
             thickness: 0.2,
           ),
           const SizedBox(height: 32.0),
-          Expanded(
-            child: AutoSizeText(
-              headerTitle,
-              style: context.themeData.headline6,
-              maxLines: 1,
-            ),
+          AutoSizeText(
+            headerTitle,
+            style: context.themeData.headline6,
+            maxLines: 1,
           ),
         ],
       ),

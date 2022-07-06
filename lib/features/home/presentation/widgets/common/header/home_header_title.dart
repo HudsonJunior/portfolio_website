@@ -50,7 +50,7 @@ class HomeHeaderTitle extends StatelessWidget {
               textStyle: context.themeData.bodyText1,
               textAlign: kIsMobile ? TextAlign.center : TextAlign.start,
               speed: const Duration(
-                milliseconds: 50,
+                milliseconds: 30,
               ),
             )
           ],

@@ -1,11 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
+import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/section_header.dart';
 import 'package:portfolio_website/features/works/widgets/mobile/works_carousel_mobile.dart';
 import 'package:portfolio_website/features/works/widgets/works_carousel.dart';
 import 'package:portfolio_website/resources/constraints.dart';
 import 'package:portfolio_website/resources/extensions.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 class WorksSection extends StatefulWidget {
   const WorksSection({Key? key}) : super(key: key);
@@ -30,13 +32,13 @@ class _WorksSectionState extends State<WorksSection>
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: double.infinity,
-      child: VisibilityDetector(
-        key: const Key("works_section"),
-        onVisibilityChanged: (info) {
-          if (info.isVisible() && !isVisible) {
+      child: BlocListener<ControlPageCubit, AppBarItens>(
+        listener: (_, state) {
+          if (state == AppBarItens.works && !isVisible) {
             toggleVisibility();
           }
         },
+        key: const Key("works_section"),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

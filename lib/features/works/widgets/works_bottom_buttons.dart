@@ -19,31 +19,35 @@ class WorksBottomButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        WorkButton(
-          icon: Icons.photo_library,
-          label: "app gallery",
-          handleTap: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return Center(
-                  child: ImageCarousel(
-                    imagesPathsLength: work.appImagesLength,
-                    work: work,
-                  ),
-                );
-              },
-            );
-          },
+        Flexible(
+          child: WorkButton(
+            icon: Icons.photo_library,
+            label: "app gallery",
+            handleTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return Center(
+                    child: ImageCarousel(
+                      imagesPathsLength: work.appImagesLength,
+                      work: work,
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ),
         const SizedBox(width: 24.0),
         if (work.playstoreId != null)
-          WorkButton(
-            icon: FontAwesomeIcons.googlePlay,
-            label: "playstore",
-            handleTap: () {
-              PlayStoreLauncherService.openPlaystore(work.playstoreId!);
-            },
+          Flexible(
+            child: WorkButton(
+              icon: FontAwesomeIcons.googlePlay,
+              label: "playstore",
+              handleTap: () {
+                PlayStoreLauncherService.openPlaystore(work.playstoreId!);
+              },
+            ),
           ),
       ],
     );

@@ -10,9 +10,9 @@ class AboutMeTextsMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedScale(
-      scale: isVisible ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 1500),
+    return AnimatedSlide(
+      duration: const Duration(milliseconds: 1000),
+      offset: isVisible ? const Offset(0, 0) : const Offset(2, 0),
       curve: Curves.easeOut,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

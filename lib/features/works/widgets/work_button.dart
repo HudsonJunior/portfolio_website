@@ -31,16 +31,22 @@ class WorkButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              color: AppColors.backgroundColor,
-              size: 15,
+            FittedBox(
+              child: Icon(
+                icon,
+                color: AppColors.backgroundColor,
+                size: 15,
+              ),
             ),
             const SizedBox(width: 12.0),
-            Text(
-              label,
-              style: context.themeData.headline2!.copyWith(
-                color: AppColors.backgroundColor,
+            Flexible(
+              child: FittedBox(
+                child: Text(
+                  label,
+                  style: context.themeData.headline2!.copyWith(
+                    color: AppColors.backgroundColor,
+                  ),
+                ),
               ),
             ),
           ],

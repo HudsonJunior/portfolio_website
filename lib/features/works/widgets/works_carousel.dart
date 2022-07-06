@@ -31,9 +31,10 @@ class _WorksCarouselState extends State<WorksCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedScale(
-      scale: widget.isVisible ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 1500),
+    return AnimatedSlide(
+      offset: widget.isVisible ? const Offset(0.0, 0) : const Offset(2, 0.0),
+      curve: Curves.easeOutBack,
+      duration: const Duration(milliseconds: 1000),
       child: Stack(
         children: [
           SizedBox(
