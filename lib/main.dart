@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
-import 'package:portfolio_website/features/core/presentation/pages/core_page.dart';
+import 'package:portfolio_website/features/splash/presentation/pages/splash_page.dart';
 import 'package:portfolio_website/resources/theme.dart';
 
 void main() {
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Hudson Portfolio',
         debugShowCheckedModeBanner: false,
         theme: PortfolioTheme.themeData,
-        home: const CorePage(),
+        home: const SplashPage(),
       ),
     );
   }
