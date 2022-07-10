@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     super.initState();
     textAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1200),
+      duration: const Duration(milliseconds: 800),
     )
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
     loadingAnimationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 800),
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           setState(() {
