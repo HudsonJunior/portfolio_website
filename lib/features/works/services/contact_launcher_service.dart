@@ -3,7 +3,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class ContactLauncherService {
   static Future<void> openLinkedin() async {
-    const appLink = "https://www.linkedin.com/in/hudson-j-46583011a/";
+    const appLink = "https://www.linkedin.com/in/hudson-p-46583011a/";
 
     try {
       if (await canLaunchUrlString(appLink)) {

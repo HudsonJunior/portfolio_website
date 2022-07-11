@@ -19,36 +19,52 @@ class WorksBottomButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Flexible(
-          child: WorkButton(
-            icon: Icons.photo_library,
-            label: "app gallery",
-            handleTap: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return Center(
-                    child: ImageCarousel(
-                      imagesPathsLength: work.appImagesLength,
-                      work: work,
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-        ),
-        const SizedBox(width: 24.0),
-        if (work.playstoreId != null)
+        if (work.appImagesLength > 0)
           Flexible(
-            child: WorkButton(
-              icon: FontAwesomeIcons.googlePlay,
-              label: "playstore",
-              handleTap: () {
-                PlayStoreLauncherService.openPlaystore(work.playstoreId!);
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SizedBox(
+                  width: constraints.maxWidth * 0.8,
+                  child: WorkButton(
+                    icon: Icons.photo_library,
+                    label: "gallery",
+                    handleTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Center(
+                            child: ImageCarousel(
+                              imagesPathsLength: work.appImagesLength,
+                              work: work,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                );
               },
             ),
           ),
+        if (work.playstoreId != null) ...[
+          const SizedBox(width: 24.0),
+          Flexible(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return SizedBox(
+                  width: constraints.maxWidth * 0.8,
+                  child: WorkButton(
+                    icon: FontAwesomeIcons.googlePlay,
+                    label: "playstore",
+                    handleTap: () {
+                      PlayStoreLauncherService.openPlaystore(work.playstoreId!);
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+        ]
       ],
     );
   }

@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/resources/extensions.dart';
@@ -42,18 +41,23 @@ class HomeHeaderTitle extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12.0),
-        AnimatedTextKit(
-          totalRepeatCount: 1,
-          animatedTexts: [
-            TypewriterAnimatedText(
-              "hi! I'm Hudson Júnior. Flutter developer passionate about solving problems and creating mobile apps.",
-              textStyle: context.themeData.bodyText1,
-              textAlign: kIsMobile ? TextAlign.center : TextAlign.start,
-              speed: const Duration(
-                milliseconds: 40,
-              ),
-            )
-          ],
+        TweenAnimationBuilder<double>(
+          tween: Tween(begin: 0.0, end: 1.0),
+          duration: const Duration(milliseconds: 1200),
+          curve: Curves.bounceOut,
+          builder: (context, value, child) {
+            return Transform.scale(
+              scale: value,
+              child: child,
+            );
+          },
+          child: AutoSizeText(
+            "hi! I'm Hudson Júnior. Flutter developer passionate about solving problems and creating mobile apps.",
+            maxLines: 3,
+            minFontSize: 10,
+            style: context.themeData.bodyText1,
+            textAlign: kIsMobile ? TextAlign.center : TextAlign.start,
+          ),
         ),
       ],
     );

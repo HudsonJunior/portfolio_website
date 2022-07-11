@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/extensions.dart';
@@ -31,16 +30,15 @@ class WorkButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FittedBox(
-              child: Icon(
-                icon,
-                color: AppColors.backgroundColor,
-                size: 15,
-              ),
+            Icon(
+              icon,
+              color: AppColors.backgroundColor,
+              size: 15,
             ),
             const SizedBox(width: 12.0),
             Flexible(
               child: FittedBox(
+                fit: BoxFit.fill,
                 child: Text(
                   label,
                   style: context.themeData.headline2!.copyWith(

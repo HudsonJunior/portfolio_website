@@ -19,10 +19,12 @@ class CarouselTitle extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.center,
-          child: Image.asset(
-            iconPath,
-            height: 35,
-            width: 35,
+          child: ClipOval(
+            child: Image.asset(
+              iconPath,
+              height: 35,
+              width: 35,
+            ),
           ),
         ),
         const SizedBox(width: 12.0),

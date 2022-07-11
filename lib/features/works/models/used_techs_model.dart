@@ -8,6 +8,7 @@ enum UsedTechsEnum {
   cleanArch,
   cleanCode,
   designPatterns,
+  responsiveness
 }
 
 extension UsedTechEnumExt on UsedTechsEnum {
@@ -31,6 +32,8 @@ extension UsedTechEnumExt on UsedTechsEnum {
         return "clean code";
       case UsedTechsEnum.designPatterns:
         return "design patterns";
+      case UsedTechsEnum.responsiveness:
+        return "responsiveness";
     }
   }
 }

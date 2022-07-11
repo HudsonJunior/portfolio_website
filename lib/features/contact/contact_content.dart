@@ -125,7 +125,7 @@ class _ContactContentState extends State<ContactContent>
               ContactLauncherService.openGitHub();
             },
             title: "github",
-            description: "or you can follow my on github HudsonJunior",
+            description: "or you can follow me on github HudsonJunior",
             icon: FontAwesomeIcons.github,
           ),
         ),
