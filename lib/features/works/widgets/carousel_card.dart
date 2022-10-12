@@ -38,7 +38,7 @@ class CarouselCard extends StatelessWidget {
             AutoSizeText(
               work.description,
               style: context.themeData.headline3!.copyWith(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.grey.withOpacity(0.5),
                 fontSize: 14.0,
               ),
               maxLines: 12,
