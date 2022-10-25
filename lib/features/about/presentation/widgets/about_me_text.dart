@@ -23,15 +23,18 @@ class _AboutMeTextState extends State<AboutMeText> {
       children: [
         Text(
           widget.title,
-          style: context.themeData.headline3,
+          style: context.themeData.headline3!.copyWith(
+            fontWeight: FontWeight.w900,
+          ),
           textAlign: TextAlign.justify,
         ),
         Expanded(
           child: Text(
             widget.text,
             style: context.themeData.headline3!.copyWith(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.grey,
               fontSize: 16.0,
+              fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.justify,
           ),

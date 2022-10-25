@@ -34,7 +34,7 @@ class AboutMeTexts extends StatelessWidget {
                       child: AboutMeText(
                         title: "experience",
                         text:
-                            "I've worked with web front-end (React, JS, CSS, HTML, C#) and back-end (NodeJS, FeathersJS).\nCurrently, I work as a senior Flutter developer at a large company in Santa Catarina, Brazil. As a developer, I like to create solutions with quality, performance and readability, always thinking about the scalability and maintainability of the applications. I'm always improving my knowledge with Flutter and mobile in general and every day I'm more excited about what I can add and learn from the community.",
+                            "I've worked with web front-end (React, JS, CSS, HTML, C#) and back-end (NodeJS, FeathersJS).\nCurrently, I work as a Senior Flutter Engineer at a large company in Santa Catarina, Brazil. As an engineer, I like to create solutions with quality, performance and readability, always thinking about the scalability and maintainability of the applications. I'm always improving my knowledge with Flutter and mobile in general and every day I'm more excited about what I can add and learn from the community.",
                       ),
                     ),
                   ],

@@ -85,7 +85,7 @@ class _ContactContentState extends State<ContactContent>
           child: ContactMeItem(
             handleTap: () {},
             title: "e-mail",
-            description: "you can send an e-mail to devhudsoncontact@gmail.com",
+            description: "devhudsoncontact@gmail.com",
             icon: Icons.mail,
           ),
         ),
@@ -105,7 +105,7 @@ class _ContactContentState extends State<ContactContent>
               ContactLauncherService.openLinkedin();
             },
             title: "linkedin",
-            description: "you can send a message on linkedin Hudson Júnior",
+            description: "linkedin",
             icon: FontAwesomeIcons.linkedin,
           ),
         ),
@@ -125,7 +125,7 @@ class _ContactContentState extends State<ContactContent>
               ContactLauncherService.openGitHub();
             },
             title: "github",
-            description: "or you can follow me on github HudsonJunior",
+            description: "github",
             icon: FontAwesomeIcons.github,
           ),
         ),

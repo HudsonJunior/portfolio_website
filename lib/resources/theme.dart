@@ -8,7 +8,7 @@ class PortfolioTheme {
         textTheme: TextTheme(
           headline6: TextStyle(
             fontSize: 36.0,
-            fontFamily: 'Badaboom',
+            fontFamily: 'LouisGeorge',
             color: AppColors.black,
             fontWeight: FontWeight.w500,
             letterSpacing: 3.0,

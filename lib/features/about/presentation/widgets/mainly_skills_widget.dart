@@ -15,7 +15,9 @@ class MainlySkillsWidget extends StatelessWidget {
         children: [
           Text(
             "my mainly skills",
-            style: context.themeData.headline3,
+            style: context.themeData.headline3!.copyWith(
+              fontWeight: FontWeight.w900,
+            ),
             textAlign: TextAlign.justify,
           ),
           const SizedBox(height: 12.0),

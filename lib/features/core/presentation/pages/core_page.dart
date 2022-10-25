@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/about/presentation/about_section.dart';
-import 'package:portfolio_website/features/articles/presentation/articles_section.dart';
 import 'package:portfolio_website/features/contact/presentation/contact_section.dart';
 import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
@@ -23,7 +22,6 @@ class _CorePageState extends State<CorePage> {
 
   final sectionItens = [
     const HomeSection(),
-    const ArticlesSection(),
     const WorksSection(),
     const AboutSection(),
     const ContactSection(),

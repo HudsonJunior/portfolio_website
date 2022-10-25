@@ -17,7 +17,7 @@ extension WorksEnumExt on WorksEnum {
   String get description {
     switch (this) {
       case WorksEnum.localDea:
-        return "LocalDEA was an application that I developed as a final graduation project in computer science. Basically, the application locate the shortest route to a health service (hospitals, ambulances, AEDs). In addition, the app has the following features: frequently asked questions about cardiac arrest, a CPR guide, emailing, and emergency calls. The application was developed following GoF design patterns, architecture following Clean Architecture and some implicit animations were used to make it more beautiful.";
+        return "LocalDEA was an application that I developed as a final graduation project in computer science. Basically, the application locate the shortest route to a health service (hospitals, ambulances, AEDs).";
       case WorksEnum.zombiepo:
         return "ZOM-BIE-PÔ was the first application I developed with Flutter. The app is basically a zombie-themed Jo-Ken-Pô. I worked with some GoogleAds ads and some animations. It's quite simple, but for the first project, I think it's great :D";
       case WorksEnum.portfolio:
@@ -50,7 +50,7 @@ extension WorksEnumExt on WorksEnum {
   int get appImagesLength {
     switch (this) {
       case WorksEnum.localDea:
-        return 12;
+        return 5;
       case WorksEnum.zombiepo:
         return 2;
       case WorksEnum.portfolio:
@@ -96,6 +96,5 @@ extension WorksEnumExt on WorksEnum {
       case WorksEnum.portfolio:
         return null;
     }
-    return null;
   }
 }

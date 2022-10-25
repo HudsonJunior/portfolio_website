@@ -41,9 +41,9 @@ class CarouselCardMobile extends StatelessWidget {
               work.description,
               maxLines: 10,
               style: context.themeData.headline2!.copyWith(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.grey,
+                fontWeight: FontWeight.w600,
                 fontSize: 14.0,
-                fontWeight: FontWeight.w500,
               ),
               group: autoSizeGroup,
               minFontSize: 10,
