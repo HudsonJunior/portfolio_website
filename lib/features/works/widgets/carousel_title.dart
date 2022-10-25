@@ -31,6 +31,7 @@ class CarouselTitle extends StatelessWidget {
         Flexible(
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: context.themeData.headline5,
           ),
         ),

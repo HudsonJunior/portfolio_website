@@ -31,7 +31,7 @@ class AboutMeTextsMobile extends StatelessWidget {
                 child: AboutMeTextMobile(
                   title: "experience",
                   text:
-                      "I've worked with web front-end (React, JS, CSS, HTML, C#) and back-end (NodeJS, FeathersJS).\nCurrently, I work as a senior Flutter developer at a large company in Santa Catarina, Brazil. As a developer, I like to create solutions with quality, performance and readability, always thinking about the scalability and maintainability of the applications. I'm always improving my knowledge with Flutter and mobile in general and every day I'm more excited about what I can add and learn from the community.",
+                      "I have worked on many projects with different contexts, from small MVP applications to complex large-scale applications. I love to participate in important technical decisions, deciding what is the best solution to the problems I face in my day-to-day work.\n\nCurrently, I work as a Senior Flutter Developer in one of the largest banking apps in Brazil. As an engineer, I like to create solutions with quality, performance and readability, always thinking about the scalability and maintainability of the applications. I'm always improving my knowledge with Flutter and mobile in general and every day I'm more excited about what I can add and learn from the community.",
                 ),
               ),
               SizedBox(height: 32.0),
