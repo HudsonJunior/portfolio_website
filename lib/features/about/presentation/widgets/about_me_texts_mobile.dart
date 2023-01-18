@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/about/presentation/about_cubit.dart';
 import 'package:portfolio_website/features/about/presentation/widgets/about_me_text_mobile.dart';
-import 'package:portfolio_website/features/about/presentation/widgets/experiences_widget.dart';
 import 'package:portfolio_website/features/about/presentation/widgets/mainly_skills_widget_mobile.dart';
 
 class AboutMeTextsMobile extends StatelessWidget {
@@ -28,7 +27,6 @@ class AboutMeTextsMobile extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.0),
-              ExperiencesWidget(),
               SizedBox(height: 24.0),
               Expanded(
                 child: AboutMeTextMobile(
