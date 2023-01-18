@@ -31,7 +31,7 @@ class HomeHeaderTitle extends StatelessWidget {
                 );
               },
               child: AutoSizeText(
-                "flutter & mobile developer",
+                "flutter & mobile engineer",
                 maxLines: 1,
                 minFontSize: 10,
                 style: context.themeData.headline6,
@@ -52,7 +52,7 @@ class HomeHeaderTitle extends StatelessWidget {
             );
           },
           child: AutoSizeText(
-            "hi! I'm Hudson Júnior. Flutter developer passionate about solving problems and creating mobile apps.",
+            "hi! I'm Hudson Júnior. Flutter engineer passionate about solving problems and creating mobile apps.",
             maxLines: 3,
             minFontSize: 10,
             style: context.themeData.bodyText1,

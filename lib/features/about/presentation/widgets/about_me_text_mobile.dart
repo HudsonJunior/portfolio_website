@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio_website/features/about/presentation/widgets/experiences_widget.dart';
 import 'package:portfolio_website/features/works/widgets/work_button.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 

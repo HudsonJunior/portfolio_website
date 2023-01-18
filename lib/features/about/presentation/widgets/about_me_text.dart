@@ -28,7 +28,7 @@ class _AboutMeTextState extends State<AboutMeText> {
           ),
           textAlign: TextAlign.justify,
         ),
-        Expanded(
+        Flexible(
           child: Text(
             widget.text,
             style: context.themeData.headline3!.copyWith(
