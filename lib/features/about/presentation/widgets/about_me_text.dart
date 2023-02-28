@@ -23,7 +23,7 @@ class _AboutMeTextState extends State<AboutMeText> {
       children: [
         Text(
           widget.title,
-          style: context.themeData.headline3!.copyWith(
+          style: context.themeData.displaySmall!.copyWith(
             fontWeight: FontWeight.w900,
           ),
           textAlign: TextAlign.justify,
@@ -31,7 +31,7 @@ class _AboutMeTextState extends State<AboutMeText> {
         Flexible(
           child: Text(
             widget.text,
-            style: context.themeData.headline3!.copyWith(
+            style: context.themeData.displaySmall!.copyWith(
               color: Colors.grey,
               fontSize: 16.0,
               fontWeight: FontWeight.w600,

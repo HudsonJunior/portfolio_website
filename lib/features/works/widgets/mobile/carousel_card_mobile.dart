@@ -37,7 +37,7 @@ class CarouselCardMobile extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            AutoSizeText(
+            Text(
               work.description,
               maxLines: 10,
               style: context.themeData.displayMedium!.copyWith(
@@ -45,8 +45,6 @@ class CarouselCardMobile extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontSize: 14.0,
               ),
-              group: autoSizeGroup,
-              minFontSize: 10,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             ),

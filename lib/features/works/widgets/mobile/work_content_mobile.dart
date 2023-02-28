@@ -33,7 +33,8 @@ class WorkContentMobile extends StatelessWidget {
                   tech.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: context.themeData.headline2!.copyWith(fontSize: 10),
+                  style:
+                      context.themeData.displayMedium!.copyWith(fontSize: 10),
                   textAlign: TextAlign.center,
                 ),
               ),

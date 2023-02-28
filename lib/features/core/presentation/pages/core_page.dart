@@ -36,7 +36,7 @@ class _CorePageState extends State<CorePage> {
         if (_scrollController.hasClients) {
           controlPageCubit.updateBasedOnScrollPosition(
             _scrollController.position.pixels,
-            MediaQuery.of(context).size.height,
+            MediaQuery.of(context).size.height * .95,
           );
         }
       });
@@ -56,8 +56,12 @@ class _CorePageState extends State<CorePage> {
               builder: (context, selected) {
                 return AppBarMenuItem(
                   title: item.name,
-                  handleTap: () {
-                    controlPageCubit.scrollTo(item);
+                  handleTap: () async {
+                    await _scrollController.animateTo(
+                      item.index * MediaQuery.of(context).size.height * .95,
+                      duration: const Duration(milliseconds: 800),
+                      curve: Curves.easeInOut,
+                    );
                   },
                   isSelected: item == selected,
                 );
@@ -72,42 +76,31 @@ class _CorePageState extends State<CorePage> {
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height,
             ),
-            child: BlocListener<ControlPageCubit, AppBarItens>(
-              listener: (context, state) async {
-                await _scrollController.animateTo(
-                  state.index * MediaQuery.of(context).size.height * .95,
-                  duration: const Duration(milliseconds: 800),
-                  curve: Curves.easeInOut,
-                );
-
-                controlPageCubit.toggleAnimatingValue();
-              },
-              child: CustomScrollView(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (_, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 32,
-                          ),
-                          child: Center(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                maxWidth: 1000,
-                              ),
-                              child: sectionItens[index],
+            child: CustomScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (_, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                        ),
+                        child: Center(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              maxWidth: 1000,
                             ),
+                            child: sectionItens[index],
                           ),
-                        );
-                      },
-                      childCount: sectionItens.length,
-                    ),
+                        ),
+                      );
+                    },
+                    childCount: sectionItens.length,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

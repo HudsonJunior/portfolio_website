@@ -30,7 +30,7 @@ class CarouselTitleMobile extends StatelessWidget {
           child: FittedBox(
             child: Text(
               title,
-              style: context.themeData.headline5,
+              style: context.themeData.headlineSmall,
               textAlign: TextAlign.center,
             ),
           ),

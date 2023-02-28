@@ -58,7 +58,7 @@ class _WorksCarouselMobileState extends State<WorksCarouselMobile> {
                           ),
                           Text(
                             'previous',
-                            style: context.themeData.headline2!
+                            style: context.themeData.displayMedium!
                                 .copyWith(fontSize: 10),
                           )
                         ],
@@ -76,7 +76,7 @@ class _WorksCarouselMobileState extends State<WorksCarouselMobile> {
                         children: [
                           Text(
                             'next',
-                            style: context.themeData.headline2!
+                            style: context.themeData.displayMedium!
                                 .copyWith(fontSize: 10),
                           ),
                           Icon(

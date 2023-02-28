@@ -28,10 +28,12 @@ class ContactMeItem extends StatelessWidget {
             handleTap: handleTap,
           ),
           const SizedBox(width: 12.0),
-          Text(
-            description,
-            style: context.themeData.headline3!.copyWith(
-              fontWeight: FontWeight.w900,
+          Expanded(
+            child: Text(
+              description,
+              style: context.themeData.displaySmall!.copyWith(
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
         ],

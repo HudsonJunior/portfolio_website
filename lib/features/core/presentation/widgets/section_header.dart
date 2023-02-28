@@ -31,7 +31,7 @@ class SectionHeader extends StatelessWidget {
           const SizedBox(height: 32.0),
           AutoSizeText(
             headerTitle,
-            style: context.themeData.headline6,
+            style: context.themeData.titleLarge,
             maxLines: 1,
           ),
         ],

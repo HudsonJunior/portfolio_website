@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
@@ -67,11 +66,10 @@ class _WorksSectionState extends State<WorksSection>
                   ),
                   const SizedBox(height: 32.0),
                   Flexible(
-                    child: AutoSizeText(
-                      "Besides these apps I have also developed many projects in software house companies and as a freelancer developer.",
+                    child: Text(
+                      "Besides these apps I also developed many projects in software house companies.",
                       maxLines: 3,
-                      minFontSize: 10,
-                      style: context.themeData.headline3!.copyWith(
+                      style: context.themeData.displaySmall!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),

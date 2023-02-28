@@ -26,7 +26,7 @@ class SeeMyWorksWidget extends StatelessWidget {
             Flexible(
               child: Text(
                 "see my works",
-                style: context.themeData.bodyText1!.copyWith(
+                style: context.themeData.bodyLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
