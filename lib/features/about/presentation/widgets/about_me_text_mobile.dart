@@ -26,14 +26,14 @@ class _AboutMeTextMobileState extends State<AboutMeTextMobile> {
       children: [
         Text(
           widget.title,
-          style: context.themeData.headline3,
+          style: context.themeData.displaySmall,
           textAlign: TextAlign.justify,
         ),
         Flexible(
           child: OverflowBox(
             child: AutoSizeText(
               widget.text,
-              style: context.themeData.headline3!.copyWith(
+              style: context.themeData.displaySmall!.copyWith(
                 color: Colors.black.withOpacity(0.3),
                 fontSize: 16.0,
               ),
@@ -64,7 +64,7 @@ class _AboutMeTextMobileState extends State<AboutMeTextMobile> {
                           flex: 8,
                           child: AutoSizeText(
                             widget.text,
-                            style: context.themeData.headline3!.copyWith(
+                            style: context.themeData.displaySmall!.copyWith(
                               color: Colors.black.withOpacity(0.3),
                               fontSize: 16.0,
                             ),
@@ -76,7 +76,6 @@ class _AboutMeTextMobileState extends State<AboutMeTextMobile> {
                         const Spacer(),
                         WorkButton(
                           icon: Icons.check,
-                          label: 'nice!',
                           handleTap: () {
                             Navigator.of(context).pop();
                           },
@@ -90,7 +89,7 @@ class _AboutMeTextMobileState extends State<AboutMeTextMobile> {
           },
           child: Text(
             'click to read...',
-            style: context.themeData.headline2!.copyWith(fontSize: 10),
+            style: context.themeData.displayMedium!.copyWith(fontSize: 10),
             textAlign: TextAlign.start,
           ),
         ),

@@ -19,13 +19,13 @@ extension WorksEnumExt on WorksEnum {
   String get description {
     switch (this) {
       case WorksEnum.localDea:
-        return "LocalDEA was an application that I developed as a final graduation project in computer science. Basically, the application locate the shortest route to a health service (hospitals, ambulances, AEDs).";
+        return "An application to find the shortest route to a healthcare service (hospitals, ambulances, AEDs).";
       case WorksEnum.zombiepo:
-        return "ZOM-BIE-PÔ was the first application I developed with Flutter. The app is basically a zombie-themed Jo-Ken-Pô. I worked with some GoogleAds ads and some animations. It's quite simple, but for the first project, I think it's great :D";
+        return "A zombie-themed Jo-Ken-Pô.";
       case WorksEnum.portfolio:
-        return "Of course, I couldn't let mention this portfolio you are accessing right now, which was built entirely with Flutter web, using all the power that Flutter gives us to build responsive, beautiful and performant websites :)";
+        return "This portfolio that was entirely built with Flutter.";
       case WorksEnum.legiaoBebidas:
-        return "A liquor store app that helps a small customer in my town get their menu digital. App users can view and add products to a cart, when they finish adding they can send an automatic message to the store owner, with all products, total price and delivery location, helping the owner to know exactly what the customer want.";
+        return "A liquor store app that helps a small customer in my town get their digital menu.";
     }
   }
 
@@ -114,6 +114,19 @@ extension WorksEnumExt on WorksEnum {
         return null;
       case WorksEnum.legiaoBebidas:
         return null;
+    }
+  }
+
+  String? get githubUrl {
+    switch (this) {
+      case WorksEnum.localDea:
+        return 'https://github.com/HudsonJunior/local_dea_app';
+      case WorksEnum.zombiepo:
+        return null;
+      case WorksEnum.portfolio:
+        return 'https://github.com/HudsonJunior/portfolio_website';
+      case WorksEnum.legiaoBebidas:
+        return 'https://github.com/HudsonJunior/legiao_bebidas_app';
     }
   }
 }

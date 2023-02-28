@@ -15,7 +15,7 @@ class MainlySkillsWidget extends StatelessWidget {
         children: [
           Text(
             "my mainly skills",
-            style: context.themeData.headline3!.copyWith(
+            style: context.themeData.displaySmall!.copyWith(
               fontWeight: FontWeight.w900,
             ),
             textAlign: TextAlign.justify,
@@ -39,7 +39,7 @@ class MainlySkillsWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         child: Text(
                           skill.name,
-                          style: context.themeData.headline2,
+                          style: context.themeData.displayMedium,
                         ),
                       ),
                     ),

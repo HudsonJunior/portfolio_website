@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio_website/features/home/presentation/widgets/common/contact_itens.dart';
-import 'package:portfolio_website/features/home/presentation/widgets/common/see_my_works_widget.dart';
 
 class HomeHeaderContact extends StatelessWidget {
   const HomeHeaderContact({
@@ -22,12 +21,7 @@ class HomeHeaderContact extends StatelessWidget {
           child: child,
         );
       },
-      child: Column(
-        children: [
-          Flexible(child: ContactItens(kIsMobile: kIsMobile)),
-          const Flexible(child: SeeMyWorksWidget()),
-        ],
-      ),
+      child: ContactItens(kIsMobile: kIsMobile),
     );
   }
 }

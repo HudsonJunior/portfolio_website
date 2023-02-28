@@ -37,7 +37,7 @@ class CarouselCard extends StatelessWidget {
             const SizedBox(height: 16.0),
             AutoSizeText(
               work.description,
-              style: context.themeData.headline3!.copyWith(
+              style: context.themeData.displaySmall!.copyWith(
                 color: Colors.grey,
                 fontWeight: FontWeight.w600,
                 fontSize: 14.0,

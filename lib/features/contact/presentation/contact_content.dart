@@ -102,7 +102,7 @@ class _ContactContentState extends State<ContactContent>
           },
           child: ContactMeItem(
             handleTap: () {
-              ContactLauncherService.openLinkedin();
+              UrlLauncherService.openLinkedin();
             },
             title: "linkedin",
             description: "linkedin",
@@ -122,7 +122,7 @@ class _ContactContentState extends State<ContactContent>
           },
           child: ContactMeItem(
             handleTap: () {
-              ContactLauncherService.openGitHub();
+              UrlLauncherService.openGitHub();
             },
             title: "github",
             description: "github",

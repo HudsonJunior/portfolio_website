@@ -22,7 +22,6 @@ class WorksBottomButtonsMobile extends StatelessWidget {
         Flexible(
           child: WorkButton(
             icon: Icons.photo_library,
-            label: "app gallery",
             handleTap: () {
               showDialog(
                 context: context,
@@ -40,7 +39,6 @@ class WorksBottomButtonsMobile extends StatelessWidget {
           Flexible(
             child: WorkButton(
               icon: FontAwesomeIcons.googlePlay,
-              label: "playstore",
               handleTap: () {
                 PlayStoreLauncherService.openPlaystore(work.playstoreId!);
               },

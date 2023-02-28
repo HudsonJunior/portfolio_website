@@ -40,7 +40,7 @@ class CarouselCardMobile extends StatelessWidget {
             AutoSizeText(
               work.description,
               maxLines: 10,
-              style: context.themeData.headline2!.copyWith(
+              style: context.themeData.displayMedium!.copyWith(
                 color: Colors.grey,
                 fontWeight: FontWeight.w600,
                 fontSize: 14.0,
@@ -53,7 +53,7 @@ class CarouselCardMobile extends StatelessWidget {
             const SizedBox(height: 32.0),
             Text(
               'Some tools I used',
-              style: context.themeData.headline2!.copyWith(fontSize: 12),
+              style: context.themeData.displayMedium!.copyWith(fontSize: 12),
             ),
             const SizedBox(height: 16.0),
             WorkContentMobile(work: work),

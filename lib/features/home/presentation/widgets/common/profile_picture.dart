@@ -8,7 +8,7 @@ class ProfilePicture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.center,
       child: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0.0, end: 1.0),
         duration: const Duration(milliseconds: 1200),
@@ -21,9 +21,7 @@ class ProfilePicture extends StatelessWidget {
         child: ClipOval(
           child: Image.asset(
             "assets/profile.jpeg",
-            fit: BoxFit.fill,
-            width: MediaQuery.of(context).size.height * 0.3,
-            height: MediaQuery.of(context).size.height * 0.3,
+            fit: BoxFit.cover,
           ),
         ),
       ),

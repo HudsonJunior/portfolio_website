@@ -75,7 +75,7 @@ class _CorePageState extends State<CorePage> {
             child: BlocListener<ControlPageCubit, AppBarItens>(
               listener: (context, state) async {
                 await _scrollController.animateTo(
-                  state.index * MediaQuery.of(context).size.height,
+                  state.index * MediaQuery.of(context).size.height * .95,
                   duration: const Duration(milliseconds: 800),
                   curve: Curves.easeInOut,
                 );

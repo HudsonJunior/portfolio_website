@@ -14,12 +14,14 @@ class ContactItens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment:
           kIsMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           "you can find me on",
-          style: context.themeData.bodyText1!.copyWith(
+          style: context.themeData.bodyLarge!.copyWith(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -33,7 +35,7 @@ class ContactItens extends StatelessWidget {
                 icon: FontAwesomeIcons.linkedin,
                 itemName: "linkedin",
                 handleTap: () {
-                  ContactLauncherService.openLinkedin();
+                  UrlLauncherService.openLinkedin();
                 },
               ),
               const SizedBox(width: 12.0),
@@ -41,7 +43,7 @@ class ContactItens extends StatelessWidget {
                 icon: FontAwesomeIcons.github,
                 itemName: "github",
                 handleTap: () {
-                  ContactLauncherService.openGitHub();
+                  UrlLauncherService.openGitHub();
                 },
               )
             ],
