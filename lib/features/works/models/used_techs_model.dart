@@ -6,6 +6,7 @@ enum UsedTechsEnum {
   maps,
   location,
   cleanArch,
+  canvas,
   cleanCode,
   designPatterns,
   responsiveness
@@ -34,6 +35,8 @@ extension UsedTechEnumExt on UsedTechsEnum {
         return "design patterns";
       case UsedTechsEnum.responsiveness:
         return "responsiveness";
+      case UsedTechsEnum.canvas:
+        return "canvas";
     }
   }
 }

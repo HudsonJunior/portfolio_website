@@ -1,6 +1,6 @@
 import 'package:portfolio_website/features/works/models/used_techs_model.dart';
 
-enum WorksEnum { localDea, zombiepo, portfolio, legiaoBebidas }
+enum WorksEnum { localDea, zombiepo, portfolio, legiaoBebidas, painter }
 
 extension WorksEnumExt on WorksEnum {
   String get title {
@@ -13,6 +13,8 @@ extension WorksEnumExt on WorksEnum {
         return "This portfolio!";
       case WorksEnum.legiaoBebidas:
         return "Liquor store";
+      case WorksEnum.painter:
+        return "Painter app";
     }
   }
 
@@ -26,6 +28,8 @@ extension WorksEnumExt on WorksEnum {
         return "This portfolio that was entirely built with Flutter.";
       case WorksEnum.legiaoBebidas:
         return "A liquor store app that helps a small customer in my town get their digital menu.";
+      case WorksEnum.painter:
+        return "A simple app to draw. Created with animations and canvas.";
     }
   }
 
@@ -39,6 +43,8 @@ extension WorksEnumExt on WorksEnum {
         return "assets/profile.jpeg";
       case WorksEnum.legiaoBebidas:
         return "assets/legiaobebidas/legiao.png";
+      case WorksEnum.painter:
+        return "assets/painter/color-palette.png";
     }
   }
 
@@ -52,6 +58,8 @@ extension WorksEnumExt on WorksEnum {
         return "";
       case WorksEnum.legiaoBebidas:
         return "jpeg";
+      case WorksEnum.painter:
+        return "png";
     }
   }
 
@@ -64,6 +72,8 @@ extension WorksEnumExt on WorksEnum {
       case WorksEnum.portfolio:
         return 0;
       case WorksEnum.legiaoBebidas:
+        return 4;
+      case WorksEnum.painter:
         return 4;
     }
   }
@@ -101,6 +111,13 @@ extension WorksEnumExt on WorksEnum {
           UsedTechsEnum.cleanArch,
           UsedTechsEnum.cleanCode,
         ];
+      case WorksEnum.painter:
+        return [
+          UsedTechsEnum.animations,
+          UsedTechsEnum.canvas,
+          UsedTechsEnum.bloc,
+          UsedTechsEnum.cleanCode,
+        ];
     }
   }
 
@@ -113,6 +130,8 @@ extension WorksEnumExt on WorksEnum {
       case WorksEnum.portfolio:
         return null;
       case WorksEnum.legiaoBebidas:
+        return null;
+      default:
         return null;
     }
   }
@@ -127,6 +146,8 @@ extension WorksEnumExt on WorksEnum {
         return 'https://github.com/HudsonJunior/portfolio_website';
       case WorksEnum.legiaoBebidas:
         return 'https://github.com/HudsonJunior/legiao_bebidas_app';
+      case WorksEnum.painter:
+        return "https://github.com/HudsonJunior/painter_app";
     }
   }
 }
