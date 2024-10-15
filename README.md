@@ -1,18 +1,12 @@
-# portfolio_website
+# Hudson Junior's Portfolio
 
-A new Flutter project.
+This is the source code for my personal portfolio website, built entirely with **Flutter** to showcase my expertise in mobile and web development.
 
-## Getting Started
+## 🌟 Overview
 
-This project is a starting point for a Flutter application.
+My portfolio at [huds.dev](https://huds.dev) includes:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# portfolio_website
-# portfolio_website
+- **Professional Experience**: Summary of my background in mobile development.
+- **Highlighted Projects**: Key projects demonstrating my skills and contributions.
+- **Technologies**: Overview of the tools and languages I specialize in.
+- **Contact Info**: Connect with me directly for collaborations or inquiries.
