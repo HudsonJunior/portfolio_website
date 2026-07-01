@@ -4,36 +4,18 @@ import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
 class ControlPageCubit extends Cubit<AppBarItens> {
   ControlPageCubit() : super(AppBarItens.home);
 
-  void scrollTo(AppBarItens item) {
-    emit(item);
-  }
+  static const _sections = [
+    AppBarItens.home,
+    AppBarItens.experience,
+    AppBarItens.about,
+    AppBarItens.contact,
+  ];
 
-  void updateBasedOnScrollPosition(double position, double currentHeight) {
-    final bool isAtHome = position >= 0 && position < currentHeight * 0.5;
-
-    if (state != AppBarItens.home && isAtHome) {
-      return emit(AppBarItens.home);
-    }
-
-    final bool isAtWorks =
-        position >= currentHeight * 0.5 && position < currentHeight * 1.5;
-
-    if (state != AppBarItens.works && isAtWorks) {
-      return emit(AppBarItens.works);
-    }
-
-    final bool isAtAbout =
-        position >= currentHeight * 1.5 && position < currentHeight * 2.5;
-
-    if (state != AppBarItens.about && isAtAbout) {
-      return emit(AppBarItens.about);
-    }
-
-    final bool isAtContact =
-        position >= currentHeight * 2.5 && position < currentHeight * 3.5;
-
-    if (state != AppBarItens.contact && isAtContact) {
-      return emit(AppBarItens.contact);
-    }
+  /// Called from the scroll listener with the index of the currently-visible
+  /// section (determined by actual widget positions, not fixed multipliers).
+  void setSection(int index) {
+    if (index < 0 || index >= _sections.length) return;
+    final item = _sections[index];
+    if (state != item) emit(item);
   }
 }

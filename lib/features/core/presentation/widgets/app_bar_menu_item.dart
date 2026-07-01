@@ -1,56 +1,88 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio_website/features/core/presentation/widgets/hover_scale_effect.dart';
 import 'package:portfolio_website/resources/colors.dart';
+import 'package:portfolio_website/resources/theme.dart';
 
-class AppBarMenuItem extends StatelessWidget {
+class NavTextItem extends StatefulWidget {
   final String title;
   final bool isSelected;
-  final VoidCallback handleTap;
+  final VoidCallback onTap;
 
-  const AppBarMenuItem({
-    Key? key,
+  const NavTextItem({
+    super.key,
     required this.title,
-    required this.handleTap,
-    this.isSelected = false,
-  }) : super(key: key);
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  State<NavTextItem> createState() => _NavTextItemState();
+}
+
+class _NavTextItemState extends State<NavTextItem> {
+  bool _hovered = false;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      hoverColor: AppColors.backgroundColor,
-      splashColor: AppColors.backgroundColor,
-      focusColor: AppColors.backgroundColor,
-      highlightColor: AppColors.backgroundColor,
-      onTap: handleTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: HoverScaleEffect(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.openSans(
-                    color: AppColors.black,
-                    letterSpacing: 2.0,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 4.0),
-                AnimatedScale(
-                  duration: const Duration(milliseconds: 400),
-                  scale: isSelected ? 1.2 : 0.0,
-                  child: Icon(
-                    Icons.circle,
-                    color: AppColors.black,
-                    size: 5,
-                  ),
-                ),
-              ],
+    final active = widget.isSelected || _hovered;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 200),
+          style: AppTextStyles.manrope(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: active ? AppColors.text : AppColors.text.withOpacity(0.55),
+          ),
+          child: Text(widget.title),
+        ),
+      ),
+    );
+  }
+}
+
+class NavContactButton extends StatefulWidget {
+  final VoidCallback onTap;
+
+  const NavContactButton({super.key, required this.onTap});
+
+  @override
+  State<NavContactButton> createState() => _NavContactButtonState();
+}
+
+class _NavContactButtonState extends State<NavContactButton> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 8),
+          decoration: BoxDecoration(
+            color: _hovered ? AppColors.accent : Colors.transparent,
+            border: Border.all(
+              color: _hovered
+                  ? AppColors.accent
+                  : AppColors.accent.withOpacity(0.5),
+            ),
+            borderRadius: BorderRadius.circular(999),
+          ),
+          child: Text(
+            'Contact',
+            style: AppTextStyles.manrope(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: AppColors.text,
             ),
           ),
         ),

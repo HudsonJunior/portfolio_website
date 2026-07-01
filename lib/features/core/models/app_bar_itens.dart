@@ -1,6 +1,6 @@
 enum AppBarItens {
   home,
-  works,
+  experience,
   about,
   contact,
 }
@@ -9,13 +9,13 @@ extension AppBarItensExt on AppBarItens {
   String get name {
     switch (this) {
       case AppBarItens.home:
-        return "home";
+        return 'Home';
+      case AppBarItens.experience:
+        return 'Experience';
       case AppBarItens.about:
-        return "about";
-      case AppBarItens.works:
-        return "works";
+        return 'About';
       case AppBarItens.contact:
-        return "contact";
+        return 'Contact';
     }
   }
 }

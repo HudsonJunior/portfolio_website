@@ -1,53 +1,99 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio_website/resources/colors.dart';
 
+class AppTextStyles {
+  // Space Grotesk — headings
+  static TextStyle spaceGrotesk({
+    double fontSize = 16,
+    FontWeight fontWeight = FontWeight.w700,
+    Color color = AppColors.text,
+    double letterSpacingEm = -0.02,
+    double? height,
+  }) =>
+      GoogleFonts.spaceGrotesk(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+        letterSpacing: letterSpacingEm * fontSize,
+        height: height,
+      );
+
+  // Manrope — body
+  static TextStyle manrope({
+    double fontSize = 15,
+    FontWeight fontWeight = FontWeight.w400,
+    Color color = AppColors.text,
+    double? height,
+    double letterSpacing = 0,
+  }) =>
+      GoogleFonts.manrope(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+        height: height,
+        letterSpacing: letterSpacing,
+      );
+
+  // JetBrains Mono — labels / code
+  static TextStyle mono({
+    double fontSize = 12,
+    FontWeight fontWeight = FontWeight.w400,
+    Color color = AppColors.textDim,
+    double letterSpacing = 0,
+  }) =>
+      GoogleFonts.jetBrainsMono(
+        fontSize: fontSize,
+        fontWeight: fontWeight,
+        color: color,
+        letterSpacing: letterSpacing,
+      );
+}
+
 class PortfolioTheme {
-  static get themeData => ThemeData(
+  static ThemeData get themeData => ThemeData(
         brightness: Brightness.dark,
-        fontFamily: 'Caviar',
+        scaffoldBackgroundColor: AppColors.background,
+        colorScheme: const ColorScheme.dark(
+          surface: AppColors.surface,
+          primary: AppColors.accent,
+          secondary: AppColors.accentBlue,
+          onSurface: AppColors.text,
+        ),
         textTheme: TextTheme(
-          headline6: TextStyle(
-            fontSize: 36.0,
-            fontFamily: 'LouisGeorge',
-            color: AppColors.black,
-            fontWeight: FontWeight.w500,
-            letterSpacing: 3.0,
+          // H1 — hero headline
+          displayLarge: AppTextStyles.spaceGrotesk(
+            fontSize: 48,
+            letterSpacingEm: -0.03,
+            height: 1.03,
           ),
-          headline2: TextStyle(
-            color: AppColors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 14.0,
-            letterSpacing: 2.0,
+          // H2 — section headings
+          displayMedium: AppTextStyles.spaceGrotesk(
+            fontSize: 32,
+            letterSpacingEm: -0.025,
           ),
-          headline3: TextStyle(
-            color: AppColors.black,
-            fontWeight: FontWeight.w500,
-            fontSize: 18.0,
-            letterSpacing: 2.0,
+          // H3 — card titles
+          displaySmall: AppTextStyles.spaceGrotesk(
+            fontSize: 20,
+            letterSpacingEm: -0.02,
           ),
-          headline4: TextStyle(
-            color: AppColors.black,
-            fontWeight: FontWeight.w500,
-            fontSize: 16.0,
-            letterSpacing: 2.0,
+          // Body large
+          bodyLarge: AppTextStyles.manrope(
+            fontSize: 16,
+            color: AppColors.textMuted,
+            height: 1.68,
           ),
-          headline5: TextStyle(
-            color: AppColors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 24.0,
-            letterSpacing: 2.0,
+          // Body medium
+          bodyMedium: AppTextStyles.manrope(
+            fontSize: 14,
+            color: AppColors.textMuted,
+            height: 1.65,
           ),
-          headline1: const TextStyle(
-            fontSize: 18.0,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 10.0,
-          ),
-          bodyText1: TextStyle(
-            fontSize: 14.0,
-            color: AppColors.black,
-            letterSpacing: 1.5,
-            fontWeight: FontWeight.w500,
+          // Mono label
+          labelSmall: AppTextStyles.mono(
+            fontSize: 12,
+            color: AppColors.accentLight,
+            letterSpacing: 0.06 * 12,
           ),
         ),
       );

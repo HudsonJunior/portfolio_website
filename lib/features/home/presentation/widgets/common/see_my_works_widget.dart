@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/hover_scale_effect.dart';
 import 'package:portfolio_website/resources/colors.dart';
@@ -14,8 +13,10 @@ class SeeMyWorksWidget extends StatelessWidget {
     return HoverScaleEffect(
       child: InkWell(
         onTap: () {
-          BlocProvider.of<ControlPageCubit>(context).scrollTo(
-            AppBarItens.works,
+          BlocProvider.of<ControlPageCubit>(context)
+              .updateBasedOnScrollPosition(
+            MediaQuery.of(context).size.height,
+            MediaQuery.of(context).size.height,
           );
         },
         child: Row(

@@ -30,7 +30,7 @@ class _WorksSectionState extends State<WorksSection>
             width: double.infinity,
             child: BlocListener<ControlPageCubit, AppBarItens>(
               listener: (_, state) {
-                if (state == AppBarItens.works) {
+                if (state == AppBarItens.experience) {
                   context.read<WorksCubit>().changeVisibility();
                 }
               },

@@ -4,7 +4,9 @@ import 'package:portfolio_website/features/home/presentation/widgets/mobile/home
 import 'package:portfolio_website/resources/constraints.dart';
 
 class HomeSection extends StatefulWidget {
-  const HomeSection({Key? key}) : super(key: key);
+  final VoidCallback? onScrollToExperience;
+
+  const HomeSection({Key? key, this.onScrollToExperience}) : super(key: key);
 
   @override
   State<HomeSection> createState() => _HomeSectionState();
@@ -19,9 +21,13 @@ class _HomeSectionState extends State<HomeSection>
     return LayoutBuilder(
       builder: (context, constraints) {
         if (AppConstraints.isMobile(constraints.maxWidth)) {
-          return const HomeSectionMobile();
+          return HomeSectionMobile(
+            onScrollToExperience: widget.onScrollToExperience,
+          );
         } else {
-          return const HomeSectionDesktop();
+          return HomeSectionDesktop(
+            onScrollToExperience: widget.onScrollToExperience,
+          );
         }
       },
     );
