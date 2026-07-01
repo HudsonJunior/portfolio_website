@@ -17,12 +17,12 @@ class ImageCarousel extends StatefulWidget {
 }
 
 class _ImageCarouselState extends State<ImageCarousel> {
-  late final CarouselController carouselController;
+  late final CarouselSliderController carouselController;
 
   @override
   void initState() {
     super.initState();
-    carouselController = CarouselController();
+    carouselController = CarouselSliderController();
   }
 
   @override

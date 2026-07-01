@@ -86,7 +86,7 @@ class _ContactContentState extends State<ContactContent>
             handleTap: () {},
             title: "e-mail",
             description: "devhudsoncontact@gmail.com",
-            icon: Icons.mail,
+            icon: FontAwesomeIcons.envelope,
           ),
         ),
         const SizedBox(height: 12),

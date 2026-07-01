@@ -18,7 +18,7 @@ class MainlySkillsWidgetMobile extends StatelessWidget {
         children: [
           Text(
             "my mainly skills",
-            style: context.themeData.headline3,
+            style: context.themeData.displaySmall,
             textAlign: TextAlign.justify,
           ),
           const SizedBox(height: 8),
@@ -39,7 +39,7 @@ class MainlySkillsWidgetMobile extends StatelessWidget {
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
                         MainlySkills.values[index].name,
-                        style: context.themeData.headline2,
+                        style: context.themeData.displayMedium,
                       ),
                     ),
                   ),

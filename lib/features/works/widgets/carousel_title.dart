@@ -32,7 +32,7 @@ class CarouselTitle extends StatelessWidget {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: context.themeData.headline5,
+            style: context.themeData.headlineSmall,
           ),
         ),
       ],

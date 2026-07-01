@@ -18,13 +18,13 @@ class WorksCarousel extends StatefulWidget {
 }
 
 class _WorksCarouselState extends State<WorksCarousel> {
-  late final CarouselController pageController;
+  late final CarouselSliderController pageController;
   late final AutoSizeGroup autoSizeGroup;
 
   @override
   void initState() {
     super.initState();
-    pageController = CarouselController();
+    pageController = CarouselSliderController();
     autoSizeGroup = AutoSizeGroup();
   }
 

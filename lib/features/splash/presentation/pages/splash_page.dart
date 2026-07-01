@@ -78,7 +78,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                     },
                     child: Text(
                       "HUDSON JÚNIOR",
-                      style: context.themeData.headline1,
+                      style: context.themeData.displayLarge,
                     ),
                   ),
                   const SizedBox(height: 32.0),

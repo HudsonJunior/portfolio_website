@@ -27,7 +27,7 @@ class WorksBottomButtons extends StatelessWidget {
                 return SizedBox(
                   width: constraints.maxWidth * 0.6,
                   child: WorkButton(
-                    icon: Icons.photo_library,
+                    icon: FontAwesomeIcons.images,
                     handleTap: () {
                       showDialog(
                         context: context,

@@ -22,7 +22,7 @@ class WorksBottomButtonsMobile extends StatelessWidget {
       children: [
         Flexible(
           child: WorkButton(
-            icon: Icons.photo_library,
+            icon: FontAwesomeIcons.images,
             handleTap: () {
               showDialog(
                 context: context,

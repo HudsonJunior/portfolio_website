@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/resources/colors.dart';
 
 class WorkButton extends StatelessWidget {
@@ -8,7 +9,7 @@ class WorkButton extends StatelessWidget {
     required this.handleTap,
   }) : super(key: key);
 
-  final IconData icon;
+  final FaIconData icon;
   final VoidCallback handleTap;
 
   @override
@@ -23,7 +24,7 @@ class WorkButton extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Icon(
+        child: FaIcon(
           icon,
           color: AppColors.backgroundColor,
           size: 15,
