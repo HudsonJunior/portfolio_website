@@ -3,6 +3,7 @@ import 'package:portfolio_website/features/core/presentation/widgets/reveal_on_s
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/constraints.dart';
 import 'package:portfolio_website/resources/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ─── Skill data ────────────────────────────────────────────────────────────────
 
@@ -81,6 +82,12 @@ class AboutSection extends StatelessWidget {
                       AppConstraints.isMobile(constraints.maxWidth)
                           ? const _AboutBodyMobile()
                           : const _AboutBodyDesktop(),
+                ),
+                const SizedBox(height: 72),
+                // Beyond the code
+                const RevealOnScroll(
+                  delay: Duration(milliseconds: 120),
+                  child: _BeyondTheCode(),
                 ),
               ],
             ),
@@ -174,6 +181,8 @@ class _AboutLeft extends StatelessWidget {
         ),
         const SizedBox(height: 30),
         const _EducationCard(),
+        const SizedBox(height: 14),
+        const _PublicationCard(),
       ],
     );
   }
@@ -230,6 +239,147 @@ class _EducationCard extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Publication card ──────────────────────────────────────────────────────────
+
+class _PublicationCard extends StatefulWidget {
+  const _PublicationCard();
+
+  @override
+  State<_PublicationCard> createState() => _PublicationCardState();
+}
+
+class _PublicationCardState extends State<_PublicationCard> {
+  bool _hovered = false;
+
+  static Future<void> _open() async {
+    final uri = Uri.parse(
+      'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318065',
+    );
+    if (await canLaunchUrl(uri)) launchUrl(uri);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        border: Border.all(
+          color: _hovered
+              ? AppColors.accent.withOpacity(0.5)
+              : AppColors.border,
+        ),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header row: icon + journal meta
+          Row(
+            children: [
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: AppColors.accent.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(11),
+                ),
+                child: const Icon(
+                  Icons.article_rounded,
+                  color: AppColors.accent,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'PLOS ONE · Research Article',
+                      style: AppTextStyles.mono(
+                        fontSize: 11,
+                        color: AppColors.accentLight,
+                        letterSpacing: 0.04 * 11,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Feb 2025 · DOI: 10.1371/journal.pone.0318065',
+                      style: AppTextStyles.mono(
+                        fontSize: 10.5,
+                        color: AppColors.text.withOpacity(0.38),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+
+          // Title
+          Text(
+            'Local DEA app: Saving lives with accessible and well-located automated external defibrillators',
+            style: AppTextStyles.manrope(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColors.text,
+              height: 1.5,
+            ),
+          ),
+          const SizedBox(height: 8),
+
+          // One-line abstract
+          Text(
+            'Developed & validated a mobile AED-locator app (Android & iOS) for out-of-hospital cardiac arrest, evaluated by 30 experts (Cronbach\'s α = 0.92).',
+            style: AppTextStyles.manrope(
+              fontSize: 13,
+              color: AppColors.text.withOpacity(0.55),
+              height: 1.6,
+            ),
+          ),
+          const SizedBox(height: 14),
+
+          // "Read paper →" link
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            onEnter: (_) => setState(() => _hovered = true),
+            onExit: (_) => setState(() => _hovered = false),
+            child: GestureDetector(
+              onTap: _open,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 150),
+                    style: AppTextStyles.manrope(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: _hovered
+                          ? AppColors.accentLight
+                          : AppColors.accent,
+                    ),
+                    child: const Text('Read paper'),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(
+                    Icons.arrow_outward_rounded,
+                    size: 14,
+                    color: _hovered
+                        ? AppColors.accentLight
+                        : AppColors.accent,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -408,12 +558,158 @@ class _SkillPillState extends State<_SkillPill>
             widget.label,
             style: AppTextStyles.manrope(
               fontSize: 13.5,
-              color: _hovered
-                  ? AppColors.text
-                  : AppColors.text.withOpacity(0.85),
+              color:
+                  _hovered ? AppColors.text : AppColors.text.withOpacity(0.85),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// ─── Beyond the code ───────────────────────────────────────────────────────────
+
+const _personalItems = [
+  (
+    emoji: '🌍',
+    title: 'Digital nomad',
+    subtitle: '19 countries & counting',
+    color: Color(0xFF22D3EE),
+  ),
+  (
+    emoji: '💃',
+    title: 'Forró dancer',
+    subtitle: 'Brazilian dance & culture',
+    color: Color(0xFFF472B6),
+  ),
+  (
+    emoji: '🎭',
+    title: 'Theatre classes',
+    subtitle: 'Storytelling & performance',
+    color: Color(0xFFFBBF24),
+  ),
+  (
+    emoji: '🎸',
+    title: 'Learning guitar',
+    subtitle: 'Work in progress',
+    color: Color(0xFF4ADE80),
+  ),
+];
+
+class _BeyondTheCode extends StatelessWidget {
+  const _BeyondTheCode();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '// beyond the code',
+          style: AppTextStyles.mono(
+            fontSize: 12.5,
+            color: AppColors.accentLight,
+            letterSpacing: 0.06 * 12.5,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Life outside the terminal',
+          style: AppTextStyles.spaceGrotesk(
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+            letterSpacingEm: -0.02,
+          ),
+        ),
+        const SizedBox(height: 24),
+        LayoutBuilder(
+          builder: (_, constraints) {
+            final isMobile = AppConstraints.isMobile(constraints.maxWidth);
+            final cardWidth =
+                isMobile ? double.infinity : (constraints.maxWidth - 16) / 2;
+            return Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: _personalItems
+                  .map((item) => SizedBox(
+                        width: cardWidth,
+                        child: _PersonalCard(
+                          emoji: item.emoji,
+                          title: item.title,
+                          subtitle: item.subtitle,
+                          accentColor: item.color,
+                        ),
+                      ))
+                  .toList(),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class _PersonalCard extends StatelessWidget {
+  final String emoji;
+  final String title;
+  final String subtitle;
+  final Color accentColor;
+
+  const _PersonalCard({
+    required this.emoji,
+    required this.title,
+    required this.subtitle,
+    required this.accentColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        border: Border.all(color: Colors.white.withOpacity(0.09)),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            decoration: BoxDecoration(
+              color: accentColor.withOpacity(0.10),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: Text(emoji, style: const TextStyle(fontSize: 22)),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: AppTextStyles.manrope(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.text,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  subtitle,
+                  style: AppTextStyles.manrope(
+                    fontSize: 13,
+                    color: AppColors.text.withOpacity(0.50),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

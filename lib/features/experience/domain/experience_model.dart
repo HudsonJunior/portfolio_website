@@ -21,20 +21,33 @@ class ExperienceModel {
 const kExperiences = [
   ExperienceModel(
     number: '01',
-    company: 'MGM Resorts',
-    role: 'Senior Mobile Engineer',
-    period: 'Mar 2023 — Present',
+    company: 'Very Good Ventures',
+    role: 'Senior Engineer I',
+    period: 'Jul 2025 — Present',
     isCurrent: true,
     points: [
-      "Contributing to one of the world's largest resort apps, focused on architecture and performance.",
-      'Building solutions that improve code performance, maintainability, and readability.',
-      'Leading feature delivery with a focus on quality and architectural standards.',
-      'Running code reviews, upholding architecture integrity, and onboarding new developers.',
+      'Joining a world-class Flutter consultancy known for engineering excellence and open-source impact.',
+      'Building high-quality Flutter applications for clients across multiple industries.',
+      'Upholding VGV\'s standards of clean architecture, testing, and code quality.',
+    ],
+    stack: ['Flutter', 'Dart', 'Architecture'],
+  ),
+  ExperienceModel(
+    number: '02',
+    company: 'MGM Resorts',
+    role: 'Senior Mobile Engineer',
+    period: 'Mar 2023 — Jun 2025',
+    isCurrent: false,
+    points: [
+      "Contributed to one of the world's largest resort apps, focused on architecture and performance.",
+      'Built solutions that improved code performance, maintainability, and readability.',
+      'Led feature delivery with a focus on quality and architectural standards.',
+      'Ran code reviews, upheld architecture integrity, and onboarded new developers.',
     ],
     stack: ['Flutter', 'Architecture', 'Performance'],
   ),
   ExperienceModel(
-    number: '02',
+    number: '03',
     company: 'CourseKey',
     role: 'Mobile Engineer',
     period: 'Oct 2022 — Feb 2023',
@@ -47,7 +60,7 @@ const kExperiences = [
     stack: ['Flutter', 'Bloc', 'Testing'],
   ),
   ExperienceModel(
-    number: '03',
+    number: '04',
     company: 'AMcom',
     role: 'Mobile Engineer',
     period: 'May 2022 — Oct 2022',
@@ -60,7 +73,7 @@ const kExperiences = [
     stack: ['Flutter', 'Design System', 'Banking'],
   ),
   ExperienceModel(
-    number: '04',
+    number: '05',
     company: 'EurekaLabs',
     role: 'Mobile Engineer',
     period: '2020 — 2022',
@@ -73,7 +86,7 @@ const kExperiences = [
     stack: ['Flutter', 'Swift', 'Kotlin'],
   ),
   ExperienceModel(
-    number: '05',
+    number: '06',
     company: 'InovaClick Software',
     role: 'Fullstack Engineer',
     period: '2019 — 2020',
