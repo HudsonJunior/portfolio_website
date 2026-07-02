@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/reveal_on_scroll.dart';
 import 'package:portfolio_website/resources/colors.dart';
+import 'package:portfolio_website/resources/cv_download.dart';
 import 'package:portfolio_website/resources/constraints.dart';
 import 'package:portfolio_website/resources/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -214,12 +215,13 @@ class _ContactActions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
+    return const Wrap(
       spacing: 14,
       runSpacing: 14,
       crossAxisAlignment: WrapCrossAlignment.center,
-      children: const [
+      children: [
         _EmailButton(),
+        _DownloadCVButton(),
         _IconActionButton(
           icon: FontAwesomeIcons.linkedinIn,
           url: 'https://www.linkedin.com/in/hudson-p-46583011a/',
@@ -274,6 +276,56 @@ class _EmailButtonState extends State<_EmailButton> {
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFF0B0C10),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Download CV button ────────────────────────────────────────────────────────
+
+class _DownloadCVButton extends StatefulWidget {
+  const _DownloadCVButton();
+
+  @override
+  State<_DownloadCVButton> createState() => _DownloadCVButtonState();
+}
+
+class _DownloadCVButtonState extends State<_DownloadCVButton> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: GestureDetector(
+        onTap: downloadCV,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          transform: Matrix4.translationValues(0, _hovered ? -3 : 0, 0),
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(_hovered ? 0.14 : 0.08),
+            border: Border.all(color: Colors.white.withOpacity(0.22)),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.download_rounded, color: Colors.white, size: 18),
+              const SizedBox(width: 10),
+              Text(
+                'Download CV',
+                style: AppTextStyles.manrope(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
             ],

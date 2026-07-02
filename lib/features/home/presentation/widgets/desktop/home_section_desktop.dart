@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/features/home/presentation/widgets/common/scroll_down_indicator.dart';
 import 'package:portfolio_website/resources/colors.dart';
+import 'package:portfolio_website/resources/cv_download.dart';
 import 'package:portfolio_website/resources/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -69,7 +70,7 @@ class _HomeSectionDesktopState extends State<HomeSectionDesktop>
       duration: const Duration(milliseconds: 1000),
     );
 
-    Animation<double> _interval(double from, double to) =>
+    Animation<double> interval(double from, double to) =>
         Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
             parent: _enter,
@@ -77,12 +78,12 @@ class _HomeSectionDesktopState extends State<HomeSectionDesktop>
           ),
         );
 
-    _aBadge = _interval(0.00, 0.35);
-    _aHeadline = _interval(0.10, 0.48);
-    _aBio = _interval(0.22, 0.58);
-    _aCta = _interval(0.34, 0.68);
-    _aSocial = _interval(0.44, 0.78);
-    _aRight = _interval(0.14, 0.54);
+    _aBadge = interval(0.00, 0.35);
+    _aHeadline = interval(0.10, 0.48);
+    _aBio = interval(0.22, 0.58);
+    _aCta = interval(0.34, 0.68);
+    _aSocial = interval(0.44, 0.78);
+    _aRight = interval(0.14, 0.54);
 
     // ── Typing controller (1800ms, starts 300ms after _enter done)
     _type = AnimationController(
@@ -484,6 +485,11 @@ class _HeroLeft extends StatelessWidget {
               _GhostButton(
                 label: 'Get in touch',
                 onTap: () => _launch('mailto:devhudsoncontact@gmail.com'),
+              ),
+              const _GhostButton(
+                label: 'Download CV',
+                icon: Icons.download_rounded,
+                onTap: downloadCV,
               ),
             ],
           ),
@@ -887,7 +893,8 @@ class _GradientButtonState extends State<_GradientButton> {
 class _GhostButton extends StatefulWidget {
   final String label;
   final VoidCallback onTap;
-  const _GhostButton({required this.label, required this.onTap});
+  final IconData? icon;
+  const _GhostButton({required this.label, required this.onTap, this.icon});
 
   @override
   State<_GhostButton> createState() => _GhostButtonState();
@@ -915,11 +922,24 @@ class _GhostButtonState extends State<_GhostButton> {
             ),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Text(widget.label,
-              style: AppTextStyles.manrope(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.text)),
+          child: widget.icon != null
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(widget.label,
+                        style: AppTextStyles.manrope(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.text)),
+                    const SizedBox(width: 8),
+                    Icon(widget.icon, color: AppColors.text, size: 16),
+                  ],
+                )
+              : Text(widget.label,
+                  style: AppTextStyles.manrope(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.text)),
         ),
       ),
     );

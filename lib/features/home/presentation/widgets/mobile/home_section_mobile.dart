@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/features/home/presentation/widgets/common/scroll_down_indicator.dart';
 import 'package:portfolio_website/resources/colors.dart';
+import 'package:portfolio_website/resources/cv_download.dart';
 import 'package:portfolio_website/resources/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -279,6 +280,12 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                           onTap: () =>
                               _launch('mailto:devhudsoncontact@gmail.com'),
                         ),
+                        const SizedBox(height: 12),
+                        _MobileGhostButton(
+                          label: 'Download CV',
+                          icon: Icons.download_rounded,
+                          onTap: downloadCV,
+                        ),
                       ],
                     ),
                   ),
@@ -433,7 +440,8 @@ class _MobileGradientButton extends StatelessWidget {
 class _MobileGhostButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
-  const _MobileGhostButton({required this.label, required this.onTap});
+  final IconData? icon;
+  const _MobileGhostButton({required this.label, required this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -447,11 +455,24 @@ class _MobileGhostButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
-          child: Text(label,
-              style: AppTextStyles.manrope(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.text)),
+          child: icon != null
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(label,
+                        style: AppTextStyles.manrope(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.text)),
+                    const SizedBox(width: 8),
+                    Icon(icon, color: AppColors.text, size: 16),
+                  ],
+                )
+              : Text(label,
+                  style: AppTextStyles.manrope(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.text)),
         ),
       ),
     );
