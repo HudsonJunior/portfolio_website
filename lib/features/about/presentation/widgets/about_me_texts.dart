@@ -5,7 +5,7 @@ import 'package:portfolio_website/features/about/presentation/widgets/about_me_t
 import 'package:portfolio_website/features/about/presentation/widgets/mainly_skills_widget.dart';
 
 class AboutMeTexts extends StatelessWidget {
-  const AboutMeTexts({Key? key}) : super(key: key);
+  const AboutMeTexts({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +15,14 @@ class AboutMeTexts extends StatelessWidget {
           duration: const Duration(milliseconds: 1000),
           offset: isVisible ? const Offset(0, 0) : const Offset(2, 0),
           curve: Curves.easeOut,
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Flexible(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Flexible(
                       child: AboutMeText(
                         title: "experience",
@@ -33,8 +33,8 @@ class AboutMeTexts extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 32.0),
-              const Flexible(child: MainlySkillsWidget()),
+              SizedBox(height: 32.0),
+              Flexible(child: MainlySkillsWidget()),
             ],
           ),
         );

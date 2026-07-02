@@ -5,10 +5,10 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class SectionHeader extends StatelessWidget {
   const SectionHeader({
-    Key? key,
+    super.key,
     required this.isVisible,
     required this.headerTitle,
-  }) : super(key: key);
+  });
 
   final bool isVisible;
   final String headerTitle;

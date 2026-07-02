@@ -5,8 +5,8 @@ import 'package:portfolio_website/features/works/services/contact_launcher_servi
 
 class ContactContent extends StatefulWidget {
   const ContactContent({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<ContactContent> createState() => _ContactContentState();

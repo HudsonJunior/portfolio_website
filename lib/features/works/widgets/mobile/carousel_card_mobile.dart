@@ -9,10 +9,10 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class CarouselCardMobile extends StatelessWidget {
   const CarouselCardMobile({
-    Key? key,
+    super.key,
     required this.work,
     required this.autoSizeGroup,
-  }) : super(key: key);
+  });
 
   final WorksEnum work;
   final AutoSizeGroup autoSizeGroup;

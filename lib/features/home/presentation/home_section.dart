@@ -6,7 +6,7 @@ import 'package:portfolio_website/resources/constraints.dart';
 class HomeSection extends StatefulWidget {
   final VoidCallback? onScrollToExperience;
 
-  const HomeSection({Key? key, this.onScrollToExperience}) : super(key: key);
+  const HomeSection({super.key, this.onScrollToExperience});
 
   @override
   State<HomeSection> createState() => _HomeSectionState();

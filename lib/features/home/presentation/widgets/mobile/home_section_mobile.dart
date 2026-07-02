@@ -54,7 +54,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
       duration: const Duration(milliseconds: 1000),
     );
 
-    Animation<double> _interval(double from, double to) =>
+    Animation<double> interval(double from, double to) =>
         Tween<double>(begin: 0.0, end: 1.0).animate(
           CurvedAnimation(
             parent: _enter,
@@ -62,12 +62,12 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
           ),
         );
 
-    _aPhoto = _interval(0.00, 0.40);
-    // _aBadge = _interval(0.10, 0.48);
-    _aHeadline = _interval(0.20, 0.58);
-    _aBio = _interval(0.30, 0.68);
-    _aCta = _interval(0.40, 0.78);
-    _aSocial = _interval(0.50, 0.88);
+    _aPhoto = interval(0.00, 0.40);
+    // _aBadge = interval(0.10, 0.48);
+    _aHeadline = interval(0.20, 0.58);
+    _aBio = interval(0.30, 0.68);
+    _aCta = interval(0.40, 0.78);
+    _aSocial = interval(0.50, 0.88);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _enter.forward();
@@ -84,7 +84,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
 
   Future<void> _launch(String url) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) launchUrl(uri);
+    if (await canLaunchUrl(uri)) await launchUrl(uri);
   }
 
   // Inline fade + slide-up helper (same pattern as desktop _FadeSlide)
@@ -126,8 +126,8 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      const Color(0xFF6366F1).withOpacity(0.35),
-                      const Color(0xFF6366F1).withOpacity(0.0),
+                      const Color(0xFF6366F1).withValues(alpha: 0.35),
+                      const Color(0xFF6366F1).withValues(alpha: 0.0),
                     ],
                     stops: const [0.0, 0.62],
                   ),
@@ -222,7 +222,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                             ),
                           ),
                           const TextSpan(text: '\nEngineer'),
-                          TextSpan(
+                          const TextSpan(
                             text: '.',
                             style: TextStyle(color: AppColors.accent),
                           ),
@@ -240,7 +240,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                       TextSpan(
                         style: AppTextStyles.manrope(
                           fontSize: 15,
-                          color: AppColors.text.withOpacity(0.62),
+                          color: AppColors.text.withValues(alpha: 0.62),
                           height: 1.65,
                         ),
                         children: [
@@ -281,7 +281,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                               _launch('mailto:devhudsoncontact@gmail.com'),
                         ),
                         const SizedBox(height: 12),
-                        _MobileGhostButton(
+                        const _MobileGhostButton(
                           label: 'Download CV',
                           icon: Icons.download_rounded,
                           onTap: downloadCV,
@@ -301,7 +301,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                           'find me on',
                           style: AppTextStyles.mono(
                             fontSize: 12,
-                            color: AppColors.text.withOpacity(0.4),
+                            color: AppColors.text.withValues(alpha: 0.4),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -414,7 +414,7 @@ class _MobileGradientButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xFF6366F1).withOpacity(0.42),
+              color: const Color(0xFF6366F1).withValues(alpha: 0.42),
               blurRadius: 30,
               offset: const Offset(0, 12),
             ),
@@ -450,8 +450,8 @@ class _MobileGhostButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.03),
-          border: Border.all(color: Colors.white.withOpacity(0.16)),
+          color: Colors.white.withValues(alpha: 0.03),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.16)),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
@@ -492,7 +492,7 @@ class _SmallSocialButton extends StatelessWidget {
         width: 42,
         height: 42,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.white.withOpacity(0.14)),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.14)),
           borderRadius: BorderRadius.circular(11),
         ),
         child: Center(child: FaIcon(icon, size: 17, color: AppColors.text)),

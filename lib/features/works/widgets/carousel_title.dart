@@ -3,10 +3,10 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class CarouselTitle extends StatelessWidget {
   const CarouselTitle({
-    Key? key,
+    super.key,
     required this.title,
     required this.iconPath,
-  }) : super(key: key);
+  });
 
   final String title;
   final String iconPath;

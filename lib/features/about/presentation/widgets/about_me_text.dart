@@ -6,10 +6,10 @@ class AboutMeText extends StatefulWidget {
   final String text;
 
   const AboutMeText({
-    Key? key,
+    super.key,
     required this.title,
     required this.text,
-  }) : super(key: key);
+  });
 
   @override
   State<AboutMeText> createState() => _AboutMeTextState();

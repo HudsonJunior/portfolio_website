@@ -6,9 +6,9 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class WorkContent extends StatelessWidget {
   const WorkContent({
-    Key? key,
+    super.key,
     required this.work,
-  }) : super(key: key);
+  });
 
   final WorksEnum work;
 

@@ -5,7 +5,7 @@ import 'package:portfolio_website/features/about/presentation/widgets/about_me_t
 import 'package:portfolio_website/features/about/presentation/widgets/mainly_skills_widget_mobile.dart';
 
 class AboutMeTextsMobile extends StatelessWidget {
-  const AboutMeTextsMobile({Key? key}) : super(key: key);
+  const AboutMeTextsMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,10 @@ class AboutMeTextsMobile extends StatelessWidget {
           duration: const Duration(milliseconds: 1000),
           offset: isVisible ? const Offset(0, 0) : const Offset(2, 0),
           curve: Curves.easeOut,
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Expanded(
                 flex: 3,
                 child: AboutMeTextMobile(

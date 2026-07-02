@@ -3,10 +3,10 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class CarouselTitleMobile extends StatelessWidget {
   const CarouselTitleMobile({
-    Key? key,
+    super.key,
     required this.title,
     required this.iconPath,
-  }) : super(key: key);
+  });
 
   final String title;
   final String iconPath;

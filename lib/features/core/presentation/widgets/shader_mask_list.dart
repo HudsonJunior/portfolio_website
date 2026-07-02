@@ -3,9 +3,9 @@ import 'package:portfolio_website/resources/colors.dart';
 
 class ShaderMaskList extends StatelessWidget {
   const ShaderMaskList({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

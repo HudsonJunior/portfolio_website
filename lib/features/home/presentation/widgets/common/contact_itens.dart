@@ -6,9 +6,9 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class ContactItens extends StatelessWidget {
   const ContactItens({
-    Key? key,
+    super.key,
     required this.kIsMobile,
-  }) : super(key: key);
+  });
   final bool kIsMobile;
 
   @override

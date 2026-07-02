@@ -10,8 +10,8 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class WorksCarouselMobile extends StatefulWidget {
   const WorksCarouselMobile({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<WorksCarouselMobile> createState() => _WorksCarouselMobileState();

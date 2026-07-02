@@ -4,10 +4,10 @@ import 'package:portfolio_website/resources/colors.dart';
 
 class WorkButton extends StatelessWidget {
   const WorkButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.handleTap,
-  }) : super(key: key);
+  });
 
   final FaIconData icon;
   final VoidCallback handleTap;

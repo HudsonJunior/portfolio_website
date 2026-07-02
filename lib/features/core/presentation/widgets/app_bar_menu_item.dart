@@ -36,7 +36,7 @@ class _NavTextItemState extends State<NavTextItem> {
           style: AppTextStyles.manrope(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: active ? AppColors.text : AppColors.text.withOpacity(0.55),
+            color: active ? AppColors.text : AppColors.text.withValues(alpha: 0.55),
           ),
           child: Text(widget.title),
         ),
@@ -73,7 +73,7 @@ class _NavContactButtonState extends State<NavContactButton> {
             border: Border.all(
               color: _hovered
                   ? AppColors.accent
-                  : AppColors.accent.withOpacity(0.5),
+                  : AppColors.accent.withValues(alpha: 0.5),
             ),
             borderRadius: BorderRadius.circular(999),
           ),

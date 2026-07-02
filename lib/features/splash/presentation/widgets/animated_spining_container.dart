@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class AnimatedSpiningContainer extends StatefulWidget {
-  const AnimatedSpiningContainer({Key? key}) : super(key: key);
+  const AnimatedSpiningContainer({super.key});
 
   @override
   State<AnimatedSpiningContainer> createState() =>

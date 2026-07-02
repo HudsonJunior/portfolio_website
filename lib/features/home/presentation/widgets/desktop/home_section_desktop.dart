@@ -283,8 +283,13 @@ class _AnimatedBlob extends StatelessWidget {
         final t = Curves.easeInOut.transform(controller.value);
         return Transform(
           transform: Matrix4.identity()
-            ..translate(size * dx * t, size * dy * t)
-            ..scale(1.0 + scaleAdd * t),
+            ..translateByDouble(size * dx * t, size * dy * t, 0, 1.0)
+            ..scaleByDouble(
+              1.0 + scaleAdd * t,
+              1.0 + scaleAdd * t,
+              1.0 + scaleAdd * t,
+              1.0,
+            ),
           alignment: Alignment.center,
           child: child,
         );
@@ -298,8 +303,8 @@ class _AnimatedBlob extends StatelessWidget {
             shape: BoxShape.circle,
             gradient: RadialGradient(
               colors: [
-                color.withOpacity(opacity),
-                color.withOpacity(0.0),
+                color.withValues(alpha: opacity),
+                color.withValues(alpha: 0.0),
               ],
               stops: const [0.0, 0.62],
             ),
@@ -318,7 +323,7 @@ class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.03)
+      ..color = Colors.white.withValues(alpha: 0.03)
       ..strokeWidth = 1;
 
     const spacing = 48.0;
@@ -355,7 +360,7 @@ class _HeroLeft extends StatelessWidget {
 
   Future<void> _launch(String url) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) launchUrl(uri);
+    if (await canLaunchUrl(uri)) await launchUrl(uri);
   }
 
   @override
@@ -428,7 +433,7 @@ class _HeroLeft extends StatelessWidget {
                   ),
                 ),
                 const TextSpan(text: '\nEngineer'),
-                TextSpan(
+                const TextSpan(
                   text: '.',
                   style: TextStyle(color: AppColors.accent),
                 ),
@@ -445,7 +450,7 @@ class _HeroLeft extends StatelessWidget {
             TextSpan(
               style: AppTextStyles.manrope(
                 fontSize: 17,
-                color: AppColors.text.withOpacity(0.62),
+                color: AppColors.text.withValues(alpha: 0.62),
                 height: 1.68,
               ),
               children: [
@@ -506,7 +511,7 @@ class _HeroLeft extends StatelessWidget {
                 'find me on',
                 style: AppTextStyles.mono(
                   fontSize: 12,
-                  color: AppColors.text.withOpacity(0.4),
+                  color: AppColors.text.withValues(alpha: 0.4),
                 ),
               ),
               const SizedBox(width: 16),
@@ -756,11 +761,11 @@ class _TerminalCard extends StatelessWidget {
           width: 240,
           decoration: BoxDecoration(
             color: const Color(0xF00E0F15),
-            border: Border.all(color: Colors.white.withOpacity(0.12)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha: 0.5),
                 blurRadius: 60,
                 offset: const Offset(0, 24),
               ),
@@ -775,22 +780,23 @@ class _TerminalCard extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(color: Colors.white.withOpacity(0.08)),
+                    bottom:
+                        BorderSide(color: Colors.white.withValues(alpha: 0.08)),
                   ),
                 ),
                 child: Row(
                   children: [
-                    _Dot(color: const Color(0xFFFB7185)),
+                    const _Dot(color: Color(0xFFFB7185)),
                     const SizedBox(width: 6),
-                    _Dot(color: const Color(0xFFFBBF24)),
+                    const _Dot(color: Color(0xFFFBBF24)),
                     const SizedBox(width: 6),
-                    _Dot(color: AppColors.green),
+                    const _Dot(color: AppColors.green),
                     const SizedBox(width: 8),
                     Text(
                       'engineer.dart',
                       style: AppTextStyles.mono(
                         fontSize: 10.5,
-                        color: AppColors.text.withOpacity(0.4),
+                        color: AppColors.text.withValues(alpha: 0.4),
                       ),
                     ),
                   ],
@@ -863,8 +869,8 @@ class _GradientButtonState extends State<_GradientButton> {
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
-                color:
-                    const Color(0xFF6366F1).withOpacity(_hovered ? 0.6 : 0.42),
+                color: const Color(0xFF6366F1)
+                    .withValues(alpha: _hovered ? 0.6 : 0.42),
                 blurRadius: _hovered ? 44 : 30,
                 offset: const Offset(0, 12),
               ),
@@ -915,10 +921,11 @@ class _GhostButtonState extends State<_GhostButton> {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(_hovered ? 0.06 : 0.03),
+            color: Colors.white.withValues(alpha: _hovered ? 0.06 : 0.03),
             border: Border.all(
-              color:
-                  _hovered ? AppColors.accent : Colors.white.withOpacity(0.16),
+              color: _hovered
+                  ? AppColors.accent
+                  : Colors.white.withValues(alpha: 0.16),
             ),
             borderRadius: BorderRadius.circular(12),
           ),
@@ -977,7 +984,7 @@ class _SocialButtonState extends State<_SocialButton> {
             border: Border.all(
               color: _hovered
                   ? AppColors.accentLight
-                  : Colors.white.withOpacity(0.14),
+                  : Colors.white.withValues(alpha: 0.14),
             ),
             borderRadius: BorderRadius.circular(11),
           ),

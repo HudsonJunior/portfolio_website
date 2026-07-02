@@ -4,10 +4,10 @@ import 'package:portfolio_website/features/works/models/works_model.dart';
 
 class ImageCarouselMobile extends StatefulWidget {
   const ImageCarouselMobile({
-    Key? key,
+    super.key,
     required this.imagesPathsLength,
     required this.work,
-  }) : super(key: key);
+  });
 
   final int imagesPathsLength;
   final WorksEnum work;

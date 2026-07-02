@@ -10,11 +10,11 @@ class ContactItem extends StatelessWidget {
   final VoidCallback handleTap;
 
   const ContactItem({
-    Key? key,
+    super.key,
     required this.icon,
     required this.itemName,
     required this.handleTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

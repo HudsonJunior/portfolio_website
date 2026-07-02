@@ -8,9 +8,9 @@ import 'package:portfolio_website/features/works/widgets/work_button.dart';
 
 class WorksBottomButtonsMobile extends StatelessWidget {
   const WorksBottomButtonsMobile({
-    Key? key,
+    super.key,
     required this.work,
-  }) : super(key: key);
+  });
 
   final WorksEnum work;
 

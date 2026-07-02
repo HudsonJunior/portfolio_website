@@ -50,7 +50,7 @@ class ExperienceSection extends StatelessWidget {
                         'Six years shipping mobile products — from banking super-apps to one of the world\'s largest resort platforms.',
                         style: AppTextStyles.manrope(
                           fontSize: 16,
-                          color: AppColors.text.withOpacity(0.6),
+                          color: AppColors.text.withValues(alpha: 0.6),
                           height: 1.65,
                         ),
                       ),

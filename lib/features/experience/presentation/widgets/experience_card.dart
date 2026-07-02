@@ -29,14 +29,14 @@ class _ExperienceCardState extends State<ExperienceCard> {
           color: AppColors.surface,
           border: Border.all(
             color: _hovered
-                ? AppColors.accent.withOpacity(0.4)
+                ? AppColors.accent.withValues(alpha: 0.4)
                 : AppColors.border,
           ),
           borderRadius: BorderRadius.circular(16),
           boxShadow: _hovered
               ? [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.4),
+                    color: Colors.black.withValues(alpha: 0.4),
                     blurRadius: 40,
                     offset: const Offset(0, 16),
                   ),
@@ -88,7 +88,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                 ),
                 if (widget.job.isCurrent) ...[
                   const SizedBox(width: 10),
-                  _CurrentBadge(),
+                  const _CurrentBadge(),
                 ],
               ],
             ),
@@ -103,8 +103,8 @@ class _ExperienceCardState extends State<ExperienceCard> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4),
                               child: Icon(
                                 Icons.arrow_forward,
                                 size: 14,
@@ -117,7 +117,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                                 pt,
                                 style: AppTextStyles.manrope(
                                   fontSize: 14,
-                                  color: AppColors.text.withOpacity(0.66),
+                                  color: AppColors.text.withValues(alpha: 0.66),
                                   height: 1.55,
                                 ),
                               ),
@@ -145,12 +145,14 @@ class _ExperienceCardState extends State<ExperienceCard> {
 }
 
 class _CurrentBadge extends StatelessWidget {
+  const _CurrentBadge();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.green.withOpacity(0.4)),
+        border: Border.all(color: AppColors.green.withValues(alpha: 0.4)),
         borderRadius: BorderRadius.circular(999),
       ),
       child: Text(
@@ -175,9 +177,9 @@ class _StackTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: const Color(0xFF7C82F2).withOpacity(0.10),
+        color: const Color(0xFF7C82F2).withValues(alpha: 0.10),
         border: Border.all(
-          color: const Color(0xFF7C82F2).withOpacity(0.26),
+          color: const Color(0xFF7C82F2).withValues(alpha: 0.26),
         ),
         borderRadius: BorderRadius.circular(6),
       ),
@@ -185,7 +187,7 @@ class _StackTag extends StatelessWidget {
         label,
         style: AppTextStyles.mono(
           fontSize: 11.5,
-          color: AppColors.text.withOpacity(0.8),
+          color: AppColors.text.withValues(alpha: 0.8),
         ),
       ),
     );

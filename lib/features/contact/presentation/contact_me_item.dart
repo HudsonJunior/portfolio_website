@@ -5,12 +5,12 @@ import 'package:portfolio_website/resources/extensions.dart';
 
 class ContactMeItem extends StatelessWidget {
   const ContactMeItem({
-    Key? key,
+    super.key,
     required this.handleTap,
     required this.title,
     required this.description,
     required this.icon,
-  }) : super(key: key);
+  });
 
   final VoidCallback handleTap;
   final String title;

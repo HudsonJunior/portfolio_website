@@ -7,12 +7,12 @@ class UrlLauncherService {
 
     try {
       if (await canLaunchUrlString(appLink)) {
-        launchUrlString(appLink);
+        await launchUrlString(appLink);
       } else {
-        launchUrl(Uri.parse(appLink));
+        await launchUrl(Uri.parse(appLink));
       }
     } on Exception {
-      launchUrl(Uri.parse(appLink));
+      await launchUrl(Uri.parse(appLink));
     }
   }
 
@@ -21,24 +21,24 @@ class UrlLauncherService {
 
     try {
       if (await canLaunchUrlString(appLink)) {
-        launchUrlString(appLink);
+        await launchUrlString(appLink);
       } else {
-        launchUrl(Uri.parse(appLink));
+        await launchUrl(Uri.parse(appLink));
       }
     } on Exception {
-      launchUrl(Uri.parse(appLink));
+      await launchUrl(Uri.parse(appLink));
     }
   }
 
   static Future<void> openGithubRepo(String repo) async {
     try {
       if (await canLaunchUrlString(repo)) {
-        launchUrlString(repo);
+        await launchUrlString(repo);
       } else {
-        launchUrl(Uri.parse(repo));
+        await launchUrl(Uri.parse(repo));
       }
     } on Exception {
-      launchUrl(Uri.parse(repo));
+      await launchUrl(Uri.parse(repo));
     }
   }
 
@@ -47,12 +47,12 @@ class UrlLauncherService {
 
     try {
       if (await canLaunchUrlString(appLink)) {
-        launchUrlString(appLink);
+        await launchUrlString(appLink);
       } else {
-        launchUrl(Uri.parse(appLink));
+        await launchUrl(Uri.parse(appLink));
       }
     } on Exception {
-      launchUrl(Uri.parse(appLink));
+      await launchUrl(Uri.parse(appLink));
     }
   }
 }

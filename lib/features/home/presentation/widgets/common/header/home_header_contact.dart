@@ -3,9 +3,9 @@ import 'package:portfolio_website/features/home/presentation/widgets/common/cont
 
 class HomeHeaderContact extends StatelessWidget {
   const HomeHeaderContact({
-    Key? key,
+    super.key,
     required this.kIsMobile,
-  }) : super(key: key);
+  });
 
   final bool kIsMobile;
 

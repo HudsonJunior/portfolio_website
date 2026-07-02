@@ -14,7 +14,7 @@ import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/theme.dart';
 
 class CorePage extends StatefulWidget {
-  const CorePage({Key? key}) : super(key: key);
+  const CorePage({super.key});
 
   @override
   State<CorePage> createState() => _CorePageState();
@@ -165,7 +165,7 @@ class _PortfolioNav extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
         child: Container(
-          color: AppColors.background.withOpacity(0.72),
+          color: AppColors.background.withValues(alpha: 0.72),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -260,7 +260,7 @@ class _NavProgressBar extends StatelessWidget {
       child: Stack(
         children: [
           // Track (faint background line)
-          Container(color: Colors.white.withOpacity(0.06)),
+          Container(color: Colors.white.withValues(alpha: 0.06)),
           // Filled portion
           FractionallySizedBox(
             alignment: Alignment.centerLeft,

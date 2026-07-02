@@ -70,7 +70,7 @@ class _ScrollDownIndicatorState extends State<ScrollDownIndicator>
                   'scroll',
                   style: AppTextStyles.mono(
                     fontSize: 10.5,
-                    color: AppColors.text.withOpacity(0.3),
+                    color: AppColors.text.withValues(alpha: 0.3),
                     letterSpacing: 0.1 * 10.5,
                   ),
                 ),
@@ -78,7 +78,7 @@ class _ScrollDownIndicatorState extends State<ScrollDownIndicator>
                 Icon(
                   Icons.keyboard_arrow_down_rounded,
                   size: 20,
-                  color: AppColors.text.withOpacity(0.3),
+                  color: AppColors.text.withValues(alpha: 0.3),
                 ),
               ],
             ),

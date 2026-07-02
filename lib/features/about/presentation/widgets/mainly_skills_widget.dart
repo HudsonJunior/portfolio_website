@@ -4,7 +4,7 @@ import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
 class MainlySkillsWidget extends StatelessWidget {
-  const MainlySkillsWidget({Key? key}) : super(key: key);
+  const MainlySkillsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

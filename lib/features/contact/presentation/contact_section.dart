@@ -14,7 +14,7 @@ class ContactSection extends StatelessWidget {
 
   static Future<void> _launch(String url) async {
     final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) launchUrl(uri);
+    if (await canLaunchUrl(uri)) await launchUrl(uri);
   }
 
   @override
@@ -31,7 +31,7 @@ class ContactSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // ── Gradient card ───────────────────────────────
-                RevealOnScroll(
+                const RevealOnScroll(
                   child: _ContactCard(),
                 ),
                 const SizedBox(height: 44),
@@ -44,8 +44,8 @@ class ContactSection extends StatelessWidget {
                     child: LayoutBuilder(
                       builder: (_, constraints) =>
                           AppConstraints.isMobile(constraints.maxWidth)
-                              ? _FooterMobile()
-                              : _FooterDesktop(),
+                              ? const _FooterMobile()
+                              : const _FooterDesktop(),
                     ),
                   ),
                 ),
@@ -61,6 +61,8 @@ class ContactSection extends StatelessWidget {
 // ─── Gradient card ─────────────────────────────────────────────────────────────
 
 class _ContactCard extends StatelessWidget {
+  const _ContactCard();
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -73,7 +75,7 @@ class _ContactCard extends StatelessWidget {
             end: Alignment(1.3, 1.3),
             colors: [Color(0xFF0E0F17), Color(0xFF4A2FB0)],
           ),
-          border: Border.all(color: Colors.white.withOpacity(0.12)),
+          border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
           borderRadius: BorderRadius.circular(28),
         ),
         child: Stack(
@@ -91,8 +93,8 @@ class _ContactCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppColors.accent.withOpacity(0.50),
-                        AppColors.accent.withOpacity(0.0),
+                        AppColors.accent.withValues(alpha: 0.50),
+                        AppColors.accent.withValues(alpha: 0.0),
                       ],
                       stops: const [0.0, 0.65],
                     ),
@@ -152,7 +154,7 @@ class _ContactCardContentDesktop extends StatelessWidget {
           'Open to Flutter consulting, and interesting problems. Based in Brazil, working worldwide.',
           style: AppTextStyles.manrope(
             fontSize: 17,
-            color: AppColors.text.withOpacity(0.72),
+            color: AppColors.text.withValues(alpha: 0.72),
             height: 1.65,
           ),
         ),
@@ -197,7 +199,7 @@ class _ContactCardContentMobile extends StatelessWidget {
           'Open to Flutter consulting, and interesting problems. Based in Brazil, working worldwide.',
           style: AppTextStyles.manrope(
             fontSize: 15,
-            color: AppColors.text.withOpacity(0.72),
+            color: AppColors.text.withValues(alpha: 0.72),
             height: 1.65,
           ),
         ),
@@ -311,8 +313,8 @@ class _DownloadCVButtonState extends State<_DownloadCVButton> {
           transform: Matrix4.translationValues(0, _hovered ? -3 : 0, 0),
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 15),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(_hovered ? 0.14 : 0.08),
-            border: Border.all(color: Colors.white.withOpacity(0.22)),
+            color: Colors.white.withValues(alpha: _hovered ? 0.14 : 0.08),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -365,8 +367,8 @@ class _IconActionButtonState extends State<_IconActionButton> {
           width: 50,
           height: 50,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(_hovered ? 0.20 : 0.10),
-            border: Border.all(color: Colors.white.withOpacity(0.20)),
+            color: Colors.white.withValues(alpha: _hovered ? 0.20 : 0.10),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.20)),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Center(
@@ -381,6 +383,8 @@ class _IconActionButtonState extends State<_IconActionButton> {
 // ─── Footer ────────────────────────────────────────────────────────────────────
 
 class _FooterDesktop extends StatelessWidget {
+  const _FooterDesktop();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -390,14 +394,14 @@ class _FooterDesktop extends StatelessWidget {
           '© 2026 Hudson Proença',
           style: AppTextStyles.mono(
             fontSize: 12.5,
-            color: AppColors.text.withOpacity(0.4),
+            color: AppColors.text.withValues(alpha: 0.4),
           ),
         ),
         Text(
           'designed & built with care',
           style: AppTextStyles.mono(
             fontSize: 12.5,
-            color: AppColors.text.withOpacity(0.4),
+            color: AppColors.text.withValues(alpha: 0.4),
           ),
         ),
       ],
@@ -406,6 +410,8 @@ class _FooterDesktop extends StatelessWidget {
 }
 
 class _FooterMobile extends StatelessWidget {
+  const _FooterMobile();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -415,7 +421,7 @@ class _FooterMobile extends StatelessWidget {
           '© 2026 Hudson Proença',
           style: AppTextStyles.mono(
             fontSize: 12,
-            color: AppColors.text.withOpacity(0.4),
+            color: AppColors.text.withValues(alpha: 0.4),
           ),
         ),
         const SizedBox(height: 6),
@@ -423,7 +429,7 @@ class _FooterMobile extends StatelessWidget {
           'designed & built with care',
           style: AppTextStyles.mono(
             fontSize: 12,
-            color: AppColors.text.withOpacity(0.4),
+            color: AppColors.text.withValues(alpha: 0.4),
           ),
         ),
       ],

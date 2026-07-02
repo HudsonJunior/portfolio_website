@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class HoverRotationEffect extends StatefulWidget {
   const HoverRotationEffect({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 

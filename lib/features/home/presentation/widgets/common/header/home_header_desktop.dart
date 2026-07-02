@@ -5,9 +5,9 @@ class HomeHeader extends StatelessWidget {
   final bool kIsMobile;
 
   const HomeHeader({
-    Key? key,
+    super.key,
     required this.kIsMobile,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

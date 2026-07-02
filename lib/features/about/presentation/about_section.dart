@@ -163,7 +163,7 @@ class _AboutLeft extends StatelessWidget {
           'specializing in Flutter for advanced, high-performance app development.',
           style: AppTextStyles.manrope(
             fontSize: 17,
-            color: AppColors.text.withOpacity(0.72),
+            color: AppColors.text.withValues(alpha: 0.72),
             height: 1.75,
           ),
         ),
@@ -175,7 +175,7 @@ class _AboutLeft extends StatelessWidget {
           'quality, and driving architectural improvements.',
           style: AppTextStyles.manrope(
             fontSize: 15,
-            color: AppColors.text.withOpacity(0.6),
+            color: AppColors.text.withValues(alpha: 0.6),
             height: 1.75,
           ),
         ),
@@ -208,7 +208,7 @@ class _EducationCard extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: AppColors.accentBlue.withOpacity(0.14),
+              color: AppColors.accentBlue.withValues(alpha: 0.14),
               borderRadius: BorderRadius.circular(11),
             ),
             child: const Icon(
@@ -235,7 +235,7 @@ class _EducationCard extends StatelessWidget {
                   'State University of Maringá · 2018 — 2022',
                   style: AppTextStyles.manrope(
                     fontSize: 13,
-                    color: AppColors.text.withOpacity(0.55),
+                    color: AppColors.text.withValues(alpha: 0.55),
                   ),
                 ),
               ],
@@ -263,7 +263,7 @@ class _PublicationCardState extends State<_PublicationCard> {
     final uri = Uri.parse(
       'https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318065',
     );
-    if (await canLaunchUrl(uri)) launchUrl(uri);
+    if (await canLaunchUrl(uri)) await launchUrl(uri);
   }
 
   @override
@@ -274,7 +274,7 @@ class _PublicationCardState extends State<_PublicationCard> {
         color: AppColors.surface,
         border: Border.all(
           color: _hovered
-              ? AppColors.accent.withOpacity(0.5)
+              ? AppColors.accent.withValues(alpha: 0.5)
               : AppColors.border,
         ),
         borderRadius: BorderRadius.circular(14),
@@ -289,7 +289,7 @@ class _PublicationCardState extends State<_PublicationCard> {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: AppColors.accent.withOpacity(0.12),
+                  color: AppColors.accent.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(11),
                 ),
                 child: const Icon(
@@ -316,7 +316,7 @@ class _PublicationCardState extends State<_PublicationCard> {
                       'Feb 2025 · DOI: 10.1371/journal.pone.0318065',
                       style: AppTextStyles.mono(
                         fontSize: 10.5,
-                        color: AppColors.text.withOpacity(0.38),
+                        color: AppColors.text.withValues(alpha: 0.38),
                       ),
                     ),
                   ],
@@ -343,7 +343,7 @@ class _PublicationCardState extends State<_PublicationCard> {
             'Developed & validated a mobile AED-locator app (Android & iOS) for out-of-hospital cardiac arrest, evaluated by 30 experts (Cronbach\'s α = 0.92).',
             style: AppTextStyles.manrope(
               fontSize: 13,
-              color: AppColors.text.withOpacity(0.55),
+              color: AppColors.text.withValues(alpha: 0.55),
               height: 1.6,
             ),
           ),
@@ -434,7 +434,7 @@ class _SkillGroup extends StatelessWidget {
           label.toUpperCase(),
           style: AppTextStyles.mono(
             fontSize: 11.5,
-            color: AppColors.text.withOpacity(0.45),
+            color: AppColors.text.withValues(alpha: 0.45),
             letterSpacing: 0.09 * 11.5,
           ),
         ),
@@ -547,10 +547,10 @@ class _SkillPillState extends State<_SkillPill>
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.04),
+            color: Colors.white.withValues(alpha: 0.04),
             border: Border.all(
               color:
-                  _hovered ? AppColors.accent : Colors.white.withOpacity(0.12),
+                  _hovered ? AppColors.accent : Colors.white.withValues(alpha: 0.12),
             ),
             borderRadius: BorderRadius.circular(999),
           ),
@@ -559,7 +559,7 @@ class _SkillPillState extends State<_SkillPill>
             style: AppTextStyles.manrope(
               fontSize: 13.5,
               color:
-                  _hovered ? AppColors.text : AppColors.text.withOpacity(0.85),
+                  _hovered ? AppColors.text : AppColors.text.withValues(alpha: 0.85),
             ),
           ),
         ),
@@ -669,7 +669,7 @@ class _PersonalCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        border: Border.all(color: Colors.white.withOpacity(0.09)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.09)),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -678,7 +678,7 @@ class _PersonalCard extends StatelessWidget {
             width: 46,
             height: 46,
             decoration: BoxDecoration(
-              color: accentColor.withOpacity(0.10),
+              color: accentColor.withValues(alpha: 0.10),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
@@ -703,7 +703,7 @@ class _PersonalCard extends StatelessWidget {
                   subtitle,
                   style: AppTextStyles.manrope(
                     fontSize: 13,
-                    color: AppColors.text.withOpacity(0.50),
+                    color: AppColors.text.withValues(alpha: 0.50),
                   ),
                 ),
               ],

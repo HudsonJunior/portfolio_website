@@ -10,7 +10,7 @@ import 'package:portfolio_website/resources/constraints.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
 class WorksSection extends StatefulWidget {
-  const WorksSection({Key? key}) : super(key: key);
+  const WorksSection({super.key});
 
   @override
   State<WorksSection> createState() => _WorksSectionState();

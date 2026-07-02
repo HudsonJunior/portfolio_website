@@ -10,8 +10,8 @@ import 'package:portfolio_website/resources/colors.dart';
 
 class WorksCarousel extends StatefulWidget {
   const WorksCarousel({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<WorksCarousel> createState() => _WorksCarouselState();

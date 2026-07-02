@@ -6,9 +6,9 @@ class HomeHeaderTitle extends StatelessWidget {
   final bool kIsMobile;
 
   const HomeHeaderTitle({
-    Key? key,
+    super.key,
     required this.kIsMobile,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

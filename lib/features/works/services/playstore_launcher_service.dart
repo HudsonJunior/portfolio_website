@@ -8,12 +8,12 @@ class PlayStoreLauncherService {
 
     try {
       if (await canLaunchUrlString(appLink)) {
-        launchUrlString(appLink);
+        await launchUrlString(appLink);
       } else {
-        launchUrl(Uri.parse(appLinkWeb));
+        await launchUrl(Uri.parse(appLinkWeb));
       }
     } on Exception {
-      launchUrl(Uri.parse(appLinkWeb));
+      await launchUrl(Uri.parse(appLinkWeb));
     }
   }
 }
