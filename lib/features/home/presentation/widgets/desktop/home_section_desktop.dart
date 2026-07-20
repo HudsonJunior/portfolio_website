@@ -432,6 +432,26 @@ class _HeroLeft extends StatelessWidget {
                     ),
                   ),
                 ),
+                const TextSpan(text: ' Engineer\n& '),
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.baseline,
+                  baseline: TextBaseline.alphabetic,
+                  child: ShaderMask(
+                    shaderCallback: (b) => const LinearGradient(
+                      colors: [Color(0xFF818CF8), Color(0xFFC4B5FD)],
+                    ).createShader(b),
+                    child: Text(
+                      'AI Applied',
+                      style: AppTextStyles.spaceGrotesk(
+                        fontSize: 62,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        letterSpacingEm: -0.03,
+                        height: 1.03,
+                      ),
+                    ),
+                  ),
+                ),
                 const TextSpan(text: '\nEngineer'),
                 const TextSpan(
                   text: '.',

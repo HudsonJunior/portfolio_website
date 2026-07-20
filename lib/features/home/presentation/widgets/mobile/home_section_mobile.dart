@@ -221,6 +221,27 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                               ),
                             ),
                           ),
+                          const TextSpan(text: ' Engineer\n& '),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.baseline,
+                            baseline: TextBaseline.alphabetic,
+                            child: ShaderMask(
+                              shaderCallback: (b) => const LinearGradient(
+                                colors: [Color(0xFF818CF8), Color(0xFFC4B5FD)],
+                              ).createShader(b),
+                              child: Text(
+                                'AI Applied',
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.spaceGrotesk(
+                                  fontSize: 38,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                  letterSpacingEm: -0.03,
+                                  height: 1.08,
+                                ),
+                              ),
+                            ),
+                          ),
                           const TextSpan(text: '\nEngineer'),
                           const TextSpan(
                             text: '.',
@@ -441,7 +462,8 @@ class _MobileGhostButton extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
   final IconData? icon;
-  const _MobileGhostButton({required this.label, required this.onTap, this.icon});
+  const _MobileGhostButton(
+      {required this.label, required this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {
