@@ -9,6 +9,7 @@ Work-related content extracted from the portfolio site. Personal/hobby details o
 **Name:** Hudson Proença
 
 **Titles used on site:**
+
 - Senior Mobile Engineer & AI Applied Engineer
 - Senior and Lead Mobile Engineer
 - Flutter & mobile engineer
@@ -27,6 +28,7 @@ Flutter & mobile engineer who ships high-performance, scalable apps, and builds 
 Open to Flutter and agentic AI consulting, and interesting problems. Based in Brazil, working worldwide.
 
 **Professional links:**
+
 - LinkedIn: https://www.linkedin.com/in/hudson-p-46583011a/
 - GitHub: https://github.com/HudsonJunior
 
@@ -36,9 +38,10 @@ Open to Flutter and agentic AI consulting, and interesting problems. Based in Br
 
 ## Experience
 
-Section framing: *Seven years shipping mobile products — from banking super-apps to one of the world's largest resort platforms — increasingly with agentic engineering workflows.*
+Section framing: _Seven years shipping mobile products — from banking super-apps to one of the world's largest resort platforms — increasingly with agentic engineering workflows._
 
 ### Very Good Ventures — Senior Mobile Engineer
+
 **Jul 2025 — Present**
 
 - Joining a world-class Flutter consultancy known for engineering excellence and open-source impact.
@@ -49,6 +52,7 @@ Section framing: *Seven years shipping mobile products — from banking super-ap
 **Stack:** Flutter, Dart, Architecture, Agents
 
 ### MGM Resorts — Senior Mobile Engineer
+
 **Mar 2023 — Jun 2025**
 
 - Contributed to one of the world's largest resort apps, focused on architecture and performance.
@@ -59,6 +63,7 @@ Section framing: *Seven years shipping mobile products — from banking super-ap
 **Stack:** Flutter, Architecture, Performance
 
 ### CourseKey — Mobile Engineer
+
 **Oct 2022 — Feb 2023**
 
 - Led the architecture migration from Redux to Bloc, boosting performance and maintainability.
@@ -68,6 +73,7 @@ Section framing: *Seven years shipping mobile products — from banking super-ap
 **Stack:** Flutter, Bloc, Testing
 
 ### AMcom — Mobile Engineer
+
 **May 2022 — Oct 2022**
 
 - Contributed to a large-scale banking app with Flutter as part of the digital transformation team.
@@ -77,6 +83,7 @@ Section framing: *Seven years shipping mobile products — from banking super-ap
 **Stack:** Flutter, Design System, Banking
 
 ### EurekaLabs — Mobile Engineer
+
 **2020 — 2022**
 
 - Developed end-to-end mobile apps with Flutter, focusing on performance and responsiveness.
@@ -86,6 +93,7 @@ Section framing: *Seven years shipping mobile products — from banking super-ap
 **Stack:** Flutter, Swift, Kotlin
 
 ### InovaClick Software — Fullstack Engineer
+
 **2019 — 2020**
 
 - Built mobile projects with Android and Swift.
@@ -99,30 +107,35 @@ Section framing: *Seven years shipping mobile products — from banking super-ap
 ## Selected projects
 
 ### LocalDEA
+
 An application to find the shortest route to a healthcare service (hospitals, ambulances, AEDs).
 
 - **Tech:** animation, bloc, location, maps, clean arch, clean code, design patterns
 - **GitHub:** https://github.com/HudsonJunior/local_dea_app
 
 ### ZOM-BIE-Pô
+
 A zombie-themed Jo-Ken-Pô game.
 
 - **Tech:** google ads, animation
 - **Play Store ID:** `com.hudson.jokenpo_game`
 
 ### Portfolio website
+
 Portfolio entirely built with Flutter.
 
 - **Tech:** animation, bloc, clean arch, clean code, firebase, responsiveness
 - **GitHub:** https://github.com/HudsonJunior/portfolio_website
 
 ### Liquor store
+
 A liquor store app that helps a small customer get their digital menu.
 
 - **Tech:** animation, bloc, clean arch, clean code
 - **GitHub:** https://github.com/HudsonJunior/legiao_bebidas_app
 
 ### Painter app
+
 A simple app to draw. Created with animations and canvas.
 
 - **Tech:** animation, canvas, bloc, clean code
@@ -152,6 +165,7 @@ A simple app to draw. Created with animations and canvas.
 ## Speaking
 
 ### Bridging Ecosystems: Embedding Flutter Components in a Web App
+
 - **Event:** FlutterCon USA
 - **Date:** Jul 2026
 - **Location:** Orlando, FL
@@ -164,11 +178,13 @@ A simple app to draw. Created with animations and canvas.
 ## Writing
 
 ### Shipping Flutter Faster with Agentic Coding Workflows
+
 - **Published:** Sep 12, 2025
 - **Tags:** Flutter, AI, Craft
 - **Summary:** How I use coding agents on real Flutter work — keeping architecture and tests intact while moving faster.
 
 **Key themes from the post:**
+
 - Coding agents as a force multiplier when you already know what “good” looks like
 - Real constraints: architecture consistency, tests/review quality, onboarding context into every change
 - Patterns: narrow agent jobs; same quality bar as a teammate; review agent output like a draft PR
@@ -179,19 +195,25 @@ A simple app to draw. Created with animations and canvas.
 ## Skills
 
 ### Mobile
+
 Flutter · 7y · Android · 2y · iOS · 2y · React Native · 1y
 
 ### Languages
+
 Dart, Swift, Kotlin, JavaScript, TypeScript, Node.js, Python
 
 ### Engineering
+
 Architecture & Design, Clean Code, Performance, Code Review, Design Systems
 
 ### AI & Agents
+
 Coding Agents, Agent Workflows, AI-Assisted Shipping, Prompt Systems
 
 ### Strengths
+
 Leadership, Proactivity, Fast Learning, Communication
 
 ### Stack signals used across the site
+
 Flutter, Dart, Architecture, Agents, Performance, Bloc, Testing, Design Systems, Banking, Swift, Kotlin, Android, Node.js, ASP.NET, HTML, JavaScript, Firebase, maps/location, clean architecture, clean code
