@@ -486,7 +486,7 @@ class _HeroLeft extends StatelessWidget {
                 ),
                 const TextSpan(
                   text:
-                      ' — a Flutter & mobile engineer who builds high-performance, scalable apps and leads teams to ship them with care.',
+                      ' — a Flutter & mobile engineer who ships high-performance, scalable apps, and builds agentic coding workflows to move faster without sacrificing quality.',
                 ),
               ],
             ),
@@ -646,10 +646,10 @@ class _HeroRight extends StatelessWidget {
 
 // Span data: (text, color)
 // Grouped into 4 visual lines by cumulative char count.
-// Line 0: spans 0-2  (chars 0-13,  total 14)
-// Line 1: spans 3-6  (chars 14-41, total 28)
-// Line 2: spans 7-10 (chars 42-62, total 21)
-// Line 3: span 11    (chars 63-63, total 1)
+// Line 0: spans 0-2   (chars 0-13,  total 14)
+// Line 1: spans 3-8   (chars 14-51, total 38)
+// Line 2: spans 9-12  (chars 52-72, total 21)
+// Line 3: span 13     (chars 73-73, total 1)
 const _kSpans = [
   ('class ', AppColors.accentLight), // 6
   ('Hudson ', AppColors.text), // 7
@@ -657,16 +657,18 @@ const _kSpans = [
   ('  final ', AppColors.accentPurpleLight), // 8
   ('stack = [', AppColors.text), // 9
   ("'flutter'", AppColors.green), // 9
-  ('];', AppColors.text), // 2  → line 1 ends at 42
+  (', ', AppColors.text), // 2
+  ("'agents'", AppColors.green), // 8
+  ('];', AppColors.text), // 2  → line 1 ends at 52
   ('  final ', AppColors.accentPurpleLight), // 8
   ('since = ', AppColors.text), // 8
   ('2019', AppColors.yellow), // 4
-  (';', AppColors.text), // 1  → line 2 ends at 63
+  (';', AppColors.text), // 1  → line 2 ends at 73
   ('}', AppColors.text), // 1  → line 3
 ];
-const _kTotalChars = 64;
+const _kTotalChars = 74;
 // Which span index starts each line
-const _kLineBreaks = [0, 3, 7, 11]; // span indices where each new line starts
+const _kLineBreaks = [0, 3, 9, 13]; // span indices where each new line starts
 
 class _TerminalCard extends StatelessWidget {
   final AnimationController blinkController;
@@ -677,7 +679,7 @@ class _TerminalCard extends StatelessWidget {
     required this.typeProgress,
   });
 
-  /// Build the typed code body given how many chars have been typed (0–64).
+  /// Build the typed code body given how many chars have been typed (0–74).
   Widget _buildCode(int charsTyped) {
     // Distribute charsTyped across spans → group into visual lines
     final List<List<InlineSpan>> lines = [[], [], [], []];
@@ -778,7 +780,7 @@ class _TerminalCard extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
         child: Container(
-          width: 240,
+          width: 256,
           decoration: BoxDecoration(
             color: const Color(0xF00E0F15),
             border: Border.all(color: Colors.white.withValues(alpha: 0.12)),

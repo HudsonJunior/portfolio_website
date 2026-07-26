@@ -277,7 +277,7 @@ class _HomeSectionMobileState extends State<HomeSectionMobile>
                           ),
                           const TextSpan(
                               text:
-                                  ' — Flutter & mobile engineer, building high-performance apps with care.'),
+                                  ' — Flutter & agentic AI engineer, shipping high-performance apps with care.'),
                         ],
                       ),
                     ),

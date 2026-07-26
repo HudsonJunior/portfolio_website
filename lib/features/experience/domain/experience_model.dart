@@ -22,15 +22,16 @@ const kExperiences = [
   ExperienceModel(
     number: '01',
     company: 'Very Good Ventures',
-    role: 'Senior Engineer I',
+    role: 'Senior Mobile Engineer',
     period: 'Jul 2025 — Present',
     isCurrent: true,
     points: [
       'Joining a world-class Flutter consultancy known for engineering excellence and open-source impact.',
       'Building high-quality Flutter applications for clients across multiple industries.',
+      'Building and using agentic coding workflows and Cursor-style agents to ship faster without sacrificing quality.',
       'Upholding VGV\'s standards of clean architecture, testing, and code quality.',
     ],
-    stack: ['Flutter', 'Dart', 'Architecture'],
+    stack: ['Flutter', 'Dart', 'Architecture', 'Agents'],
   ),
   ExperienceModel(
     number: '02',

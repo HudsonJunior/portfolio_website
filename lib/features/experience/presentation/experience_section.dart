@@ -47,7 +47,7 @@ class ExperienceSection extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Six years shipping mobile products — from banking super-apps to one of the world\'s largest resort platforms.',
+                        'Seven years shipping mobile products — from banking super-apps to one of the world\'s largest resort platforms — increasingly with agentic engineering workflows.',
                         style: AppTextStyles.manrope(
                           fontSize: 16,
                           color: AppColors.text.withValues(alpha: 0.6),

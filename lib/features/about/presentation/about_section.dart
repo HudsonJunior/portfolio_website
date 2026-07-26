@@ -10,11 +10,19 @@ import 'package:url_launcher/url_launcher.dart';
 const _skillGroups = [
   (
     label: 'Mobile',
-    items: ['Flutter · 6y', 'Android · 2y', 'iOS · 2y', 'React Native · 1y'],
+    items: ['Flutter · 7y', 'Android · 2y', 'iOS · 2y', 'React Native · 1y'],
   ),
   (
     label: 'Languages',
-    items: ['Dart', 'Swift', 'Kotlin', 'JavaScript', 'TypeScript', 'Node.js'],
+    items: [
+      'Dart',
+      'Swift',
+      'Kotlin',
+      'JavaScript',
+      'TypeScript',
+      'Node.js',
+      'Python'
+    ],
   ),
   (
     label: 'Engineering',
@@ -24,6 +32,15 @@ const _skillGroups = [
       'Performance',
       'Code Review',
       'Design Systems',
+    ],
+  ),
+  (
+    label: 'AI & Agents',
+    items: [
+      'Coding Agents',
+      'Agent Workflows',
+      'AI-Assisted Shipping',
+      'Prompt Systems',
     ],
   ),
   (
@@ -160,7 +177,9 @@ class _AboutLeft extends StatelessWidget {
       children: [
         Text(
           'Senior and Lead Mobile Engineer with a Computer Science degree, '
-          'specializing in Flutter for advanced, high-performance app development.',
+          'specializing in Flutter for high-performance apps — and in agentic '
+          'engineering: building and using coding agents and AI-assisted '
+          'workflows to ship with speed and care.',
           style: AppTextStyles.manrope(
             fontSize: 17,
             color: AppColors.text.withValues(alpha: 0.72),
@@ -364,9 +383,8 @@ class _PublicationCardState extends State<_PublicationCard> {
                     style: AppTextStyles.manrope(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
-                      color: _hovered
-                          ? AppColors.accentLight
-                          : AppColors.accent,
+                      color:
+                          _hovered ? AppColors.accentLight : AppColors.accent,
                     ),
                     child: const Text('Read paper'),
                   ),
@@ -374,9 +392,7 @@ class _PublicationCardState extends State<_PublicationCard> {
                   Icon(
                     Icons.arrow_outward_rounded,
                     size: 14,
-                    color: _hovered
-                        ? AppColors.accentLight
-                        : AppColors.accent,
+                    color: _hovered ? AppColors.accentLight : AppColors.accent,
                   ),
                 ],
               ),
@@ -549,8 +565,9 @@ class _SkillPillState extends State<_SkillPill>
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.04),
             border: Border.all(
-              color:
-                  _hovered ? AppColors.accent : Colors.white.withValues(alpha: 0.12),
+              color: _hovered
+                  ? AppColors.accent
+                  : Colors.white.withValues(alpha: 0.12),
             ),
             borderRadius: BorderRadius.circular(999),
           ),
@@ -558,8 +575,9 @@ class _SkillPillState extends State<_SkillPill>
             widget.label,
             style: AppTextStyles.manrope(
               fontSize: 13.5,
-              color:
-                  _hovered ? AppColors.text : AppColors.text.withValues(alpha: 0.85),
+              color: _hovered
+                  ? AppColors.text
+                  : AppColors.text.withValues(alpha: 0.85),
             ),
           ),
         ),

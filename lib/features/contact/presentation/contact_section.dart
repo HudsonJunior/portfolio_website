@@ -151,7 +151,7 @@ class _ContactCardContentDesktop extends StatelessWidget {
         ),
         const SizedBox(height: 18),
         Text(
-          'Open to Flutter consulting, and interesting problems. Based in Brazil, working worldwide.',
+          'Open to Flutter and agentic AI consulting, and interesting problems. Based in Brazil, working worldwide.',
           style: AppTextStyles.manrope(
             fontSize: 17,
             color: AppColors.text.withValues(alpha: 0.72),
@@ -196,7 +196,7 @@ class _ContactCardContentMobile extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         Text(
-          'Open to Flutter consulting, and interesting problems. Based in Brazil, working worldwide.',
+          'Open to Flutter and agentic AI consulting, and interesting problems. Based in Brazil, working worldwide.',
           style: AppTextStyles.manrope(
             fontSize: 15,
             color: AppColors.text.withValues(alpha: 0.72),

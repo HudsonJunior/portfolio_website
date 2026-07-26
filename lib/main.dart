@@ -46,7 +46,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ],
       child: MaterialApp(
-        title: 'Hudson Portfolio',
+        title: 'Hudson Proença — Mobile & AI Applied Engineer',
         debugShowCheckedModeBanner: false,
         theme: PortfolioTheme.themeData,
         home: const CorePage(),
