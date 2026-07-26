@@ -18,7 +18,7 @@ extension AppBarItensExt on AppBarItens {
       case AppBarItens.writing:
         return 'Writing';
       case AppBarItens.works:
-        return 'Works';
+        return 'Personal Projects';
       case AppBarItens.experience:
         return 'Experience';
       case AppBarItens.about:

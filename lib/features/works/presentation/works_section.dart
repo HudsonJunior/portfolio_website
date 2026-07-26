@@ -29,7 +29,7 @@ class WorksSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '// selected work',
+                        '// personal projects',
                         style: AppTextStyles.mono(
                           fontSize: 12.5,
                           color: AppColors.accentLight,
@@ -38,7 +38,7 @@ class WorksSection extends StatelessWidget {
                       ),
                       const SizedBox(height: 14),
                       Text(
-                        'Works',
+                        'Personal Projects',
                         style: AppTextStyles.spaceGrotesk(
                           fontSize: 48,
                           fontWeight: FontWeight.w700,

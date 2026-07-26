@@ -138,7 +138,7 @@ class PortfolioNavBar extends StatelessWidget {
                                 ),
                                 SizedBox(width: gap),
                                 NavTextItem(
-                                  title: 'Works',
+                                  title: 'Personal Projects',
                                   isSelected: scrollActive == AppBarItens.works,
                                   onTap: () => _goHomeSection(context, 'works'),
                                 ),

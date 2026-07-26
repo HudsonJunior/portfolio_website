@@ -19,7 +19,7 @@ class WorkProjectCard extends StatefulWidget {
 class _WorkProjectCardState extends State<WorkProjectCard> {
   bool _hovered = false;
 
-  String get _coverPath {
+  String? get _coverPath {
     switch (widget.work) {
       case WorksEnum.localDea:
         return 'assets/localdea/1.jpg';
@@ -30,8 +30,59 @@ class _WorkProjectCardState extends State<WorkProjectCard> {
       case WorksEnum.legiaoBebidas:
         return 'assets/legiaobebidas/1.jpeg';
       case WorksEnum.painter:
-        return 'assets/painter/1.png';
+        // Blank canvas screenshot — use centered icon instead.
+        return null;
     }
+  }
+
+  Widget _buildCover(WorksEnum work) {
+    final coverPath = _coverPath;
+    if (coverPath == null) {
+      return Container(
+        color: AppColors.surfaceAlt,
+        alignment: Alignment.center,
+        child: Image.asset(
+          work.icon,
+          width: 88,
+          height: 88,
+          fit: BoxFit.contain,
+        ),
+      );
+    }
+
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          coverPath,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => Container(
+            color: AppColors.surfaceAlt,
+            alignment: Alignment.center,
+            child: Image.asset(
+              work.icon,
+              width: 64,
+              height: 64,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 14,
+          bottom: 14,
+          child: Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: AppColors.background.withValues(alpha: 0.85),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.borderMid),
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(work.icon, fit: BoxFit.contain),
+          ),
+        ),
+      ],
+    );
   }
 
   @override
@@ -69,39 +120,7 @@ class _WorkProjectCardState extends State<WorkProjectCard> {
           children: [
             AspectRatio(
               aspectRatio: 16 / 10,
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(
-                    _coverPath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      color: AppColors.surfaceAlt,
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        work.icon,
-                        width: 64,
-                        height: 64,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 14,
-                    bottom: 14,
-                    child: Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: AppColors.background.withValues(alpha: 0.85),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.borderMid),
-                      ),
-                      padding: const EdgeInsets.all(8),
-                      child: Image.asset(work.icon, fit: BoxFit.contain),
-                    ),
-                  ),
-                ],
-              ),
+              child: _buildCover(work),
             ),
             Padding(
               padding: const EdgeInsets.all(22),
