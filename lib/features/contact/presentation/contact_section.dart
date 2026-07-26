@@ -341,7 +341,7 @@ class _DownloadCVButtonState extends State<_DownloadCVButton> {
 // ─── Square icon action button ─────────────────────────────────────────────────
 
 class _IconActionButton extends StatefulWidget {
-  final FaIconData icon;
+  final IconData icon;
   final String url;
 
   const _IconActionButton({required this.icon, required this.url});

@@ -281,17 +281,12 @@ class _AnimatedBlob extends StatelessWidget {
       animation: controller,
       builder: (_, child) {
         final t = Curves.easeInOut.transform(controller.value);
-        return Transform(
-          transform: Matrix4.identity()
-            ..translateByDouble(size * dx * t, size * dy * t, 0, 1.0)
-            ..scaleByDouble(
-              1.0 + scaleAdd * t,
-              1.0 + scaleAdd * t,
-              1.0 + scaleAdd * t,
-              1.0,
-            ),
-          alignment: Alignment.center,
-          child: child,
+        return Transform.translate(
+          offset: Offset(size * dx * t, size * dy * t),
+          child: Transform.scale(
+            scale: 1.0 + scaleAdd * t,
+            child: child,
+          ),
         );
       },
       child: ImageFiltered(
@@ -978,7 +973,7 @@ class _GhostButtonState extends State<_GhostButton> {
 // ─── Social icon button ────────────────────────────────────────────────────────
 
 class _SocialButton extends StatefulWidget {
-  final FaIconData icon;
+  final IconData icon;
   final VoidCallback onTap;
   const _SocialButton({required this.icon, required this.onTap});
 

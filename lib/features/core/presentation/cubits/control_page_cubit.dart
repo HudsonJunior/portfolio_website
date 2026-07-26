@@ -6,6 +6,9 @@ class ControlPageCubit extends Cubit<AppBarItens> {
 
   static const _sections = [
     AppBarItens.home,
+    AppBarItens.talks,
+    AppBarItens.writing,
+    AppBarItens.works,
     AppBarItens.experience,
     AppBarItens.about,
     AppBarItens.contact,

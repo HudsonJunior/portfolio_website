@@ -502,7 +502,7 @@ class _MobileGhostButton extends StatelessWidget {
 }
 
 class _SmallSocialButton extends StatelessWidget {
-  final FaIconData icon;
+  final IconData icon;
   final VoidCallback onTap;
   const _SmallSocialButton({required this.icon, required this.onTap});
 
