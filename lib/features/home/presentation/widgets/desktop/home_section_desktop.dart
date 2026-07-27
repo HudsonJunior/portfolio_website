@@ -724,7 +724,7 @@ class _TerminalCard extends StatelessWidget {
               Text.rich(TextSpan(children: lines[l])),
               AnimatedBuilder(
                 animation: blinkController,
-                builder: (_, __) => Container(
+                builder: (_, _) => Container(
                   width: 6,
                   height: 13,
                   margin: const EdgeInsets.only(left: 2),
@@ -746,7 +746,7 @@ class _TerminalCard extends StatelessWidget {
               const SizedBox(width: 3),
               AnimatedBuilder(
                 animation: blinkController,
-                builder: (_, __) => Container(
+                builder: (_, _) => Container(
                   width: 8,
                   height: 14,
                   color: blinkController.value < 0.5
@@ -825,7 +825,7 @@ class _TerminalCard extends StatelessWidget {
                 padding: const EdgeInsets.all(14),
                 child: AnimatedBuilder(
                   animation: typeProgress,
-                  builder: (_, __) {
+                  builder: (_, _) {
                     final charsTyped =
                         (typeProgress.value * _kTotalChars).floor();
                     return _buildCode(charsTyped);
@@ -973,7 +973,7 @@ class _GhostButtonState extends State<_GhostButton> {
 // ─── Social icon button ────────────────────────────────────────────────────────
 
 class _SocialButton extends StatefulWidget {
-  final IconData icon;
+  final FaIconData icon;
   final VoidCallback onTap;
   const _SocialButton({required this.icon, required this.onTap});
 

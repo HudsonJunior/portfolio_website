@@ -24,7 +24,7 @@ class WritingSection extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1000),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(0, 100, 0, 100),
+            padding: const EdgeInsets.fromLTRB(0, 100, 0, 100),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

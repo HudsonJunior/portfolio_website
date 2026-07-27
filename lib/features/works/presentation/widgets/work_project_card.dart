@@ -56,7 +56,7 @@ class _WorkProjectCardState extends State<WorkProjectCard> {
         Image.asset(
           coverPath,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => Container(
+          errorBuilder: (_, _, _) => Container(
             color: AppColors.surfaceAlt,
             alignment: Alignment.center,
             child: Image.asset(
@@ -208,7 +208,7 @@ class _WorkProjectCardState extends State<WorkProjectCard> {
 }
 
 class _LinkChip extends StatefulWidget {
-  final IconData icon;
+  final FaIconData icon;
   final String label;
   final VoidCallback onTap;
 

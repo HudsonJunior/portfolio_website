@@ -56,7 +56,7 @@ class _ScrollDownIndicatorState extends State<ScrollDownIndicator>
       opacity: opacity,
       child: AnimatedBuilder(
         animation: _bounce,
-        builder: (_, __) {
+        builder: (_, _) {
           final t = CurvedAnimation(
             parent: _bounce,
             curve: Curves.easeInOut,

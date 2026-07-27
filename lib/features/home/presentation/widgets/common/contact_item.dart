@@ -5,7 +5,7 @@ import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
 class ContactItem extends StatelessWidget {
-  final IconData icon;
+  final FaIconData icon;
   final String itemName;
   final VoidCallback handleTap;
 

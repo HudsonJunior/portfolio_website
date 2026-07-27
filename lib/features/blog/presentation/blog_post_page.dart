@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio_website/features/blog/domain/blog_post.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/portfolio_nav_bar.dart';
@@ -165,24 +165,20 @@ class BlogPostPage extends StatelessWidget {
                             MarkdownBody(
                               data: snapshot.data!,
                               selectable: true,
-                              sizedImageBuilder: (config) {
-                                final path = config.uri.toString();
+                              imageBuilder: (uri, _, alt) {
+                                final path = uri.toString();
                                 final isNetwork = path.startsWith('http://') ||
                                     path.startsWith('https://');
                                 final image = isNetwork
                                     ? Image.network(
                                         path,
-                                        width: config.width,
-                                        height: config.height,
                                         fit: BoxFit.contain,
                                       )
                                     : Image.asset(
                                         path,
-                                        width: config.width,
-                                        height: config.height,
                                         fit: BoxFit.contain,
-                                        errorBuilder: (_, __, ___) => Text(
-                                          config.alt ?? 'Image unavailable',
+                                        errorBuilder: (_, _, _) => Text(
+                                          alt ?? 'Image unavailable',
                                           style: AppTextStyles.manrope(
                                             fontSize: 13,
                                             color: AppColors.text

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/features/home/presentation/widgets/common/contact_item.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
@@ -14,7 +15,7 @@ class ContactMeItem extends StatelessWidget {
   final VoidCallback handleTap;
   final String title;
   final String description;
-  final IconData icon;
+  final FaIconData icon;
 
   @override
   Widget build(BuildContext context) {

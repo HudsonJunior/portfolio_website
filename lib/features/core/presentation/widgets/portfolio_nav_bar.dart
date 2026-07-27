@@ -175,7 +175,7 @@ class PortfolioNavBar extends StatelessWidget {
               if (scrollFraction != null)
                 ValueListenableBuilder<double>(
                   valueListenable: scrollFraction!,
-                  builder: (_, frac, __) => _NavProgressBar(fraction: frac),
+                  builder: (_, frac, _) => _NavProgressBar(fraction: frac),
                 )
               else
                 const SizedBox(
