@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio_website/features/contact/presentation/contact_me_item.dart';
-import 'package:portfolio_website/features/works/services/contact_launcher_service.dart';
+import 'package:portfolio_website/features/core/services/url_launcher_service.dart';
 
 class ContactContent extends StatefulWidget {
   const ContactContent({

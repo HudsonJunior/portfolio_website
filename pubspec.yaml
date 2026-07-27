@@ -75,10 +75,6 @@ flutter:
   assets:
     - assets/profile.jpeg
     - assets/
-    - assets/localdea/
-    - assets/zombiepo/
-    - assets/legiaobebidas/
-    - assets/painter/
     - assets/talks/
     - assets/blog/
     - assets/blog/embed-flutter-components-web-app-multi-view-api/

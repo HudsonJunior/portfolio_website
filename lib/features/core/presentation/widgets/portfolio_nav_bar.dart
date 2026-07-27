@@ -44,14 +44,12 @@ class PortfolioNavBar extends StatelessWidget {
         return 1;
       case 'writing':
         return 2;
-      case 'works':
-        return 3;
       case 'experience':
-        return 4;
+        return 3;
       case 'about':
-        return 5;
+        return 4;
       case 'contact':
-        return 6;
+        return 5;
       default:
         return null;
     }
@@ -135,12 +133,6 @@ class PortfolioNavBar extends StatelessWidget {
                                       scrollActive == AppBarItens.writing,
                                   onTap: () =>
                                       _goHomeSection(context, 'writing'),
-                                ),
-                                SizedBox(width: gap),
-                                NavTextItem(
-                                  title: 'Personal Projects',
-                                  isSelected: scrollActive == AppBarItens.works,
-                                  onTap: () => _goHomeSection(context, 'works'),
                                 ),
                                 SizedBox(width: gap),
                                 NavTextItem(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio_website/features/core/services/url_launcher_service.dart';
 import 'package:portfolio_website/features/home/presentation/widgets/common/contact_item.dart';
-import 'package:portfolio_website/features/works/services/contact_launcher_service.dart';
 import 'package:portfolio_website/resources/extensions.dart';
 
 class ContactItens extends StatelessWidget {

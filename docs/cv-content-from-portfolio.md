@@ -104,45 +104,6 @@ Section framing: _Seven years shipping mobile products — from banking super-ap
 
 ---
 
-## Selected projects
-
-### LocalDEA
-
-An application to find the shortest route to a healthcare service (hospitals, ambulances, AEDs).
-
-- **Tech:** animation, bloc, location, maps, clean arch, clean code, design patterns
-- **GitHub:** https://github.com/HudsonJunior/local_dea_app
-
-### ZOM-BIE-Pô
-
-A zombie-themed Jo-Ken-Pô game.
-
-- **Tech:** google ads, animation
-- **Play Store ID:** `com.hudson.jokenpo_game`
-
-### Portfolio website
-
-Portfolio entirely built with Flutter.
-
-- **Tech:** animation, bloc, clean arch, clean code, firebase, responsiveness
-- **GitHub:** https://github.com/HudsonJunior/portfolio_website
-
-### Liquor store
-
-A liquor store app that helps a small customer get their digital menu.
-
-- **Tech:** animation, bloc, clean arch, clean code
-- **GitHub:** https://github.com/HudsonJunior/legiao_bebidas_app
-
-### Painter app
-
-A simple app to draw. Created with animations and canvas.
-
-- **Tech:** animation, canvas, bloc, clean code
-- **GitHub:** https://github.com/HudsonJunior/painter_app
-
----
-
 ## Education
 
 - **B.Sc. in Computer Science**

@@ -9,7 +9,6 @@ import 'package:portfolio_website/features/core/presentation/widgets/reveal_on_s
 import 'package:portfolio_website/features/experience/presentation/experience_section.dart';
 import 'package:portfolio_website/features/home/presentation/home_section.dart';
 import 'package:portfolio_website/features/talks/presentation/talks_section.dart';
-import 'package:portfolio_website/features/works/presentation/works_section.dart';
 import 'package:portfolio_website/resources/colors.dart';
 
 class CorePage extends StatefulWidget {
@@ -26,8 +25,8 @@ class _CorePageState extends State<CorePage> {
   late final ControlPageCubit _cubit;
   late final ScrollController _scrollController;
 
-  // Order: Home, Talks, Writing, Works, Experience, About, Contact
-  final _keys = List.generate(7, (_) => GlobalKey());
+  // Order: Home, Talks, Writing, Experience, About, Contact
+  final _keys = List.generate(6, (_) => GlobalKey());
 
   final _scrollPos = ValueNotifier<double>(0);
   final _scrollFraction = ValueNotifier<double>(0);
@@ -75,14 +74,12 @@ class _CorePageState extends State<CorePage> {
         return 1;
       case 'writing':
         return 2;
-      case 'works':
-        return 3;
       case 'experience':
-        return 4;
+        return 3;
       case 'about':
-        return 5;
+        return 4;
       case 'contact':
-        return 6;
+        return 5;
       default:
         return null;
     }
@@ -125,11 +122,10 @@ class _CorePageState extends State<CorePage> {
   Widget build(BuildContext context) {
     final sections = [
       HomeSection(
-        onScrollToExperience: () => _goTo(4),
+        onScrollToExperience: () => _goTo(3),
       ),
       const TalksSection(),
       const WritingSection(),
-      const WorksSection(),
       const ExperienceSection(),
       const AboutSection(),
       const ContactSection(),
