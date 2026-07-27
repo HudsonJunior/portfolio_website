@@ -20,11 +20,15 @@ class PortfolioNavBar extends StatelessWidget {
   /// Highlights the Writing nav item on blog routes.
   final bool writingSelected;
 
+  /// Highlights Experiments on standalone experiment routes.
+  final bool experimentsSelected;
+
   const PortfolioNavBar({
     super.key,
     this.onScrollTo,
     this.scrollFraction,
     this.writingSelected = false,
+    this.experimentsSelected = false,
   });
 
   void _goHomeSection(BuildContext context, String section) {
@@ -44,12 +48,14 @@ class PortfolioNavBar extends StatelessWidget {
         return 1;
       case 'writing':
         return 2;
-      case 'experience':
+      case 'experiments':
         return 3;
-      case 'about':
+      case 'experience':
         return 4;
-      case 'contact':
+      case 'about':
         return 5;
+      case 'contact':
+        return 6;
       default:
         return null;
     }
@@ -108,7 +114,10 @@ class PortfolioNavBar extends StatelessWidget {
                     Flexible(
                       child: BlocBuilder<ControlPageCubit, AppBarItens>(
                         builder: (_, active) {
-                          final scrollActive = writingSelected ? null : active;
+                          final scrollActive =
+                              writingSelected || experimentsSelected
+                              ? null
+                              : active;
                           return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             reverse: true,
@@ -129,20 +138,28 @@ class PortfolioNavBar extends StatelessWidget {
                                 SizedBox(width: gap),
                                 NavTextItem(
                                   title: 'Writing',
-                                  isSelected: writingSelected ||
+                                  isSelected:
+                                      writingSelected ||
                                       scrollActive == AppBarItens.writing,
                                   onTap: () =>
                                       _goHomeSection(context, 'writing'),
                                 ),
                                 SizedBox(width: gap),
                                 NavTextItem(
+                                  title: 'Experiments',
+                                  isSelected:
+                                      experimentsSelected ||
+                                      scrollActive == AppBarItens.experiments,
+                                  onTap: () =>
+                                      _goHomeSection(context, 'experiments'),
+                                ),
+                                SizedBox(width: gap),
+                                NavTextItem(
                                   title: 'Experience',
                                   isSelected:
                                       scrollActive == AppBarItens.experience,
-                                  onTap: () => _goHomeSection(
-                                    context,
-                                    'experience',
-                                  ),
+                                  onTap: () =>
+                                      _goHomeSection(context, 'experience'),
                                 ),
                                 SizedBox(width: gap),
                                 NavTextItem(

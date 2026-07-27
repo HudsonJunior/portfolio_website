@@ -2,6 +2,7 @@ enum AppBarItens {
   home,
   talks,
   writing,
+  experiments,
   experience,
   about,
   contact,
@@ -16,6 +17,8 @@ extension AppBarItensExt on AppBarItens {
         return 'Talks';
       case AppBarItens.writing:
         return 'Writing';
+      case AppBarItens.experiments:
+        return 'Experiments';
       case AppBarItens.experience:
         return 'Experience';
       case AppBarItens.about:

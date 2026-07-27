@@ -7,6 +7,7 @@ import 'package:portfolio_website/features/core/presentation/cubits/control_page
 import 'package:portfolio_website/features/core/presentation/widgets/portfolio_nav_bar.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/reveal_on_scroll.dart';
 import 'package:portfolio_website/features/experience/presentation/experience_section.dart';
+import 'package:portfolio_website/features/experiments/presentation/experiments_section.dart';
 import 'package:portfolio_website/features/home/presentation/home_section.dart';
 import 'package:portfolio_website/features/talks/presentation/talks_section.dart';
 import 'package:portfolio_website/resources/colors.dart';
@@ -25,8 +26,8 @@ class _CorePageState extends State<CorePage> {
   late final ControlPageCubit _cubit;
   late final ScrollController _scrollController;
 
-  // Order: Home, Talks, Writing, Experience, About, Contact
-  final _keys = List.generate(6, (_) => GlobalKey());
+  // Order: Home, Talks, Writing, Experiments, Experience, About, Contact
+  final _keys = List.generate(7, (_) => GlobalKey());
 
   final _scrollPos = ValueNotifier<double>(0);
   final _scrollFraction = ValueNotifier<double>(0);
@@ -74,12 +75,14 @@ class _CorePageState extends State<CorePage> {
         return 1;
       case 'writing':
         return 2;
-      case 'experience':
+      case 'experiments':
         return 3;
-      case 'about':
+      case 'experience':
         return 4;
-      case 'contact':
+      case 'about':
         return 5;
+      case 'contact':
+        return 6;
       default:
         return null;
     }
@@ -93,8 +96,10 @@ class _CorePageState extends State<CorePage> {
     if (ro == null) return;
 
     final dy = ro.localToGlobal(Offset.zero).dy;
-    final target = (_scrollController.offset + dy - _kNavHeight)
-        .clamp(0.0, _scrollController.position.maxScrollExtent);
+    final target = (_scrollController.offset + dy - _kNavHeight).clamp(
+      0.0,
+      _scrollController.position.maxScrollExtent,
+    );
 
     _scrollController.animateTo(
       target,
@@ -121,11 +126,10 @@ class _CorePageState extends State<CorePage> {
   @override
   Widget build(BuildContext context) {
     final sections = [
-      HomeSection(
-        onScrollToExperience: () => _goTo(3),
-      ),
+      HomeSection(onScrollToExperience: () => _goTo(4)),
       const TalksSection(),
       const WritingSection(),
+      const ExperimentsSection(),
       const ExperienceSection(),
       const AboutSection(),
       const ContactSection(),

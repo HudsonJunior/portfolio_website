@@ -1,6 +1,8 @@
 # SPA hosting for deep links
 
-This site uses path-based URLs (`/blog`, `/blog/my-slug`). The host must serve `index.html` for unknown paths so Flutter can handle routing client-side.
+This site uses path-based URLs (`/blog`, `/blog/my-slug`, and
+`/experiments/my-slug`). The host must serve `index.html` for unknown paths so
+Flutter can handle routing client-side.
 
 ## Firebase Hosting
 
