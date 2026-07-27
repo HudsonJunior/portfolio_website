@@ -176,46 +176,66 @@ class _MotionStage extends StatelessWidget {
                         : Alignment.centerLeft,
                     duration: duration,
                     curve: curveOption.curve,
-                    child: Container(
-                      width: 86,
-                      height: 86,
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.accent, AppColors.accentBlue],
-                        ),
-                        borderRadius: BorderRadius.circular(25),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.accent.withValues(alpha: 0.35),
-                            blurRadius: 32,
-                            spreadRadius: 2,
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.flutter_dash_rounded,
-                        size: 42,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: const _MotionObject(),
                   ),
                 ),
-                Positioned(
-                  left: 24,
-                  bottom: 20,
-                  child: Text(
-                    '${duration.inMilliseconds} MS  ·  '
-                    '${curveOption.label.toUpperCase()}',
-                    style: AppTextStyles.mono(
-                      fontSize: 10.5,
-                      color: AppColors.accentLight,
-                      letterSpacing: 0.06 * 10.5,
-                    ),
-                  ),
-                ),
+                _StageStatus(duration: duration, curveOption: curveOption),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _MotionObject extends StatelessWidget {
+  const _MotionObject();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 86,
+      height: 86,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [AppColors.accent, AppColors.accentBlue],
+        ),
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.accent.withValues(alpha: 0.35),
+            blurRadius: 32,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: const Icon(
+        Icons.flutter_dash_rounded,
+        size: 42,
+        color: Colors.white,
+      ),
+    );
+  }
+}
+
+class _StageStatus extends StatelessWidget {
+  final Duration duration;
+  final _MotionCurveOption curveOption;
+
+  const _StageStatus({required this.duration, required this.curveOption});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: 24,
+      bottom: 20,
+      child: Text(
+        '${duration.inMilliseconds} MS  ·  ${curveOption.label.toUpperCase()}',
+        style: AppTextStyles.mono(
+          fontSize: 10.5,
+          color: AppColors.accentLight,
+          letterSpacing: 0.06 * 10.5,
         ),
       ),
     );
@@ -254,6 +274,30 @@ class _Controls extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 26),
+        _DurationControl(durationMs: durationMs, onChanged: onDurationChanged),
+        const SizedBox(height: 20),
+        _CurveControl(
+          options: curveOptions,
+          selectedOption: selectedCurve,
+          onChanged: onCurveChanged,
+        ),
+        const SizedBox(height: 28),
+        _RunAnimationButton(onPressed: onRun),
+      ],
+    );
+  }
+}
+
+class _DurationControl extends StatelessWidget {
+  final double durationMs;
+  final ValueChanged<double> onChanged;
+
+  const _DurationControl({required this.durationMs, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -280,9 +324,29 @@ class _Controls extends StatelessWidget {
           divisions: 25,
           activeColor: AppColors.accent,
           inactiveColor: AppColors.borderMid,
-          onChanged: onDurationChanged,
+          onChanged: onChanged,
         ),
-        const SizedBox(height: 20),
+      ],
+    );
+  }
+}
+
+class _CurveControl extends StatelessWidget {
+  final List<_MotionCurveOption> options;
+  final _MotionCurveOption selectedOption;
+  final ValueChanged<_MotionCurveOption> onChanged;
+
+  const _CurveControl({
+    required this.options,
+    required this.selectedOption,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         Text(
           'Curve',
           style: AppTextStyles.manrope(
@@ -295,53 +359,62 @@ class _Controls extends StatelessWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final option in curveOptions)
+            for (final option in options)
               ChoiceChip(
                 label: Text(option.label),
-                selected: selectedCurve == option,
+                selected: selectedOption == option,
                 showCheckmark: false,
                 selectedColor: AppColors.accent.withValues(alpha: 0.26),
                 backgroundColor: AppColors.surfaceAlt,
                 side: BorderSide(
-                  color: selectedCurve == option
+                  color: selectedOption == option
                       ? AppColors.accent.withValues(alpha: 0.65)
                       : AppColors.borderMid,
                 ),
                 labelStyle: AppTextStyles.manrope(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: selectedCurve == option
+                  color: selectedOption == option
                       ? AppColors.accentPurpleLight
                       : AppColors.textMuted,
                 ),
-                onSelected: (_) => onCurveChanged(option),
+                onSelected: (_) => onChanged(option),
               ),
           ],
         ),
-        const SizedBox(height: 28),
-        SizedBox(
-          width: double.infinity,
-          child: FilledButton.icon(
-            onPressed: onRun,
-            style: FilledButton.styleFrom(
-              backgroundColor: AppColors.accent,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            icon: const Icon(Icons.play_arrow_rounded, size: 20),
-            label: Text(
-              'Run animation',
-              style: AppTextStyles.manrope(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+      ],
+    );
+  }
+}
+
+class _RunAnimationButton extends StatelessWidget {
+  final VoidCallback onPressed;
+
+  const _RunAnimationButton({required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: FilledButton.icon(
+        onPressed: onPressed,
+        style: FilledButton.styleFrom(
+          backgroundColor: AppColors.accent,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
-      ],
+        icon: const Icon(Icons.play_arrow_rounded, size: 20),
+        label: Text(
+          'Run animation',
+          style: AppTextStyles.manrope(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
     );
   }
 }

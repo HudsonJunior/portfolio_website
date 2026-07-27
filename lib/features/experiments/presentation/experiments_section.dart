@@ -16,7 +16,6 @@ class ExperimentsSection extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     final isNarrow = width < 850;
     final horizontalPad = isNarrow ? 24.0 : 48.0;
-    final carouselHeight = isNarrow ? 410.0 : 390.0;
 
     return Container(
       color: AppColors.background,
@@ -29,74 +28,100 @@ class ExperimentsSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: horizontalPad),
-                  child: RevealOnScroll(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '// sandbox',
-                          style: AppTextStyles.mono(
-                            fontSize: 12.5,
-                            color: AppColors.accentLight,
-                            letterSpacing: 0.06 * 12.5,
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        Text(
-                          'Experiments',
-                          style: AppTextStyles.spaceGrotesk(
-                            fontSize: 48,
-                            fontWeight: FontWeight.w700,
-                            letterSpacingEm: -0.025,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'A sandbox for playful Flutter ideas, interaction '
-                          'studies, and tiny things worth testing. Tap a card '
-                          'to try one.',
-                          style: AppTextStyles.manrope(
-                            fontSize: 16,
-                            color: AppColors.text.withValues(alpha: 0.6),
-                            height: 1.65,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                _ExperimentsHeader(horizontalPadding: horizontalPad),
                 const SizedBox(height: 48),
-                RevealOnScroll(
-                  child: CarouselSlider.builder(
-                    itemCount: kExperiments.length,
-                    options: CarouselOptions(
-                      height: carouselHeight,
-                      viewportFraction: isNarrow ? 0.9 : 0.72,
-                      enlargeCenterPage: false,
-                      enableInfiniteScroll: kExperiments.length > 1,
-                      autoPlay: kExperiments.length > 1,
-                      autoPlayInterval: const Duration(seconds: 6),
-                      padEnds: false,
-                    ),
-                    itemBuilder: (context, index, realIndex) {
-                      return Padding(
-                        padding: EdgeInsets.only(
-                          left: index == 0 ? horizontalPad : 8,
-                          right: index == kExperiments.length - 1
-                              ? horizontalPad
-                              : 8,
-                        ),
-                        child: _ExperimentCard(experiment: kExperiments[index]),
-                      );
-                    },
-                  ),
+                _ExperimentsCarousel(
+                  isNarrow: isNarrow,
+                  horizontalPadding: horizontalPad,
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ExperimentsHeader extends StatelessWidget {
+  final double horizontalPadding;
+
+  const _ExperimentsHeader({required this.horizontalPadding});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+      child: RevealOnScroll(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '// sandbox',
+              style: AppTextStyles.mono(
+                fontSize: 12.5,
+                color: AppColors.accentLight,
+                letterSpacing: 0.06 * 12.5,
+              ),
+            ),
+            const SizedBox(height: 14),
+            Text(
+              'Experiments',
+              style: AppTextStyles.spaceGrotesk(
+                fontSize: 48,
+                fontWeight: FontWeight.w700,
+                letterSpacingEm: -0.025,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'A sandbox for playful Flutter ideas, interaction studies, and '
+              'tiny things worth testing. Tap a card to try one.',
+              style: AppTextStyles.manrope(
+                fontSize: 16,
+                color: AppColors.text.withValues(alpha: 0.6),
+                height: 1.65,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ExperimentsCarousel extends StatelessWidget {
+  final bool isNarrow;
+  final double horizontalPadding;
+
+  const _ExperimentsCarousel({
+    required this.isNarrow,
+    required this.horizontalPadding,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RevealOnScroll(
+      child: CarouselSlider.builder(
+        itemCount: kExperiments.length,
+        options: CarouselOptions(
+          height: isNarrow ? 410 : 390,
+          viewportFraction: isNarrow ? 0.9 : 0.72,
+          enlargeCenterPage: false,
+          enableInfiniteScroll: kExperiments.length > 1,
+          autoPlay: kExperiments.length > 1,
+          autoPlayInterval: const Duration(seconds: 6),
+          padEnds: false,
+        ),
+        itemBuilder: (context, index, realIndex) {
+          return Padding(
+            padding: EdgeInsets.only(
+              left: index == 0 ? horizontalPadding : 8,
+              right: index == kExperiments.length - 1 ? horizontalPadding : 8,
+            ),
+            child: _ExperimentCard(experiment: kExperiments[index]),
+          );
+        },
       ),
     );
   }
@@ -152,84 +177,99 @@ class _ExperimentCardState extends State<_ExperimentCard> {
             onTap: () => context.go('/experiments/${experiment.slug}'),
             onHover: (value) => setState(() => _isHovered = value),
             onFocusChange: (value) => setState(() => _hasFocus = value),
+            child: _ExperimentCardBody(
+              experiment: experiment,
+              isHighlighted: _isHighlighted,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ExperimentCardBody extends StatelessWidget {
+  final Experiment experiment;
+  final bool isHighlighted;
+
+  const _ExperimentCardBody({
+    required this.experiment,
+    required this.isHighlighted,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final actionColor = isHighlighted
+        ? AppColors.accentLight
+        : AppColors.accent;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(flex: 5, child: ExperimentPreview(kind: experiment.kind)),
+        Expanded(
+          flex: 4,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 17, 20, 17),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  flex: 5,
-                  child: ExperimentPreview(kind: experiment.kind),
+                Text(
+                  experiment.status.toUpperCase(),
+                  style: AppTextStyles.mono(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.green,
+                    letterSpacing: 0.05 * 11,
+                  ),
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  experiment.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.spaceGrotesk(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    letterSpacingEm: -0.02,
+                  ),
+                ),
+                const SizedBox(height: 8),
                 Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 17, 20, 17),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          experiment.status.toUpperCase(),
-                          style: AppTextStyles.mono(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.green,
-                            letterSpacing: 0.05 * 11,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          experiment.title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.spaceGrotesk(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            letterSpacingEm: -0.02,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Expanded(
-                          child: Text(
-                            experiment.summary,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: AppTextStyles.manrope(
-                              fontSize: 13.5,
-                              color: AppColors.text.withValues(alpha: 0.55),
-                              height: 1.5,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Launch experiment',
-                              style: AppTextStyles.manrope(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                                color: _isHighlighted
-                                    ? AppColors.accentLight
-                                    : AppColors.accent,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Icon(
-                              Icons.arrow_outward_rounded,
-                              size: 14,
-                              color: _isHighlighted
-                                  ? AppColors.accentLight
-                                  : AppColors.accent,
-                            ),
-                          ],
-                        ),
-                      ],
+                  child: Text(
+                    experiment.summary,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.manrope(
+                      fontSize: 13.5,
+                      color: AppColors.text.withValues(alpha: 0.55),
+                      height: 1.5,
                     ),
                   ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Launch experiment',
+                      style: AppTextStyles.manrope(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: actionColor,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Icon(
+                      Icons.arrow_outward_rounded,
+                      size: 14,
+                      color: actionColor,
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

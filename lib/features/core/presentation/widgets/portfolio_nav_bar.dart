@@ -35,6 +35,14 @@ class PortfolioNavBar extends StatelessWidget {
     context.go('/?section=${section.slug}');
   }
 
+  void _goHome(BuildContext context) {
+    if (onSectionSelected != null) {
+      onSectionSelected!(PortfolioSection.home);
+    } else {
+      context.go('/');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isNarrow = MediaQuery.sizeOf(context).width < 960;
@@ -56,66 +64,13 @@ class PortfolioNavBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () {
-                          if (onSectionSelected != null) {
-                            onSectionSelected!(PortfolioSection.home);
-                          } else {
-                            context.go('/');
-                          }
-                        },
-                        child: RichText(
-                          text: TextSpan(
-                            style: AppTextStyles.spaceGrotesk(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.text,
-                              letterSpacingEm: -0.02,
-                            ),
-                            children: const [
-                              TextSpan(text: 'hudson'),
-                              TextSpan(
-                                text: '.',
-                                style: TextStyle(color: AppColors.accent),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    _PortfolioBrand(onTap: () => _goHome(context)),
                     Flexible(
-                      child: BlocBuilder<ControlPageCubit, PortfolioSection>(
-                        builder: (_, active) {
-                          final activeSection = selectedSection ?? active;
-                          final textSections = PortfolioSection.values.where(
-                            (section) => section != PortfolioSection.contact,
-                          );
-                          return SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            reverse: true,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                for (final section in textSections) ...[
-                                  NavTextItem(
-                                    title: section.label,
-                                    isSelected: activeSection == section,
-                                    onTap: () => _goToSection(context, section),
-                                  ),
-                                  SizedBox(width: gap),
-                                ],
-                                NavContactButton(
-                                  onTap: () => _goToSection(
-                                    context,
-                                    PortfolioSection.contact,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                      child: _NavigationMenu(
+                        gap: gap,
+                        selectedSection: selectedSection,
+                        onSectionSelected: (section) =>
+                            _goToSection(context, section),
                       ),
                     ),
                   ],
@@ -135,6 +90,89 @@ class PortfolioNavBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _PortfolioBrand extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _PortfolioBrand({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: 'Go to home',
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          mouseCursor: SystemMouseCursors.click,
+          child: RichText(
+            text: TextSpan(
+              style: AppTextStyles.spaceGrotesk(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: AppColors.text,
+                letterSpacingEm: -0.02,
+              ),
+              children: const [
+                TextSpan(text: 'hudson'),
+                TextSpan(
+                  text: '.',
+                  style: TextStyle(color: AppColors.accent),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NavigationMenu extends StatelessWidget {
+  final double gap;
+  final PortfolioSection? selectedSection;
+  final ValueChanged<PortfolioSection> onSectionSelected;
+
+  const _NavigationMenu({
+    required this.gap,
+    required this.selectedSection,
+    required this.onSectionSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ControlPageCubit, PortfolioSection>(
+      builder: (_, active) {
+        final activeSection = selectedSection ?? active;
+        final textSections = PortfolioSection.values.where(
+          (section) => section != PortfolioSection.contact,
+        );
+
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          reverse: true,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final section in textSections) ...[
+                NavTextItem(
+                  title: section.label,
+                  isSelected: activeSection == section,
+                  onTap: () => onSectionSelected(section),
+                ),
+                SizedBox(width: gap),
+              ],
+              NavContactButton(
+                onTap: () => onSectionSelected(PortfolioSection.contact),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

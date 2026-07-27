@@ -39,54 +39,9 @@ class ExperimentDetailScaffold extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextButton.icon(
-                          onPressed: () => context.go('/?section=experiments'),
-                          style: TextButton.styleFrom(
-                            foregroundColor: AppColors.textMuted,
-                            padding: EdgeInsets.zero,
-                          ),
-                          icon: const Icon(Icons.arrow_back_rounded, size: 17),
-                          label: const Text('All experiments'),
-                        ),
-                        const SizedBox(height: 30),
-                        Text(
-                          '// ${experiment.status.toLowerCase()}',
-                          style: AppTextStyles.mono(
-                            fontSize: 12,
-                            color: AppColors.green,
-                            letterSpacing: 0.06 * 12,
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        Text(
-                          experiment.title,
-                          style: AppTextStyles.spaceGrotesk(
-                            fontSize: isNarrow ? 38 : 48,
-                            fontWeight: FontWeight.w700,
-                            letterSpacingEm: -0.03,
-                            height: 1.05,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 680),
-                          child: Text(
-                            experiment.summary,
-                            style: AppTextStyles.manrope(
-                              fontSize: 16,
-                              color: AppColors.text.withValues(alpha: 0.6),
-                              height: 1.65,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 18),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            for (final tag in experiment.tags)
-                              _ExperimentTag(label: tag),
-                          ],
+                        _ExperimentHeader(
+                          experiment: experiment,
+                          isNarrow: isNarrow,
                         ),
                         const SizedBox(height: 42),
                         child,
@@ -107,6 +62,70 @@ class ExperimentDetailScaffold extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ExperimentHeader extends StatelessWidget {
+  final Experiment experiment;
+  final bool isNarrow;
+
+  const _ExperimentHeader({required this.experiment, required this.isNarrow});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextButton.icon(
+          onPressed: () => context.go('/?section=experiments'),
+          style: TextButton.styleFrom(
+            foregroundColor: AppColors.textMuted,
+            padding: EdgeInsets.zero,
+          ),
+          icon: const Icon(Icons.arrow_back_rounded, size: 17),
+          label: const Text('All experiments'),
+        ),
+        const SizedBox(height: 30),
+        Text(
+          '// ${experiment.status.toLowerCase()}',
+          style: AppTextStyles.mono(
+            fontSize: 12,
+            color: AppColors.green,
+            letterSpacing: 0.06 * 12,
+          ),
+        ),
+        const SizedBox(height: 14),
+        Text(
+          experiment.title,
+          style: AppTextStyles.spaceGrotesk(
+            fontSize: isNarrow ? 38 : 48,
+            fontWeight: FontWeight.w700,
+            letterSpacingEm: -0.03,
+            height: 1.05,
+          ),
+        ),
+        const SizedBox(height: 16),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 680),
+          child: Text(
+            experiment.summary,
+            style: AppTextStyles.manrope(
+              fontSize: 16,
+              color: AppColors.text.withValues(alpha: 0.6),
+              height: 1.65,
+            ),
+          ),
+        ),
+        const SizedBox(height: 18),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final tag in experiment.tags) _ExperimentTag(label: tag),
+          ],
+        ),
+      ],
     );
   }
 }
