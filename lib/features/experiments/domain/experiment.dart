@@ -1,4 +1,7 @@
+enum ExperimentKind { motionLab }
+
 class Experiment {
+  final ExperimentKind kind;
   final String slug;
   final String title;
   final String summary;
@@ -6,6 +9,7 @@ class Experiment {
   final List<String> tags;
 
   const Experiment({
+    required this.kind,
     required this.slug,
     required this.title,
     required this.summary,
@@ -14,17 +18,18 @@ class Experiment {
   });
 }
 
-const kExperiments = <Experiment>[
-  Experiment(
-    slug: 'motion-lab',
-    title: 'Flutter Motion Lab',
-    summary:
-        'Tune duration and easing, then send a widget across the stage to feel '
-        'how each animation curve behaves.',
-    status: 'LIVE EXPERIMENT',
-    tags: ['Animation', 'Curves', 'Interaction'],
-  ),
-];
+const kMotionLabExperiment = Experiment(
+  kind: ExperimentKind.motionLab,
+  slug: 'motion-lab',
+  title: 'Flutter Motion Lab',
+  summary:
+      'Tune duration and easing, then send a widget across the stage to feel '
+      'how each animation curve behaves.',
+  status: 'Live experiment',
+  tags: ['Animation', 'Curves', 'Interaction'],
+);
+
+const kExperiments = <Experiment>[kMotionLabExperiment];
 
 Experiment? experimentBySlug(String slug) {
   for (final experiment in kExperiments) {

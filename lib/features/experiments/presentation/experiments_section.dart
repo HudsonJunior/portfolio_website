@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/reveal_on_scroll.dart';
 import 'package:portfolio_website/features/experiments/domain/experiment.dart';
+import 'package:portfolio_website/features/experiments/presentation/widgets/experiment_preview.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/theme.dart';
 
@@ -111,7 +112,10 @@ class _ExperimentCard extends StatefulWidget {
 }
 
 class _ExperimentCardState extends State<_ExperimentCard> {
-  bool _hovered = false;
+  bool _isHovered = false;
+  bool _hasFocus = false;
+
+  bool get _isHighlighted => _isHovered || _hasFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -120,38 +124,41 @@ class _ExperimentCardState extends State<_ExperimentCard> {
     return Semantics(
       button: true,
       label: 'Open ${experiment.title}',
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        onEnter: (_) => setState(() => _hovered = true),
-        onExit: (_) => setState(() => _hovered = false),
-        child: GestureDetector(
-          onTap: () => context.go('/experiments/${experiment.slug}'),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 220),
-            transform: Matrix4.translationValues(0, _hovered ? -4 : 0, 0),
-            decoration: BoxDecoration(
-              color: AppColors.surface,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                color: _hovered
-                    ? AppColors.accent.withValues(alpha: 0.55)
-                    : AppColors.border,
-              ),
-              boxShadow: _hovered
-                  ? [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.35),
-                        blurRadius: 28,
-                        offset: const Offset(0, 12),
-                      ),
-                    ]
-                  : null,
-            ),
-            clipBehavior: Clip.antiAlias,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 220),
+        transform: Matrix4.translationValues(0, _isHighlighted ? -4 : 0, 0),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: _isHighlighted
+                ? AppColors.accent.withValues(alpha: 0.55)
+                : AppColors.border,
+          ),
+          boxShadow: _isHighlighted
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.35),
+                    blurRadius: 28,
+                    offset: const Offset(0, 12),
+                  ),
+                ]
+              : null,
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () => context.go('/experiments/${experiment.slug}'),
+            onHover: (value) => setState(() => _isHovered = value),
+            onFocusChange: (value) => setState(() => _hasFocus = value),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Expanded(flex: 5, child: _MotionPreview()),
+                Expanded(
+                  flex: 5,
+                  child: ExperimentPreview(kind: experiment.kind),
+                ),
                 Expanded(
                   flex: 4,
                   child: Padding(
@@ -160,7 +167,7 @@ class _ExperimentCardState extends State<_ExperimentCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          experiment.status,
+                          experiment.status.toUpperCase(),
                           style: AppTextStyles.mono(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
@@ -199,7 +206,7 @@ class _ExperimentCardState extends State<_ExperimentCard> {
                               style: AppTextStyles.manrope(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
-                                color: _hovered
+                                color: _isHighlighted
                                     ? AppColors.accentLight
                                     : AppColors.accent,
                               ),
@@ -208,7 +215,7 @@ class _ExperimentCardState extends State<_ExperimentCard> {
                             Icon(
                               Icons.arrow_outward_rounded,
                               size: 14,
-                              color: _hovered
+                              color: _isHighlighted
                                   ? AppColors.accentLight
                                   : AppColors.accent,
                             ),
@@ -225,86 +232,4 @@ class _ExperimentCardState extends State<_ExperimentCard> {
       ),
     );
   }
-}
-
-class _MotionPreview extends StatelessWidget {
-  const _MotionPreview();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFF17152B), Color(0xFF101625)],
-        ),
-      ),
-      child: Stack(
-        children: [
-          Positioned.fill(child: CustomPaint(painter: _GridPainter())),
-          const Positioned(top: 24, left: 24, child: FlutterLogo(size: 46)),
-          Positioned(
-            right: 30,
-            bottom: 30,
-            child: Transform.rotate(
-              angle: -0.14,
-              child: Container(
-                width: 78,
-                height: 78,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [AppColors.accent, AppColors.accentBlue],
-                  ),
-                  borderRadius: BorderRadius.circular(24),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.accent.withValues(alpha: 0.35),
-                      blurRadius: 28,
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.motion_photos_on_rounded,
-                  color: Colors.white,
-                  size: 34,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 24,
-            bottom: 28,
-            child: Text(
-              'CURVE  →  MOTION',
-              style: AppTextStyles.mono(
-                fontSize: 11,
-                color: AppColors.text.withValues(alpha: 0.45),
-                letterSpacing: 0.09 * 11,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _GridPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.035)
-      ..strokeWidth = 1;
-    const spacing = 28.0;
-    for (double x = 0; x < size.width; x += spacing) {
-      canvas.drawLine(Offset(x, 0), Offset(x, size.height), paint);
-    }
-    for (double y = 0; y < size.height; y += spacing) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

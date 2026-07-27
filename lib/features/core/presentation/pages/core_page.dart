@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio_website/features/about/presentation/about_section.dart';
 import 'package:portfolio_website/features/blog/presentation/writing_section.dart';
 import 'package:portfolio_website/features/contact/presentation/contact_section.dart';
+import 'package:portfolio_website/features/core/models/portfolio_section.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/portfolio_nav_bar.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/reveal_on_scroll.dart';
@@ -26,8 +27,9 @@ class _CorePageState extends State<CorePage> {
   late final ControlPageCubit _cubit;
   late final ScrollController _scrollController;
 
-  // Order: Home, Talks, Writing, Experiments, Experience, About, Contact
-  final _keys = List.generate(7, (_) => GlobalKey());
+  final _sectionKeys = {
+    for (final section in PortfolioSection.values) section: GlobalKey(),
+  };
 
   final _scrollPos = ValueNotifier<double>(0);
   final _scrollFraction = ValueNotifier<double>(0);
@@ -51,8 +53,8 @@ class _CorePageState extends State<CorePage> {
     final section = widget.initialSection;
     if (section != null && section.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        final index = _indexForSection(section);
-        if (index != null) _goTo(index);
+        final target = portfolioSectionFromSlug(section);
+        if (target != null) _goTo(target);
       });
     }
   }
@@ -67,30 +69,9 @@ class _CorePageState extends State<CorePage> {
 
   static const _kNavHeight = 62.0;
 
-  static int? _indexForSection(String section) {
-    switch (section) {
-      case 'home':
-        return 0;
-      case 'talks':
-        return 1;
-      case 'writing':
-        return 2;
-      case 'experiments':
-        return 3;
-      case 'experience':
-        return 4;
-      case 'about':
-        return 5;
-      case 'contact':
-        return 6;
-      default:
-        return null;
-    }
-  }
-
-  void _goTo(int index) {
+  void _goTo(PortfolioSection section) {
     if (!_scrollController.hasClients) return;
-    final ctx = _keys[index].currentContext;
+    final ctx = _sectionKeys[section]?.currentContext;
     if (ctx == null) return;
     final ro = ctx.findRenderObject() as RenderBox?;
     if (ro == null) return;
@@ -110,14 +91,14 @@ class _CorePageState extends State<CorePage> {
 
   void _updateActiveSection() {
     final threshold = MediaQuery.of(context).size.height * 0.40;
-    for (int i = _keys.length - 1; i >= 0; i--) {
-      final ctx = _keys[i].currentContext;
+    for (final section in PortfolioSection.values.reversed) {
+      final ctx = _sectionKeys[section]?.currentContext;
       if (ctx == null) continue;
       final ro = ctx.findRenderObject() as RenderBox?;
       if (ro == null) continue;
       final dy = ro.localToGlobal(Offset.zero).dy;
       if (dy <= threshold) {
-        _cubit.setSection(i);
+        _cubit.setSection(section);
         return;
       }
     }
@@ -125,15 +106,17 @@ class _CorePageState extends State<CorePage> {
 
   @override
   Widget build(BuildContext context) {
-    final sections = [
-      HomeSection(onScrollToExperience: () => _goTo(4)),
-      const TalksSection(),
-      const WritingSection(),
-      const ExperimentsSection(),
-      const ExperienceSection(),
-      const AboutSection(),
-      const ContactSection(),
-    ];
+    final sections = <PortfolioSection, Widget>{
+      PortfolioSection.home: HomeSection(
+        onScrollToExperience: () => _goTo(PortfolioSection.experience),
+      ),
+      PortfolioSection.talks: const TalksSection(),
+      PortfolioSection.writing: const WritingSection(),
+      PortfolioSection.experiments: const ExperimentsSection(),
+      PortfolioSection.experience: const ExperienceSection(),
+      PortfolioSection.about: const AboutSection(),
+      PortfolioSection.contact: const ContactSection(),
+    };
 
     return PortfolioScroll(
       scrollPos: _scrollPos,
@@ -146,10 +129,13 @@ class _CorePageState extends State<CorePage> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: List.generate(
-                  sections.length,
-                  (i) => KeyedSubtree(key: _keys[i], child: sections[i]),
-                ),
+                children: [
+                  for (final entry in sections.entries)
+                    KeyedSubtree(
+                      key: _sectionKeys[entry.key],
+                      child: entry.value,
+                    ),
+                ],
               ),
             ),
             Positioned(
@@ -157,7 +143,7 @@ class _CorePageState extends State<CorePage> {
               left: 0,
               right: 0,
               child: PortfolioNavBar(
-                onScrollTo: _goTo,
+                onSectionSelected: _goTo,
                 scrollFraction: _scrollFraction,
               ),
             ),

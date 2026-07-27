@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio_website/features/blog/domain/blog_post.dart';
+import 'package:portfolio_website/features/core/models/portfolio_section.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/portfolio_nav_bar.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/theme.dart';
@@ -41,7 +42,7 @@ class BlogPostPage extends StatelessWidget {
               top: 0,
               left: 0,
               right: 0,
-              child: PortfolioNavBar(writingSelected: true),
+              child: PortfolioNavBar(selectedSection: PortfolioSection.writing),
             ),
           ],
         ),
@@ -290,7 +291,7 @@ class BlogPostPage extends StatelessWidget {
             top: 0,
             left: 0,
             right: 0,
-            child: PortfolioNavBar(writingSelected: true),
+            child: PortfolioNavBar(selectedSection: PortfolioSection.writing),
           ),
         ],
       ),

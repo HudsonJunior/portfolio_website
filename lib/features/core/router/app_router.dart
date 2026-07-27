@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio_website/features/blog/presentation/blog_index_page.dart';
 import 'package:portfolio_website/features/blog/presentation/blog_post_page.dart';
 import 'package:portfolio_website/features/core/presentation/pages/core_page.dart';
-import 'package:portfolio_website/features/experiments/presentation/experiment_page.dart';
+import 'package:portfolio_website/features/experiments/presentation/experiment_route_page.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/',
@@ -31,7 +31,7 @@ final appRouter = GoRouter(
       path: '/experiments/:slug',
       builder: (context, state) {
         final slug = state.pathParameters['slug'] ?? '';
-        return ExperimentPage(slug: slug);
+        return ExperimentRoutePage(slug: slug);
       },
     ),
   ],

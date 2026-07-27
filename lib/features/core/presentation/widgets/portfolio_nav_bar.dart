@@ -3,62 +3,36 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:portfolio_website/features/core/models/app_bar_itens.dart';
+import 'package:portfolio_website/features/core/models/portfolio_section.dart';
 import 'package:portfolio_website/features/core/presentation/cubits/control_page_cubit.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/app_bar_menu_item.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/theme.dart';
 
-/// Frosted top nav shared by the landing page and blog routes.
+/// Frosted top nav shared by the landing page and standalone feature routes.
 class PortfolioNavBar extends StatelessWidget {
-  /// When on `/`, scrolls to a section index. Null on blog routes.
-  final void Function(int index)? onScrollTo;
+  /// Scrolls within the landing page. Null on standalone routes.
+  final ValueChanged<PortfolioSection>? onSectionSelected;
 
   /// Scroll progress 0..1. Null hides the bar (blog routes).
   final ValueNotifier<double>? scrollFraction;
 
-  /// Highlights the Writing nav item on blog routes.
-  final bool writingSelected;
-
-  /// Highlights Experiments on standalone experiment routes.
-  final bool experimentsSelected;
+  /// Explicit selection for standalone routes such as blog posts or labs.
+  final PortfolioSection? selectedSection;
 
   const PortfolioNavBar({
     super.key,
-    this.onScrollTo,
+    this.onSectionSelected,
     this.scrollFraction,
-    this.writingSelected = false,
-    this.experimentsSelected = false,
+    this.selectedSection,
   });
 
-  void _goHomeSection(BuildContext context, String section) {
-    if (onScrollTo != null) {
-      final index = _sectionIndex(section);
-      if (index != null) onScrollTo!(index);
+  void _goToSection(BuildContext context, PortfolioSection section) {
+    if (onSectionSelected != null) {
+      onSectionSelected!(section);
       return;
     }
-    context.go('/?section=$section');
-  }
-
-  static int? _sectionIndex(String section) {
-    switch (section) {
-      case 'home':
-        return 0;
-      case 'talks':
-        return 1;
-      case 'writing':
-        return 2;
-      case 'experiments':
-        return 3;
-      case 'experience':
-        return 4;
-      case 'about':
-        return 5;
-      case 'contact':
-        return 6;
-      default:
-        return null;
-    }
+    context.go('/?section=${section.slug}');
   }
 
   @override
@@ -86,8 +60,8 @@ class PortfolioNavBar extends StatelessWidget {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          if (onScrollTo != null) {
-                            onScrollTo!(0);
+                          if (onSectionSelected != null) {
+                            onSectionSelected!(PortfolioSection.home);
                           } else {
                             context.go('/');
                           }
@@ -112,65 +86,31 @@ class PortfolioNavBar extends StatelessWidget {
                       ),
                     ),
                     Flexible(
-                      child: BlocBuilder<ControlPageCubit, AppBarItens>(
+                      child: BlocBuilder<ControlPageCubit, PortfolioSection>(
                         builder: (_, active) {
-                          final scrollActive =
-                              writingSelected || experimentsSelected
-                              ? null
-                              : active;
+                          final activeSection = selectedSection ?? active;
+                          final textSections = PortfolioSection.values.where(
+                            (section) => section != PortfolioSection.contact,
+                          );
                           return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             reverse: true,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                NavTextItem(
-                                  title: 'Home',
-                                  isSelected: scrollActive == AppBarItens.home,
-                                  onTap: () => _goHomeSection(context, 'home'),
-                                ),
-                                SizedBox(width: gap),
-                                NavTextItem(
-                                  title: 'Talks',
-                                  isSelected: scrollActive == AppBarItens.talks,
-                                  onTap: () => _goHomeSection(context, 'talks'),
-                                ),
-                                SizedBox(width: gap),
-                                NavTextItem(
-                                  title: 'Writing',
-                                  isSelected:
-                                      writingSelected ||
-                                      scrollActive == AppBarItens.writing,
-                                  onTap: () =>
-                                      _goHomeSection(context, 'writing'),
-                                ),
-                                SizedBox(width: gap),
-                                NavTextItem(
-                                  title: 'Experiments',
-                                  isSelected:
-                                      experimentsSelected ||
-                                      scrollActive == AppBarItens.experiments,
-                                  onTap: () =>
-                                      _goHomeSection(context, 'experiments'),
-                                ),
-                                SizedBox(width: gap),
-                                NavTextItem(
-                                  title: 'Experience',
-                                  isSelected:
-                                      scrollActive == AppBarItens.experience,
-                                  onTap: () =>
-                                      _goHomeSection(context, 'experience'),
-                                ),
-                                SizedBox(width: gap),
-                                NavTextItem(
-                                  title: 'About',
-                                  isSelected: scrollActive == AppBarItens.about,
-                                  onTap: () => _goHomeSection(context, 'about'),
-                                ),
-                                SizedBox(width: gap),
+                                for (final section in textSections) ...[
+                                  NavTextItem(
+                                    title: section.label,
+                                    isSelected: activeSection == section,
+                                    onTap: () => _goToSection(context, section),
+                                  ),
+                                  SizedBox(width: gap),
+                                ],
                                 NavContactButton(
-                                  onTap: () =>
-                                      _goHomeSection(context, 'contact'),
+                                  onTap: () => _goToSection(
+                                    context,
+                                    PortfolioSection.contact,
+                                  ),
                                 ),
                               ],
                             ),
