@@ -8,5 +8,6 @@ My portfolio at [huds.dev](https://huds.dev) includes:
 
 - **Professional Experience**: Summary of my background in mobile development.
 - **Highlighted Projects**: Key projects demonstrating my skills and contributions.
+- **Flutter Experiments**: Interactive labs for testing motion, UI, and new ideas.
 - **Technologies**: Overview of the tools and languages I specialize in.
 - **Contact Info**: Connect with me directly for collaborations or inquiries.

@@ -8,6 +8,7 @@ class ControlPageCubit extends Cubit<AppBarItens> {
     AppBarItens.home,
     AppBarItens.talks,
     AppBarItens.writing,
+    AppBarItens.experiments,
     AppBarItens.works,
     AppBarItens.experience,
     AppBarItens.about,
