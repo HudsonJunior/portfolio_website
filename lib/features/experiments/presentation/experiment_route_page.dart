@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio_website/features/core/models/portfolio_section.dart';
 import 'package:portfolio_website/features/core/presentation/widgets/portfolio_nav_bar.dart';
 import 'package:portfolio_website/features/experiments/domain/experiment.dart';
+import 'package:portfolio_website/features/experiments/presentation/flutter_scene/flutter_scene_experiment_page.dart';
 import 'package:portfolio_website/features/experiments/presentation/motion_lab/motion_lab_page.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/theme.dart';
@@ -24,6 +25,8 @@ class ExperimentRoutePage extends StatelessWidget {
     switch (experiment.kind) {
       case ExperimentKind.motionLab:
         return const MotionLabPage();
+      case ExperimentKind.flutterScene:
+        return const FlutterSceneExperimentPage();
     }
   }
 }

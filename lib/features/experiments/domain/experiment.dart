@@ -1,4 +1,4 @@
-enum ExperimentKind { motionLab }
+enum ExperimentKind { motionLab, flutterScene }
 
 class Experiment {
   final ExperimentKind kind;
@@ -29,7 +29,21 @@ const kMotionLabExperiment = Experiment(
   tags: ['Animation', 'Curves', 'Interaction'],
 );
 
-const kExperiments = <Experiment>[kMotionLabExperiment];
+const kFlutterSceneExperiment = Experiment(
+  kind: ExperimentKind.flutterScene,
+  slug: 'flutter-scene',
+  title: 'Flutter Scene',
+  summary:
+      'Render Dash from a preprocessed GLB and automatically play its Run '
+      'animation inside this Flutter Web app.',
+  status: 'Experimental',
+  tags: ['Flutter Scene', '3D', 'GLB'],
+);
+
+const kExperiments = <Experiment>[
+  kMotionLabExperiment,
+  kFlutterSceneExperiment,
+];
 
 Experiment? experimentBySlug(String slug) {
   for (final experiment in kExperiments) {
