@@ -5,6 +5,7 @@ import 'package:portfolio_website/features/core/presentation/widgets/portfolio_n
 import 'package:portfolio_website/features/experiments/domain/experiment.dart';
 import 'package:portfolio_website/features/experiments/presentation/flutter_scene/flutter_scene_experiment_page.dart';
 import 'package:portfolio_website/features/experiments/presentation/motion_lab/motion_lab_page.dart';
+import 'package:portfolio_website/features/experiments/presentation/react_component/react_sandbox_page.dart';
 import 'package:portfolio_website/resources/colors.dart';
 import 'package:portfolio_website/resources/theme.dart';
 
@@ -27,6 +28,8 @@ class ExperimentRoutePage extends StatelessWidget {
         return const MotionLabPage();
       case ExperimentKind.flutterScene:
         return const FlutterSceneExperimentPage();
+      case ExperimentKind.reactComponent:
+        return const ReactSandboxPage();
     }
   }
 }

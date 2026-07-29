@@ -16,7 +16,37 @@ class ExperimentPreview extends StatelessWidget {
         return const MotionLabPreview();
       case ExperimentKind.flutterScene:
         return const _FlutterScenePreview();
+      case ExperimentKind.reactComponent:
+        return const _ReactComponentPreview();
     }
+  }
+}
+
+class _ReactComponentPreview extends StatelessWidget {
+  const _ReactComponentPreview();
+
+  @override
+  Widget build(BuildContext context) {
+    return _ReactSandboxPreview();
+  }
+}
+
+class _ReactSandboxPreview extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ExperimentGridBackground(
+      child: Center(
+        child: Container(
+          width: 112,
+          height: 112,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.accent.withValues(alpha: 0.12),
+          ),
+          child: const Icon(Icons.web, size: 54, color: AppColors.accentLight),
+        ),
+      ),
+    );
   }
 }
 

@@ -1,4 +1,4 @@
-enum ExperimentKind { motionLab, flutterScene }
+enum ExperimentKind { motionLab, flutterScene, reactComponent }
 
 class Experiment {
   final ExperimentKind kind;
@@ -40,9 +40,19 @@ const kFlutterSceneExperiment = Experiment(
   tags: ['Flutter Scene', '3D', 'GLB'],
 );
 
+const kReactComponentExperiment = Experiment(
+  kind: ExperimentKind.reactComponent,
+  slug: 'react-component',
+  title: 'React Component',
+  summary: 'Render a React component inside a Flutter Web app.',
+  status: 'Experimental',
+  tags: ['React', 'Flutter', 'Web'],
+);
+
 const kExperiments = <Experiment>[
   kMotionLabExperiment,
   kFlutterSceneExperiment,
+  kReactComponentExperiment,
 ];
 
 Experiment? experimentBySlug(String slug) {
